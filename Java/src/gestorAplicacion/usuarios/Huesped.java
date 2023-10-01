@@ -1,6 +1,9 @@
 package gestorAplicacion.usuarios;
 import java.util.ArrayList;
 
+import gestorAplicacion.hotel.Reserva;
+import gestorAplicacion.hotel.Habitacion;
+
 public class Huesped{
     private boolean vip;
     private Reserva reserva;
@@ -56,11 +59,12 @@ public class Huesped{
 //Mientras
     public boolean consultarVip(){
         if(vip == true){
-            return vip;
+            return true;
         } 
+        return false;
     }
 
-    public int consultarDiasDeEstadia(){
+    public void consultarDiasDeEstadia(){
     }
 
     public void cambiarPreferencias(ArrayList<Preferencias>nuevasPreferencias){

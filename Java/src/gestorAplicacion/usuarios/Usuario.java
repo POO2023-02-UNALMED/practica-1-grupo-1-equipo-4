@@ -1,5 +1,7 @@
 package gestorAplicacion.usuarios;
 
+import gestorAplicacion.finanzas.CuentaBancaria;
+
 public class Usuario{
     private String nombre;
     private int telefono;

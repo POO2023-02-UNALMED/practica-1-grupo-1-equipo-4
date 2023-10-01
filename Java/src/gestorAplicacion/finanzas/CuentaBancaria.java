@@ -1,5 +1,6 @@
 package gestorAplicacion.finanzas;
 
+import gestorAplicacion.usuarios.Usuario;
 public class CuentaBancaria {
 
     private long numero;
@@ -9,7 +10,7 @@ public class CuentaBancaria {
 
     public CuentaBancaria(){}
 
-    public void transferencia(Cuenta cuenta){}
+    public void transferencia(CuentaBancaria cuenta){}
 
     public void depositar(long dinero){}
 

@@ -3,6 +3,9 @@ package gestorAplicacion.hotel;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import gestorAplicacion.usuarios.Huesped;
+import gestorAplicacion.usuarios.Usuario;
+
 public class ServiciosExtra {
 	private int idServicio;
 	private ArrayList<String> listaTipoServicio;

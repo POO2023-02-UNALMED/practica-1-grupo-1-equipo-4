@@ -3,6 +3,9 @@ package gestorAplicacion.hotel;
 import java.util.ArrayList;
 import java.util.Date;
 
+import gestorAplicacion.usuarios.Huesped;
+import gestorAplicacion.hotel.ServiciosExtra;
+
 public class Reserva {
 	private Huesped huesped;
 	private Hotel hotel;
@@ -11,7 +14,7 @@ public class Reserva {
 	private Date fechaSalida;
 	private String tipoPago;
 	private int costo;
-	private ArrayList<Servicios> servicios;
+	private ArrayList<ServiciosExtra> servicios;
 	public Huesped getHuesped() {
 		return huesped;
 	}
@@ -54,26 +57,30 @@ public class Reserva {
 	public void setCosto(int costo) {
 		this.costo = costo;
 	}
-	public ArrayList<Servicios> getServicios() {
+	public ArrayList<ServiciosExtra> getServicios() {
 		return servicios;
 	}
-	public void setServicios(ArrayList<Servicios> servicios) {
+	public void setServicios(ArrayList<ServiciosExtra> servicios) {
 		this.servicios = servicios;
 	}
 	
 	public boolean crearReserva() {
+		return true;
 		
 	}
 	
 	public boolean eliminarReserva() {
+		return true;
 		
 	}
 	
 	public boolean modificarReserva() {
+		return true;
 		
 	}
 	
 	public int confirmarDescuento() {
+		return 0;
 		
 	}
 }
