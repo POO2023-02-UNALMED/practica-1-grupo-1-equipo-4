@@ -5,10 +5,16 @@ public class CuentaBancaria {
 
     private long numero;
     private String banco;
-    private long saldo;
-    private Usuario titular;
+    private long saldo = 0;
 
     public CuentaBancaria(){}
+
+    public CuentaBancaria(long numero, String banco){
+
+        this.numero = numero;
+        this.banco = banco;
+
+    }
 
     public void transferencia(CuentaBancaria cuenta){}
 

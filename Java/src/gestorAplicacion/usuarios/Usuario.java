@@ -1,8 +1,10 @@
 package gestorAplicacion.usuarios;
 
+import java.io.Serializable;
+
 import gestorAplicacion.finanzas.CuentaBancaria;
 
-public class Usuario{
+public class Usuario implements Serializable{
     private String nombre;
     private int telefono;
     private int id;
