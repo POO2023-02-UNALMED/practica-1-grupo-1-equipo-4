@@ -1,12 +1,17 @@
 package gestorAplicacion.usuarios;
-//from gestorAplicacion.hotel.Hotel import Hotel;
 
-public class Administrador {
-    //private Hotel hotel;
-    private int id;
-    //private static;
+import gestorAplicacion.usuarios.Usuario;
+import gestorAplicacion.finanzas.CuentaBancaria;
 
-    public Administrador(){}
+public class Administrador extends Usuario{
+    
+    private static int totalAdministradores = 0;
+
+    public Administrador(String nombre,int telefono,String username,String password,CuentaBancaria cuentaBancaria){
+        super(nombre, telefono, Administrador.totalAdministradores + 1, username, password, cuentaBancaria);
+
+        Administrador.totalAdministradores += 1;
+    }
 
     public void crearAdministrador(){}
 
