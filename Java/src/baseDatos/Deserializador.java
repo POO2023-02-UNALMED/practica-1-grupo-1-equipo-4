@@ -41,7 +41,7 @@ public class Deserializador {
                     fis = new FileInputStream(f);
                     ois = new ObjectInputStream(fis);
                     
-                    Base.setHoteles((ArrayList<Estudiante>) ois.readObject());
+                    Base.setHoteles((ArrayList<Hotel>) ois.readObject());
                 }
                 catch (FileNotFoundException e){
                     e.printStackTrace();

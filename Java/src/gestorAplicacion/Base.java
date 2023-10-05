@@ -14,8 +14,8 @@ import java.util.ArrayList;
 
 
 public class Base {
-    private static ArrayLIst<Administrador> _administradores = new ArrayList<>();
-    private static ArraYList<Hotel> _hoteles = new ArrayList<>();
+    private static ArrayList<Administrador> _administradores = new ArrayList<>();
+    private static ArrayList<Hotel> _hoteles = new ArrayList<>();
     
     
     public static void setAdministradores(ArrayList<Administrador> administradores){
@@ -27,7 +27,7 @@ public class Base {
     }
     
     public static void addAdministradores(Administrador administrador){
-        Base._administradores = administrador;
+        Base._administradores.add(administrador);;
     }
     
     
@@ -41,6 +41,6 @@ public class Base {
     }
     
     public static void addHoteles(Hotel hotel){
-        Base._hoteles = hotel;
+        Base._hoteles.add(hotel);;
     }
 }
