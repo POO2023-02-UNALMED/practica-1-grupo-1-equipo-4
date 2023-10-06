@@ -23,10 +23,10 @@ public class EscritorLector {
         
 
         try {
-            FileOutputStream fadm = new FileOutputStream(new File(archivo.getAbsolutePath()+"\\src\\baseDatos\\temp\\Administradores.txt"));
+            FileOutputStream fadm = new FileOutputStream(new File(archivo.getAbsolutePath()+"\\temp\\Administradores.txt"));
             ObjectOutputStream oadm = new ObjectOutputStream(fadm);
 
-            FileOutputStream fcuen = new FileOutputStream(new File(archivo.getAbsolutePath()+"\\src\\baseDatos\\temp\\Cuentas.txt"));
+            FileOutputStream fcuen = new FileOutputStream(new File(archivo.getAbsolutePath()+"\\temp\\Cuentas.txt"));
             ObjectOutputStream ocuen = new ObjectOutputStream(fcuen);
 
             ocuen.writeObject(cuenta);
@@ -37,10 +37,10 @@ public class EscritorLector {
             ocuen.close();
             fcuen.close();
 
-            FileInputStream fiadm = new FileInputStream(new File(archivo.getAbsolutePath()+"\\src\\baseDatos\\temp\\Administradores.txt"));
+            FileInputStream fiadm = new FileInputStream(new File(archivo.getAbsolutePath()+"\\temp\\Administradores.txt"));
             ObjectInputStream oiadm = new ObjectInputStream(fiadm);
 
-            FileInputStream ficuen = new FileInputStream(new File(archivo.getAbsolutePath()+"\\src\\baseDatos\\temp\\Administradores.txt"));
+            FileInputStream ficuen = new FileInputStream(new File(archivo.getAbsolutePath()+"\\temp\\Administradores.txt"));
             ObjectInputStream oicuen = new ObjectInputStream(fiadm);
                 // Leer objectos
             CuentaBancaria cuentaR = (CuentaBancaria) oicuen.readObject();

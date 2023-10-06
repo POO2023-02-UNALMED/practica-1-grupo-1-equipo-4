@@ -1,8 +1,11 @@
 package gestorAplicacion.finanzas;
 
-import gestorAplicacion.usuarios.Usuario;
-public class CuentaBancaria {
+import java.io.Serializable;
 
+import gestorAplicacion.usuarios.Usuario;
+public class CuentaBancaria  implements Serializable{
+
+    private static final long serialVersionUID = 1L;
     private long numero;
     private String banco;
     private long saldo = 0;
