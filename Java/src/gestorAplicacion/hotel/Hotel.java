@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
 import gestorAplicacion.usuarios.Huesped;
+import gestorAplicacion.usuarios.Preferencias;
 
 
 public class Hotel{
@@ -12,6 +13,7 @@ public class Hotel{
     private CuentaBancaria cuentaBancaria;
 
     private ArrayList<ServiciosExtra> servicios = new ArrayList<ServiciosExtra>();
+
 
     private ArrayList<Huesped> historialClientes = new ArrayList<Huesped>();
 
@@ -36,15 +38,18 @@ public class Hotel{
         this.servicios.add(servicio);
     }
 
-    public ArrayList<Hotel>  filtrarHoteles(String filtro, String info){
+    public ArrayList<Hotel>  filtrarHoteles(Preferencias filtro, ArrayList<String> info){
         //Se tendran en cuenta los  siguientes criterios para  filtrar: Nombre, Ciudad.
+        //El ArrayList info debe estar compuesto  por 2 elementos, el  primero es el nombre 
+        //de la ciudad, si es que este va a ser un parametro de busqueda, y el segundo el  
+        //nombre de la  ciudad, si alguno de las opciones  no va a  ser usada
+        //se debe llenar con un '0'
         ArrayList<Hotel> respuesta = new  ArrayList<Hotel>();
         for (Hotel i : this.totalHoteles){
-            if(i.getNombre() == filtro){
-                respuesta.add(i);
-            }
-            if(i.getCiudad() == filtro){
-                respuesta.add(i);
+            if(filtro.getNombreHotel() &&  i.getNombre() == info.get(0)){
+              respuesta.add(i);  
+            }else if(filtro.getCiudad() && i.getCiudad() == info.get(1)){
+              respuesta.add(i);  
             }
         }
         return respuesta;

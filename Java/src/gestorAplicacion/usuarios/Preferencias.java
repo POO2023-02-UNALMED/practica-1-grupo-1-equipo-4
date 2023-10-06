@@ -1,11 +1,11 @@
 package gestorAplicacion.usuarios;
 
 public class Preferencias {
-    private String ciudad;
-    private String nombreHotel;
-    private String tipoHabitacion;
+    private Boolean ciudad;
+    private Boolean nombreHotel;
+    private Boolean tipoHabitacion;
     
-    public Preferencias(String ciudad, String nombreHotel, String tipoHabitacion) {
+    public Preferencias(Boolean ciudad, Boolean nombreHotel, Boolean tipoHabitacion) {
         this.ciudad = ciudad;
         this.nombreHotel = nombreHotel;
         this.tipoHabitacion = tipoHabitacion;
@@ -14,29 +14,28 @@ public class Preferencias {
     public Preferencias() {
     }
 
-    public String getCiudad() {
+    public Boolean getCiudad() {
         return ciudad;
     }
 
-    public void setCiudad(String ciudad) {
+    public void setCiudad(Boolean ciudad) {
         this.ciudad = ciudad;
     }
 
-    public String getNombreHotel() {
+    public Boolean getNombreHotel() {
         return nombreHotel;
     }
 
-    public void setNombreHotel(String nombreHotel) {
+    public void setNombreHotel(Boolean nombreHotel) {
         this.nombreHotel = nombreHotel;
     }
 
-    public String getTipoHabitacion() {
+    public Boolean getTipoHabitacion() {
         return tipoHabitacion;
     }
 
-    public void setTipoHabitacion(String tipoHabitacion) {
+    public void setTipoHabitacion(Boolean tipoHabitacion) {
         this.tipoHabitacion = tipoHabitacion;
     }
-
     
 }
