@@ -61,24 +61,22 @@ public class Hotel{
         return respuesta;
     }
 
-    public ArrayList<Habitacion>  filtrarHabitaciones(String filtro, String info){
-        //Se tendran en cuenta los  siguientes criterios para  filtrar: Tipo, Numero de camas, precio Proximamente calificaciones.
+    public ArrayList<Habitacion>  filtrarHabitaciones(Preferencias filtro, ArrayList<String> info){
+        //Se tendran en cuenta los  siguientes criterios para  filtrar: nombreHotel y tipo
+        //El ArrayList info debe estar compuesto  por 2 elementos, el  primero es el nombre 
+        //de la hotel, si es que este va a ser un parametro de busqueda, y el segundo el  
+        //tipo de la  Habitacion, si alguno de las opciones  no va a  ser usada
+        //se debe llenar con un '0'
         ArrayList<Habitacion> respuesta = new  ArrayList<Habitacion>();
         for (Habitacion i : this.habitaciones){
            if(i.getReservada() == false){
-                if(String.valueOf(i.getNumeroCamas()) == filtro){
-                    respuesta.add(i);
-                }
-                if(i.getTipo() == filtro){
-                    respuesta.add(i);
-                }
-                if(String.valueOf(i.getPrecio()) == filtro){
-                    respuesta.add(i);
-                }
-                if(i.getPrecio() == Integer.parseInt(filtro)){
-                    respuesta.add(i);
-                }
-           }
+            if(filtro.getNombreHotel() &&  i.getHotel().getNombre() == info.get(0)){
+              respuesta.add(i);  
+            }else if(filtro.getTipoHabitacion() && i.getTipo() == info.get(1)){
+              respuesta.add(i);  
+            }
+           
+          }
         }
         return respuesta;
     }
