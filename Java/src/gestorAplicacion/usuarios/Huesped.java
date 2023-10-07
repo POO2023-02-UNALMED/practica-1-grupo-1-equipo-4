@@ -1,8 +1,10 @@
 package gestorAplicacion.usuarios;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import gestorAplicacion.hotel.Reserva;
 import gestorAplicacion.hotel.Habitacion;
+import gestorAplicacion.hotel.Hotel;
 
 public class Huesped{
     private boolean vip;
@@ -70,4 +72,25 @@ public class Huesped{
     public void cambiarPreferencias(ArrayList<Preferencias>nuevasPreferencias){
         this.preferencias = nuevasPreferencias;
     }
+
+    //Recomendaciones
+    //Con los dos primeros método la idea es tomar lo que devuelve los últimos dos métodos, para así analizar las habitaciones mejores calificadas. 
+    //Y devolver el HashMap que tenga como key el Hotel y el ArrayList con las habitaciones como value
+    public HashMap<Hotel,ArrayList<Habitacion>> recomendacion(ArrayList<Hotel> hoteles){
+        return null;
+    }
+
+    public HashMap<Hotel,ArrayList<Habitacion>> recomendacionPorSimilar(ArrayList<Hotel> hoteles){
+        return null;
+    }
+    
+    public ArrayList<Hotel> recomendacionHoteles(){
+        return null;
+    }
+
+    public ArrayList<Hotel> recomendacionHotelesPorSimilar(){
+        return null;
+    }
+
+
 }
