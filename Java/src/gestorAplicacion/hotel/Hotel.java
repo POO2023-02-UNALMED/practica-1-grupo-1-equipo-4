@@ -2,6 +2,7 @@ package gestorAplicacion.hotel;
 import java.util.ArrayList;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
+import gestorAplicacion.usuarios.Empleado;
 import gestorAplicacion.usuarios.Huesped;
 import gestorAplicacion.usuarios.Preferencias;
 
@@ -23,6 +24,11 @@ public class Hotel{
     private String nombre;
     private String ciudad;
     private ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
+    private ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+
+    public Hotel(CuentaBancaria cuentaBancaria){
+        this.cuentaBancaria = cuentaBancaria;
+    }
 
     public Hotel(CuentaBancaria cuentaBancaria, ArrayList<ServiciosExtra> servicios, ArrayList<Huesped> historialClientes) {
         this.cuentaBancaria = cuentaBancaria;
@@ -131,6 +137,18 @@ public class Hotel{
 
     public void setHistorialClientes(ArrayList<Huesped> historialClientes) {
         this.historialClientes = historialClientes;
+    }
+
+    public ArrayList<Empleado> getEmpleados(){
+        return this.empleados;
+    }
+
+    public void setEmpleados(ArrayList<Empleado> empleados){
+        this.empleados = empleados;
+    }
+
+    public void agregarEmpleado( Empleado empleado){
+        this.empleados.add(empleado);
     }
     
 }

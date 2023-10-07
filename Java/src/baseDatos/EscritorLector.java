@@ -19,7 +19,7 @@ public class EscritorLector {
     public EscritorLector(){
 
         CuentaBancaria cuenta = new CuentaBancaria(123456789, "Bancolombia");
-        Administrador admin1 = new Administrador("Camilo", 321000000, "kmi_san", "adminPsHotel", cuenta);
+        Administrador admin1 = new Administrador(null, 0, null, null, cuenta, null);
         
 
         try {
