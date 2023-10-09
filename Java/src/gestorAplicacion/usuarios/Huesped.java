@@ -1,12 +1,14 @@
 package gestorAplicacion.usuarios;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import gestorAplicacion.hotel.Reserva;
 import gestorAplicacion.hotel.Habitacion;
 import gestorAplicacion.hotel.Hotel;
 
 public class Huesped{
+    private long id;
     private boolean vip;
     private Reserva reserva;
     private Habitacion habitacion;
@@ -51,6 +53,11 @@ public class Huesped{
     public ArrayList<Reserva>getHistorialReservas(){
         return historialReservas;
     }
+    
+    public long getId() {
+        return id;
+    }
+
 //Falta llenar
     public Reserva generarReserva(){
         return new Reserva();
@@ -74,23 +81,62 @@ public class Huesped{
     }
 
     //Recomendaciones
-    //Con los dos primeros método la idea es tomar lo que devuelve los últimos dos métodos, para así analizar las habitaciones mejores calificadas. 
-    //Y devolver el HashMap que tenga como key el Hotel y el ArrayList con las habitaciones como value
-    public HashMap<Hotel,ArrayList<Habitacion>> recomendacion(ArrayList<Hotel> hoteles){
-        return null;
+    //A partir del historial reservas, acceder a las reservas y dependiendo de la ciudad que haya escogido el cliente
+    //buscar las reservas por ciudad. De ahí buscar los hoteles donde haya tenido calificaciones por encima de 4, 
+    //luego enviar esa lista de hoteles para devolver un HashMap con el hotel como key y un ArrayList con las habitaciones, 
+    //ambos deben tener calificaciones por encima de 4.
+    //TODO: trabajar en el performance
+    public HashMap<Hotel,ArrayList<Habitacion>> recomendacion(String ciudad){
+        HashMap<Hotel,ArrayList<Habitacion>> recomendaciones = new HashMap<>();
+        recomendaciones = recomendacionHotelesPorCiudad(ciudad);
+        return recomendaciones;
     }
 
-    public HashMap<Hotel,ArrayList<Habitacion>> recomendacionPorSimilar(ArrayList<Hotel> hoteles){
+    public HashMap<Hotel,ArrayList<Habitacion>> recomendacionPorSimilar(String ciudad){
         return null;
     }
     
-    public ArrayList<Hotel> recomendacionHoteles(){
-        return null;
+    public HashMap<Hotel,ArrayList<Habitacion>> recomendacionHotelesPorCiudad(String ciudad){
+        HashMap<Hotel,ArrayList<Habitacion>> recomendaciones = new HashMap<Hotel,ArrayList<Habitacion>>();
+        ArrayList<Hotel> hoteles = new ArrayList<Hotel>();
+        
+        for(int i=0;i<historialReservas.size();i++){
+            if(historialReservas.get(i).getCiudad().equals(ciudad)){
+                int calificacion = historialReservas.get(i).getCalificacionHotel();
+                if(calificacion>=4){
+                    hoteles.add(historialReservas.get(i).getHotel());
+                }  
+                break;     
+            }
+        }
+        for(Hotel hotel: hoteles){
+            ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
+            habitaciones = this.recomendacionHabitacion(hotel);
+            recomendaciones.put(hotel,habitaciones);
+        }
+        return recomendaciones;
     }
 
     public ArrayList<Hotel> recomendacionHotelesPorSimilar(){
         return null;
     }
 
-
+    public ArrayList<Habitacion> recomendacionHabitacion(Hotel hotel){
+        ArrayList<Habitacion> habitacionesHotel = hotel.getHabitaciones();
+        ArrayList<Habitacion> habitacionesRecomendadas = new ArrayList<Habitacion>();
+        for(int i=0;i<habitacionesHotel.size();i++){
+            Map<Huesped,Integer> calificaciones = new HashMap<Huesped,Integer>();
+            calificaciones = habitacionesHotel.get(i).getCalificaciones();
+            for(Huesped huesped : calificaciones.keySet()){
+                if(huesped.getId()==this.getId()){
+                    if(calificaciones.get(huesped)>=4){
+                        habitacionesRecomendadas.add(habitacionesHotel.get(i));
+                        break;
+                    }
+                }
+            }
+        }
+        return habitacionesRecomendadas;
+    }
+    
 }

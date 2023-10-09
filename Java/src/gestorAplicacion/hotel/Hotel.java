@@ -149,4 +149,10 @@ public class Hotel{
         this.empleados.add(empleado);
     }
     
+    public ArrayList<Habitacion> getHabitaciones() {
+        return habitaciones;
+    }
+    public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
+        this.habitaciones = habitaciones;
+    }
 }

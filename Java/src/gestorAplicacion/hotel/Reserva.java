@@ -15,6 +15,9 @@ public class Reserva {
 	private String tipoPago;
 	private int costo;
 	private ArrayList<ServiciosExtra> servicios;
+	private String ciudad;
+	private int calificacionHotel=0;
+	private int calificacionHabitacion=0;
 	public Huesped getHuesped() {
 		return huesped;
 	}
@@ -62,6 +65,24 @@ public class Reserva {
 	}
 	public void setServicios(ArrayList<ServiciosExtra> servicios) {
 		this.servicios = servicios;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+	public int getCalificacionHabitacion() {
+		return calificacionHabitacion;
+	}
+	public void setCalificacionHabitacion(int calificacionHabitacion) {
+		this.calificacionHabitacion = calificacionHabitacion;
+	}
+	public int getCalificacionHotel() {
+		return calificacionHotel;
+	}
+	public void setCalificacionHotel(int calificacionHotel) {
+		this.calificacionHotel = calificacionHotel;
 	}
 	
 	public boolean crearReserva() {

@@ -3,7 +3,7 @@ package gestorAplicacion.hotel;
 import java.util.HashMap;
 import java.util.Map;
 
-import gestorAplicacion.usuarios.Usuario;
+import gestorAplicacion.usuarios.Huesped;
 
 public class Habitacion {
 
@@ -13,7 +13,7 @@ public class Habitacion {
     private int  numeroCamas;
     private long precio;
     private Reserva reserva;
-    private Map<Usuario,Integer> calificaciones = new HashMap<Usuario,Integer>();
+    private Map<Huesped,Integer> calificaciones = new HashMap<Huesped,Integer>();
     private Boolean reservada = false;
     private Map<String,Integer> motivosCalificacion = new HashMap<String,Integer>();
     private Map<String,Integer> sugerencias = new HashMap<String,Integer>();
@@ -22,7 +22,7 @@ public class Habitacion {
     private float promedio;
     
     public Habitacion(long id, Hotel hotel, String tipo, int numeroCamas, long precio, Reserva reserva,
-            Map<Usuario, Integer> calificaciones, Boolean reservada, Map<String, Integer> motivosCalificacion,
+            Map<Huesped, Integer> calificaciones, Boolean reservada, Map<String, Integer> motivosCalificacion,
             Map<String, Integer> sugerencias) {
         this.id = id;
         this.hotel = hotel;
@@ -42,7 +42,7 @@ public class Habitacion {
     public float calcularPromedio(){
         float prom = 0;
         int cont = 0;
-        for(Map.Entry<Usuario,Integer> i : this.calificaciones.entrySet()){
+        for(Map.Entry<Huesped,Integer> i : this.calificaciones.entrySet()){
             prom = prom + i.getValue();
             cont++;
         }
@@ -97,11 +97,11 @@ public class Habitacion {
         this.reserva = reserva;
     }
 
-    public Map<Usuario, Integer> getCalificaciones() {
+    public Map<Huesped, Integer> getCalificaciones() {
         return calificaciones;
     }
 
-    public void setCalificaciones(Map<Usuario, Integer> calificaciones) {
+    public void setCalificaciones(Map<Huesped, Integer> calificaciones) {
         this.calificaciones = calificaciones;
     }
 
