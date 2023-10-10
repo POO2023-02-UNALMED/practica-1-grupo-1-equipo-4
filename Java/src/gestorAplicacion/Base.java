@@ -13,7 +13,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Base {
+public class Base implements Serializable{
+    private static final long serialVersionUID = 1L;
     private static ArrayList<Administrador> _administradores = new ArrayList<>();
     private static ArrayList<Hotel> _hoteles = new ArrayList<>();
     
@@ -41,6 +42,6 @@ public class Base {
     }
     
     public static void addHoteles(Hotel hotel){
-        Base._hoteles.add(hotel);;
+        Base._hoteles.add(hotel);
     }
 }

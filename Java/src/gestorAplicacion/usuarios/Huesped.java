@@ -1,4 +1,5 @@
 package gestorAplicacion.usuarios;
+import gestorAplicacion.finanzas.CuentaBancaria;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,21 +8,25 @@ import gestorAplicacion.hotel.Reserva;
 import gestorAplicacion.hotel.Habitacion;
 import gestorAplicacion.hotel.Hotel;
 
-public class Huesped{
-    private long id;
+public class Huesped extends Usuario{
     private boolean vip;
     private Reserva reserva;
     private Habitacion habitacion;
     private ArrayList<Preferencias> preferencias;
     private ArrayList<Reserva> historialReservas;
 
-    public Huesped(boolean vip,Habitacion habitacion){
+    
+
+    public Huesped(boolean vip, Reserva reserva, Habitacion habitacion, ArrayList<Preferencias> preferencias, ArrayList<Reserva> historialReservas, String nombre, int telefono, int id, String username, String password, CuentaBancaria cuentaBancaria) {
+        super(nombre, telefono, id, username, password, cuentaBancaria);
         this.vip = vip;
+        this.reserva = reserva;
         this.habitacion = habitacion;
-        this.preferencias = new ArrayList<>();
-        this.historialReservas = new ArrayList<>();
+        this.preferencias = preferencias;
+        this.historialReservas = historialReservas;
     }
 
+    
     public boolean isVip(){
         return this.vip;
     }
@@ -54,9 +59,6 @@ public class Huesped{
         return historialReservas;
     }
     
-    public long getId() {
-        return id;
-    }
 
 //Falta llenar
     public Reserva generarReserva(){

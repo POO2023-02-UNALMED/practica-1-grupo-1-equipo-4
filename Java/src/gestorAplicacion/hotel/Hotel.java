@@ -5,16 +5,17 @@ import gestorAplicacion.finanzas.CuentaBancaria;
 import gestorAplicacion.usuarios.Empleado;
 import gestorAplicacion.usuarios.Huesped;
 import gestorAplicacion.usuarios.Preferencias;
+import java.io.Serializable;
 
 
-public class Hotel{
-
+public class Hotel implements Serializable{
+    private static final long serialVersionUID = 2L;
     //Atributos  definidos en el UML
 
     private CuentaBancaria cuentaBancaria;
 
     private ArrayList<ServiciosExtra> servicios = new ArrayList<ServiciosExtra>();
-
+    
 
     private ArrayList<Huesped> historialClientes = new ArrayList<Huesped>();
 
@@ -155,4 +156,6 @@ public class Hotel{
     public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
         this.habitaciones = habitaciones;
     }
+    
+    
 }

@@ -5,8 +5,10 @@ import java.util.ArrayList;
 //import gestorAplicacion.usuarios.Usuario;
 import gestorAplicacion.finanzas.CuentaBancaria;
 import gestorAplicacion.hotel.Hotel;
+import java.io.Serializable; 
 
-public class Administrador extends Usuario{
+public class Administrador extends Usuario implements Serializable{
+    private static final long serialVersionUID = 3L;
     
     private static int totalAdministradores = 0;
     private Hotel hotel;
