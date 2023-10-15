@@ -6,9 +6,8 @@ import java.util.ArrayList;
 import gestorAplicacion.usuarios.Empleado;
 import gestorAplicacion.usuarios.Usuario;
 import gestorAplicacion.hotel.Hotel;
-public class CuentaBancaria  implements Serializable{
+public class CuentaBancaria{
 
-    private static final long serialVersionUID = 1L;
     private long numero;
     private String banco;
     private long saldo = 0;

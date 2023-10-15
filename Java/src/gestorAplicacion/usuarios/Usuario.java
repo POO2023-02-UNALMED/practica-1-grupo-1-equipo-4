@@ -4,9 +4,8 @@ import java.io.Serializable;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
 
-public class Usuario implements Serializable{
+public class Usuario{
     
-    private static final long serialVersionUID = 1L;
     private String nombre;
     private int telefono;
     private int id;
@@ -69,5 +68,9 @@ public class Usuario implements Serializable{
 
     public void setCuentaBancaria(CuentaBancaria cuentaBancaria){
         this.cuentaBancaria = cuentaBancaria;
+    }
+    
+    public String presentacion(){
+        return "";
     }
 }
