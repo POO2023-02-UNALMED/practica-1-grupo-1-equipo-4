@@ -38,7 +38,7 @@ public class Login {
                     + "1: Iniciar sesión"
                     + "2: Resgistrarse\n");
             opcion = sc.nextInt();
-            if (opcion != 1 || opcion != 2){
+            if (opcion != 1 && opcion != 2){
                System.out.println("Error: tiene que ingresar uno de los siguientes números: 1 o 2");
                continue;
             }

@@ -7,6 +7,7 @@ import uiMain.*;
 import gestorAplicacion.finanzas.*;
 import gestorAplicacion.hotel.*;
 import gestorAplicacion.usuarios.*;
+import gestorAplicacion.Base;
 
 import java.util.Scanner;
 /**
@@ -14,11 +15,13 @@ import java.util.Scanner;
  * @author david
  */
 public class Menu {
-
-    private Administrador administradorinicial = new Administrador("Juan", 12234, "juank", "12345678", new CuentaBancaria(1234, "Bancolombia"), new Hotel());
-
+    
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args){
+        
+        Administrador administradorinicial = new Administrador("Juan", 12234, "juank", "12345678", new CuentaBancaria(1234, "Bancolombia"), new Hotel());
+        Base.addAdministradores(administradorinicial);
+
         Login.login();
     }
     
