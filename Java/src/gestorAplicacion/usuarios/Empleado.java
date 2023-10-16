@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.Serializable; 
+import java.util.Date;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
 import uiMain.PresentacionBono;
@@ -29,6 +30,10 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
         super(nombre, telefono, Empleado.totalEmpleados + 1, username, password, cuentaBancaria);
 
         this.salario = salario;
+    }
+
+    public Date ultimoMesPago(){
+        return this.getCuentaBancaria().getUltimoPago();
     }
 
     public Boolean getEstadoEmpleado(){

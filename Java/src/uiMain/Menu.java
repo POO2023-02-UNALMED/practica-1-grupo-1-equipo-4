@@ -15,7 +15,7 @@ import java.util.Scanner;
  * @author david
  */
 public class Menu {
-    
+
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args){
         
@@ -63,7 +63,8 @@ public class Menu {
                         "   1. Reservar habitacion\n"+
                         "   2. Agregar un servicio a usuario\n"+
                         "   3. Pagar empleados\n"+
-                        "   4. Salir\n";
+                        "   4. Listar personal (Administradores y Empleados)"+
+                        "   5. Salir\n";
 
         System.out.println(mensaje);
         System.out.print("Opcion: ");
@@ -88,6 +89,9 @@ public class Menu {
                 System.out.println(administrador.pagarEmpleados());
                 opcion = textoMenuAdmin();
             case 4:
+                System.out.println("Opción 4 seleccionada");
+                opcion = textoMenuAdmin();
+            case 5:
                 System.out.println("Saliste del programa");
                 break;
             default:

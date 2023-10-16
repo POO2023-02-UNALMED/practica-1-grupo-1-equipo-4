@@ -1,6 +1,7 @@
 package gestorAplicacion.finanzas;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ArrayList;
 
 import gestorAplicacion.usuarios.Empleado;
@@ -11,6 +12,7 @@ public class CuentaBancaria{
     private long numero;
     private String banco;
     private long saldo = 0;
+    private Date ultimoPago;
 
     public CuentaBancaria(){}
 
@@ -23,12 +25,16 @@ public class CuentaBancaria{
 
     public void transferencia(CuentaBancaria cuenta, long valor){
         this.retirar(valor);
+        Date fecha = new Date();
         cuenta.depositar(valor);
+        cuenta.setUltimoPago(fecha);
     }
 
     public static void transferencia(CuentaBancaria cuenta1, CuentaBancaria cuenta2, long valor){
         cuenta1.retirar(valor);
+        Date fecha = new Date();
         cuenta2.depositar(valor);
+        cuenta2.setUltimoPago(fecha);
     }
 
     public void depositar(long dinero){
@@ -64,6 +70,14 @@ public class CuentaBancaria{
 
     public void setSaldo(int saldo){
         this.saldo = saldo;
+    }
+
+    public Date getUltimoPago(){
+        return this.ultimoPago;
+    }
+
+    public void setUltimoPago(Date fecha){
+        this.ultimoPago = fecha;
     }
     
 }
