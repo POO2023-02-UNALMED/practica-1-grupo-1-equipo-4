@@ -12,7 +12,9 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import uiMain.Reservar;
@@ -121,7 +123,7 @@ public class Base implements Serializable{
         return hotelNombre;
     }
     
-    public static Habitacion filtrarRoomPorID(Hotel hotel){
+    public static Habitacion filtrarRoomPorID(Hotel hotel, Huesped huesped){
         Scanner sc = new Scanner(System.in);
         boolean found = false;
         boolean reservada = false;
@@ -149,7 +151,7 @@ public class Base implements Serializable{
                     case 1: 
                         break;
                     case 2:
-                        filtrarRoomPorID(hotel);
+                        filtrarRoomPorID(hotel, huesped);
                         break;
                 }
             }
@@ -159,33 +161,40 @@ public class Base implements Serializable{
         }
     }
     
-    public static ArrayList<Habitacion> filtrarRoomPorTipo(Hotel hotel){
-        ArrayList<ArrayList<Habitacion>> sortedRooms = sortRooms(hotel);
+    public static ArrayList<Habitacion> filtrarRoomPorTipo(Hotel hotel, Huesped huesped){
         Scanner sc = new Scanner(System.in);
+        ArrayList<ArrayList<Habitacion>> sortedRooms = sortRooms(hotel);
+        
         System.out.print("Seleccione el tipo de habitación en la que se desea hospedar (Ingrese el número que corresponde a la opción deseada):\n"
                 + "1: VIP\n"
                 + "2: Doble\n"
                 + "3: Simple\n");
-        int opcion = sc.nextInt();
-        switch (opcion){
-            case 1:
-                ArrayList<Habitacion> sortedVIPRooms = new ArrayList<>();
+        
+        String [] tipo = {"vip","doble","simple"};
+        List<String> tipos = Arrays.asList(tipo);
+        
+        ArrayList<Habitacion> sortedVIPRooms = new ArrayList<>();
+        while (true){
+            int opcion = sc.nextInt();
+            if (!huesped.isVip() && opcion==1){
+                System.out.println("No puede acceder a habitaciones VIP. Intente de nuevo");
+            }
+            else{
                 for (ArrayList<Habitacion> listhabitacion: sortedRooms){
                     for (Habitacion habitacion : listhabitacion){
-                        if (habitacion.getTipo().equals("vip")){
+                        if (habitacion.getTipo().equals(tipos.get(opcion+1))){
                             if (!habitacion.getReservada()){
                                 sortedVIPRooms.add(habitacion);
-                                return sortedVIPRooms;
                             }
-                        }    
-                    }   
-            
+                        }
+                    }
                 }
-            case 2:
-                break;
+            }
+            return sortedVIPRooms;
         }
-        return null;
+        
     }
+                
     
     public static ArrayList<ArrayList<Habitacion>> sortRooms(Hotel selectedHotel){
         TreeMap<Float, ArrayList<Habitacion>> sortedMap = new TreeMap<>();
