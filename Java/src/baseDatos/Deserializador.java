@@ -53,6 +53,40 @@ public class Deserializador {
                     e.printStackTrace();
                 }
             }
+            else if(f.getAbsolutePath().contains("empleados")){
+                try{
+                    fis = new FileInputStream(f);
+                    ois = new ObjectInputStream(fis);
+                    
+                    Base.setEmpleados((ArrayList<Empleado>) ois.readObject());
+                }
+                catch (FileNotFoundException e){
+                    e.printStackTrace();
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+                catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+            else if(f.getAbsolutePath().contains("huespedes")){
+                try{
+                    fis = new FileInputStream(f);
+                    ois = new ObjectInputStream(fis);
+                    
+                    Base.setHuespedes((ArrayList<Huesped>) ois.readObject());
+                }
+                catch (FileNotFoundException e){
+                    e.printStackTrace();
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+                catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

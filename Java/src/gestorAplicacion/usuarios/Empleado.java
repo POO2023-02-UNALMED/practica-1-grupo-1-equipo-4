@@ -3,10 +3,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.Serializable; 
+import java.util.Date;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
+import uiMain.PresentacionBono;
 
-public class Empleado extends Usuario{
+public class Empleado extends Usuario implements Serializable, PresentacionBono{
+    private static final long serialVersionUID = 4L;
+    
     private Boolean estadoEmpleado = false;
     private Map<String,Integer>motivosCalificacion = new HashMap<>();
     private Map<String,Integer>sugerencias = new HashMap<>();
@@ -25,6 +30,10 @@ public class Empleado extends Usuario{
         super(nombre, telefono, Empleado.totalEmpleados + 1, username, password, cuentaBancaria);
 
         this.salario = salario;
+    }
+
+    public Date ultimoMesPago(){
+        return this.getCuentaBancaria().getUltimoPago();
     }
 
     public Boolean getEstadoEmpleado(){
@@ -85,4 +94,16 @@ public class Empleado extends Usuario{
         }
         return buenasCalificaciones;
     }    
+
+    @Override
+    public void ofrecerBono() {
+        this.setSalario(this.getSalario()+BONOEMPLEADO);
+    } 
+    
+    @Override
+    public String presentacion(){
+        String intro = PresentacionBono.recogerDatos(this);
+        return "Soy un empleado. "+intro ;
+    }
+    
 }

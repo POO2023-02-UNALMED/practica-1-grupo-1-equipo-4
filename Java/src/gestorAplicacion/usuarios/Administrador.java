@@ -1,6 +1,7 @@
 package gestorAplicacion.usuarios;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 //import gestorAplicacion.usuarios.Usuario;
 import gestorAplicacion.finanzas.CuentaBancaria;
@@ -38,9 +39,13 @@ public class Administrador extends Usuario implements Serializable{
 
     public void calcularPromedio(){}
 
-    public void ultimoMesPago(){}
+    public Date ultimoMesPago(){
+        return this.getCuentaBancaria().getUltimoPago();
+    }
 
-    public void dineroCuentaHotel(){}
+    public long dineroCuentaHotel(){
+        return this.hotel.getCuentaBancaria().getSaldo();
+    }
 
     public boolean puedePagarHotel(ArrayList<Empleado> empleados){
 

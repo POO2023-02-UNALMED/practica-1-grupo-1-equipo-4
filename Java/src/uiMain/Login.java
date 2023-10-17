@@ -15,17 +15,18 @@ import gestorAplicacion.Base;
 public class Login {
     static void login(){
         Scanner sc = new Scanner(System.in);
+        int opcion;
+        String us = null;
+        
+        System.out.println("CosmoReserve-Gestión Hotelera");
+        System.out.println("-----------------------------\n");
+        System.out.println("Ingrese su tipo de usuario (Ingrese el número que corresponde a la opción deseada):\n"
+                + "1: Administrador\n"
+                + "2: Empleado\n"
+                + "3: Huesped\n");
         while(true){
-            String us = null;
-            int opcion = 0;
-            System.out.println("CosmoReserve-Gestión Hotelera");
-            System.out.println("-----------------------------\n");
-            System.out.println("Ingrese su tipo de usuario (Ingrese el número que corresponde a la opción deseada):\n"
-                    + "1: Administrador"
-                    + "2: Empleado"
-                    + "3: Huesped\n");
             opcion = sc.nextInt();
-            if (opcion != 1 || opcion != 2 || opcion != 3){
+            if (opcion != 1 && opcion != 2 && opcion != 3){
                System.out.println("Error: tiene que ingresar uno de los siguientes números: 1, 2 o 3");
                continue;
             }
@@ -34,28 +35,40 @@ public class Login {
                 case 2 : us = "empleado"; opcion = 0;break;
                 case 3 : us = "huesped"; opcion = 0;break;
             }
-            System.out.println("\nIngreso de usuario (Ingrese el número que corresponde a la opción deseada):\n"
-                    + "1: Iniciar sesión"
-                    + "2: Resgistrarse\n");
+            break;
+        }    
+        
+        System.out.println("\nIngreso de usuario (Ingrese el número que corresponde a la opción deseada):\n"
+                  + "1: Iniciar sesión"
+                  + "2: Resgistrarse\n");  
+        while (true){
             opcion = sc.nextInt();
-            if (opcion != 1 || opcion != 2){
-               System.out.println("Error: tiene que ingresar uno de los siguientes números: 1 o 2");
-               continue;
+            if (opcion != 1 && opcion != 2){
+                System.out.println("Error: tiene que ingresar uno de los siguientes números: 1 o 2"); 
+                continue;
+            }else if (opcion == 2){
+                if (us.equals("empleado") ||  us.equals("administrador")){
+                    System.out.println("Error. El administrador del hotel es el que debe registrarlo. Si ya tiene una cuenta inicie sesión");
+                    continue;
+                }
             }
             switch (opcion){
                 case 1 : Login.loginNext(us); break;
-                case 2 : Signup.register(us); break;
+                case 2 : Signup.register(); break;
             }
             break;
         }
+            
+        
     }
     
     static void loginNext(String us){
-        String nombre = null;
-        String contrasena = null;
+        String nombre;
+        String contrasena;
         Scanner sc = new Scanner(System.in);
         System.out.println("---------------------\n");
         while (true){
+            boolean correctRegist = false;
             System.out.println("Ingrese su nombre de usuario:");
             nombre = sc.nextLine();
             System.out.println("Ingrese su contraseña");
@@ -64,28 +77,36 @@ public class Login {
                 for (Administrador administrador: Base.getAdministradores()){
                     if (administrador.getUsername().equals(nombre) && administrador.getPassword().equals(contrasena)){
                         Menu.sistema(administrador);
+                        correctRegist = true;
+                        break;
+                    }
+                }
+                if (!correctRegist){
+                    System.out.println("\nContraseña o nombre de usuario incorrecto, intente de nuevo\n");
+                }else{
+                    break;
+                }
+                
+                
+            }else if (us.equals("empleado")){
+                for (Empleado empleado: Base.getEmpleados()){
+                    if (empleado.getUsername().equals(nombre) && empleado.getPassword().equals(contrasena)){
+                        Menu.sistema(empleado);
                         break;
                     }
                     else{
                         System.out.println("\nContraseña o nombre de usuario incorrecto, intente de nuevo");
                     }
                 }
-            }else if (us.equals("empleado")){
-                for (Hotel hotel: Base.getHoteles()){
-                    for (Empleado empleado: hotel.getEmpleados()){
-                        if (empleado.getUsername().equals(nombre) && empleado.getPassword().equals(contrasena)){
-                            Menu.sistema(empleado);
-                            break;
-                        }
-                        else{
-                            System.out.println("\nContraseña o nombre de usuario incorrecto, intente de nuevo");
-                        }
-                    }
-                    
+                if (!correctRegist){
+                    System.out.println("\nContraseña o nombre de usuario incorrecto, intente de nuevo\n");
+                }else{
+                    break;
                 }
-            }else if (us.equals("huesped")){
-                for (Hotel hotel: Base.getHoteles()){
-                    for (Huesped huesped: hotel.getHistorialClientes())
+            }
+            
+            else if (us.equals("huesped")){
+                for (Huesped huesped: Base.getHuespedes()){
                     if (huesped.getUsername().equals(nombre) && huesped.getPassword().equals(contrasena)){
                         Menu.sistema(huesped);
                         break;
@@ -93,6 +114,11 @@ public class Login {
                     else{
                         System.out.println("\nContraseña o nombre de usuario incorrecto, intente de nuevo");
                     }
+                }
+                if (!correctRegist){
+                    System.out.println("\nContraseña o nombre de usuario incorrecto, intente de nuevo\n");
+                }else{
+                    break;
                 }
             }
             

@@ -7,18 +7,23 @@ import java.util.Map;
 import gestorAplicacion.hotel.Reserva;
 import gestorAplicacion.hotel.Habitacion;
 import gestorAplicacion.hotel.Hotel;
+import java.io.Serializable;
+import uiMain.PresentacionBono;
 import gestorAplicacion.Base;
 
-public class Huesped extends Usuario{
+public class Huesped extends Usuario implements Serializable, PresentacionBono{
+    private static final long serialVersionUID = 5L;
+    
+
     private boolean vip;
     private Reserva reserva;
     private Habitacion habitacion;
     private ArrayList<Preferencias> preferencias;
     private ArrayList<Reserva> historialReservas;
-
+    //David: Eliminé reserva, historial de reservas y habitacion, pues el usuario de huesped se debe crear primero sin necesidad de reservar
     
 
-    public Huesped(boolean vip, Reserva reserva, Habitacion habitacion, ArrayList<Preferencias> preferencias, ArrayList<Reserva> historialReservas, String nombre, int telefono, int id, String username, String password, CuentaBancaria cuentaBancaria) {
+    public Huesped(boolean vip, ArrayList<Preferencias> preferencias, String nombre, int telefono, int id, String username, String password, CuentaBancaria cuentaBancaria) {
         super(nombre, telefono, id, username, password, cuentaBancaria);
         this.vip = vip;
         this.reserva = reserva;
@@ -30,6 +35,10 @@ public class Huesped extends Usuario{
     
     public boolean isVip(){
         return this.vip;
+    }
+    
+    public void setVip(boolean vip){
+        this.vip = vip;
     }
 
     public Reserva getReserva(){
@@ -164,5 +173,15 @@ public class Huesped extends Usuario{
         }
         return habitacionesRecomendadas;
     }
+
+    @Override
+    public void ofrecerBono() {
+         this.getCuentaBancaria().depositar(BONOHUESPED);
+    }
     
+    @Override
+    public String presentacion(){
+        String intro = PresentacionBono.recogerDatos(this);
+        return "Soy un huesped. "+intro ;
+    }
 }

@@ -54,7 +54,32 @@ public class Serializador {
                     e.printStackTrace();
                 }
             }
-            
+            else if(f.getAbsolutePath().contains("empleados")){
+                try{
+                    fos = new FileOutputStream(f);
+                    oos = new ObjectOutputStream(fos);
+                    oos.writeObject(Base.getEmpleados());
+                }
+                catch (FileNotFoundException e){
+                    e.printStackTrace();
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+            else if(f.getAbsolutePath().contains("huespedes")){
+                try{
+                    fos = new FileOutputStream(f);
+                    oos = new ObjectOutputStream(fos);
+                    oos.writeObject(Base.getHuespedes());
+                }
+                catch (FileNotFoundException e){
+                    e.printStackTrace();
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }
