@@ -7,6 +7,7 @@ import java.util.Map;
 import gestorAplicacion.hotel.Reserva;
 import gestorAplicacion.hotel.Habitacion;
 import gestorAplicacion.hotel.Hotel;
+import gestorAplicacion.Base;
 
 public class Huesped extends Usuario{
     private boolean vip;
@@ -82,23 +83,48 @@ public class Huesped extends Usuario{
         this.preferencias = nuevasPreferencias;
     }
 
-    //Recomendaciones
-    //A partir del historial reservas, acceder a las reservas y dependiendo de la ciudad que haya escogido el cliente
-    //buscar las reservas por ciudad. De ahí buscar los hoteles donde haya tenido calificaciones por encima de 4, 
-    //luego enviar esa lista de hoteles para devolver un HashMap con el hotel como key y un ArrayList con las habitaciones, 
-    //ambos deben tener calificaciones por encima de 4.
-    //TODO: trabajar en el performance
-    public HashMap<Hotel,ArrayList<Habitacion>> recomendacion(String ciudad){
-        HashMap<Hotel,ArrayList<Habitacion>> recomendaciones = new HashMap<>();
-        recomendaciones = recomendacionHotelesPorCiudad(ciudad);
+    //Las recomendaciones funcionan a partir de dos criterios. 
+    //1. Si el usuario tiene historial de reservas, se buscan los hoteles que cumplen con la ciudad y tienen mejores
+    //calificaciones por parte del cliente, y a partir de ahí se buscan las habitaciones en ese hotel que tienen mejores calificaciones.
+    //2. Si el usuario aún no tiene historial de reservas, al registrarse se le pide sus preferencias. Entonces a partir de estas
+    //preferencias se hace la lógica para devolver los hoteles y habitaciones que cumplan con estas. 
+
+
+    //Para recomendar hoteles basado en las preferencias del huesped
+    public HashMap<Hotel,ArrayList<Habitacion>> recomendacionHotelesPorSimilar(String ciudad){
+        HashMap<Hotel,ArrayList<Habitacion>> recomendaciones = new HashMap<Hotel,ArrayList<Habitacion>>();
+        ArrayList<Hotel> hotelesBase = Base.getHoteles();
+        for(Hotel hotel:hotelesBase){
+            if(hotel.getCiudad().equals(ciudad)){
+                for(Preferencias preferencia : preferencias){
+                    if(hotel.getNombre().equals(preferencia.getNombreHotel())){
+                        ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
+                        habitaciones = recomendacionHabitacionPorSimilar(hotel, preferencia);
+                        if(habitaciones!=null){
+                            recomendaciones.put(hotel, habitaciones);
+                        }
+                    }
+                }
+                
+            }
+        }
         return recomendaciones;
     }
-
-    public HashMap<Hotel,ArrayList<Habitacion>> recomendacionPorSimilar(String ciudad){
-        return null;
+    //Método que se usa en recomendacionHotelesPorSimilar(). Para que basada en la preferencia y en el hotel buscar las habitaciones que 
+    //satisfacen.
+    public ArrayList<Habitacion> recomendacionHabitacionPorSimilar(Hotel hotel,Preferencias preferencia){
+        ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
+        habitaciones = hotel.getHabitaciones();
+        for(Habitacion habitacion : habitaciones){
+            if(habitacion.getTipo().equals(preferencia.getTipoHabitacion())){
+                habitaciones.add(habitacion);
+            }
+        }
+        return habitaciones;
     }
     
-    public HashMap<Hotel,ArrayList<Habitacion>> recomendacionHotelesPorCiudad(String ciudad){
+    //Para recomendar hoteles basada en el historial de las reservas que tiene el huesped
+    public HashMap<Hotel,ArrayList<Habitacion>> recomendacionHotelesPorHistorial(String ciudad){
         HashMap<Hotel,ArrayList<Habitacion>> recomendaciones = new HashMap<Hotel,ArrayList<Habitacion>>();
         ArrayList<Hotel> hoteles = new ArrayList<Hotel>();
         
@@ -113,17 +139,15 @@ public class Huesped extends Usuario{
         }
         for(Hotel hotel: hoteles){
             ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
-            habitaciones = this.recomendacionHabitacion(hotel);
+            habitaciones = this.recomendacionHabitacionPorHistorial(hotel);
             recomendaciones.put(hotel,habitaciones);
         }
         return recomendaciones;
     }
 
-    public ArrayList<Hotel> recomendacionHotelesPorSimilar(){
-        return null;
-    }
-
-    public ArrayList<Habitacion> recomendacionHabitacion(Hotel hotel){
+    //Método que se usa en recomendacionHotelesPorHistorial() para buscar las habitaciones en el hotel que cumplen con una calificación por encima
+    //o igual a 4
+    public ArrayList<Habitacion> recomendacionHabitacionPorHistorial(Hotel hotel){
         ArrayList<Habitacion> habitacionesHotel = hotel.getHabitaciones();
         ArrayList<Habitacion> habitacionesRecomendadas = new ArrayList<Habitacion>();
         for(int i=0;i<habitacionesHotel.size();i++){
