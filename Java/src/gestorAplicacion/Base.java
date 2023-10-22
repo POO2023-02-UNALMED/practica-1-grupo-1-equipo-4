@@ -205,7 +205,7 @@ public class Base implements Serializable{
             if (hotel.equals(selectedHotel)){
                 ArrayList<Habitacion> habitaciones = hotel.getHabitaciones();
                 for (Habitacion x: habitaciones){
-                    Map<Huesped, Integer> calificaciones = x.getCalificaciones();
+                    Map<Huesped, Float> calificaciones = x.getCalificaciones();
                     float prom = 0;
                     int s = 0;
                     for (Map.Entry y: calificaciones.entrySet()){                 //Obteniendo promedio de calificacion de una habitacion

@@ -192,7 +192,7 @@ public class Reservar {
     }
     
     public static void menuReserva(Habitacion habitacion, Huesped huesped){
-        Map<Huesped, Integer> calificaciones = habitacion.getCalificaciones();
+        Map<Huesped, Float> calificaciones = habitacion.getCalificaciones();
         int s = 0;
         for (Map.Entry y: calificaciones.entrySet()){                 
             int i = (int) y.getValue();
