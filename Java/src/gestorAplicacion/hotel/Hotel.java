@@ -53,10 +53,11 @@ public class Hotel implements Serializable{
         //se debe llenar con un '0'
         ArrayList<Hotel> respuesta = new  ArrayList<Hotel>();
         for (Hotel i : this.totalHoteles){
-            if(filtro.getNombreHotel() &&  i.getNombre() == info.get(0)){
+            if(filtro.getNombreHotel() != null &&  i.getNombre() == info.get(0)){
               respuesta.add(i);  
-            }else if(filtro.getCiudad() && i.getCiudad() == info.get(1)){
+            }else if(filtro.getCiudad() != null && i.getCiudad() == info.get(1)){
               respuesta.add(i);  
+              
             }
         }
         return respuesta;
@@ -71,9 +72,9 @@ public class Hotel implements Serializable{
         ArrayList<Habitacion> respuesta = new  ArrayList<Habitacion>();
         for (Habitacion i : this.habitaciones){
            if(i.getReservada() == false){
-            if(filtro.getNombreHotel() &&  i.getHotel().getNombre() == info.get(0)){
+            if(filtro.getNombreHotel() != null &&  i.getHotel().getNombre() == info.get(0)){
               respuesta.add(i);  
-            }else if(filtro.getTipoHabitacion() && i.getTipo() == info.get(1)){
+            }else if(filtro.getTipoHabitacion() != null && i.getTipo() == info.get(1)){
               respuesta.add(i);  
             }
            
