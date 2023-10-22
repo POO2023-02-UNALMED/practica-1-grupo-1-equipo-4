@@ -1,5 +1,6 @@
 package gestorAplicacion.hotel;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,7 +10,8 @@ import java.util.Map;
 
 import gestorAplicacion.usuarios.*;
 
-public class Habitacion {
+public class Habitacion implements Serializable{
+    private static final long serialVersionUID = 5L;
 
     private long id;
     private Hotel hotel;
