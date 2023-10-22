@@ -1,5 +1,9 @@
 package gestorAplicacion.hotel;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +17,7 @@ public class Habitacion {
     private int  numeroCamas;
     private long precio;
     private Reserva reserva;
-    private Map<Huesped,Integer> calificaciones = new HashMap<Huesped,Integer>();
+    private Map<Huesped,Float> calificaciones = new HashMap<Huesped,Float>();
     private Boolean reservada = false;
     private Map<String,Integer> motivosCalificacion = new HashMap<String,Integer>();
     private Map<String,Integer> sugerencias = new HashMap<String,Integer>();
@@ -22,7 +26,7 @@ public class Habitacion {
     private float promedio;
     
     public Habitacion(long id, Hotel hotel, String tipo, int numeroCamas, long precio, Reserva reserva,
-            Map<Huesped, Integer> calificaciones, Boolean reservada, Map<String, Integer> motivosCalificacion,
+            Map<Huesped, Float> calificaciones, Boolean reservada, Map<String, Integer> motivosCalificacion,
             Map<String, Integer> sugerencias) {
         this.id = id;
         this.hotel = hotel;
@@ -42,11 +46,49 @@ public class Habitacion {
     public float calcularPromedio(){
         float prom = 0;
         int cont = 0;
-        for(Map.Entry<Huesped,Integer> i : this.calificaciones.entrySet()){
+        for(Map.Entry<Huesped,  Float> i : this.calificaciones.entrySet()){
             prom = prom + i.getValue();
             cont++;
         }
         return prom/cont;
+    }
+
+    
+
+    public void addCalificacion(Huesped huesped, Float calificacion){
+        calificaciones.put(huesped, calificacion);
+    }
+
+    public void  addMotivos(String motivo){
+        if(motivosCalificacion.get(motivo)!=null)motivosCalificacion.put(motivo, motivosCalificacion.get(motivo)+1);
+        else motivosCalificacion.put(motivo, 1);
+    }
+
+    public ArrayList<Habitacion> rangoPrecio(ArrayList<Habitacion> totalHabitaciones){
+        ArrayList<Habitacion> rango = new ArrayList<>();
+        for (Habitacion habitacion : totalHabitaciones) {
+            if(Math.abs(habitacion.getPrecio()-this.precio)<10){
+                rango.add(habitacion);
+            }
+        }
+        return rango;
+    }
+
+    public  ArrayList<Habitacion>  mejorCalificadas(ArrayList<Habitacion>  habitaciones){
+        ArrayList<Habitacion> rango = new ArrayList<>();
+        for (Habitacion habitacion : habitaciones) {
+            Collection<Float>values =  habitacion.getCalificaciones().values();
+            ArrayList<Float> calificaciones = new ArrayList<>(values);
+            float suma = 0;
+            for (Float habitacion2 : calificaciones) {
+                suma = suma + habitacion2;
+            }
+            float promedio = suma/habitacion.getCalificaciones().size();
+            if(promedio>=3){
+                rango.add(habitacion);
+            }
+        }
+        return rango;
     }
 
     public long getId() {
@@ -97,11 +139,11 @@ public class Habitacion {
         this.reserva = reserva;
     }
 
-    public Map<Huesped, Integer> getCalificaciones() {
+    public Map<Huesped, Float> getCalificaciones() {
         return calificaciones;
     }
 
-    public void setCalificaciones(Map<Huesped, Integer> calificaciones) {
+    public void setCalificaciones(Map<Huesped, Float> calificaciones) {
         this.calificaciones = calificaciones;
     }
 
