@@ -160,7 +160,7 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
         ArrayList<Habitacion> habitacionesHotel = hotel.getHabitaciones();
         ArrayList<Habitacion> habitacionesRecomendadas = new ArrayList<Habitacion>();
         for(int i=0;i<habitacionesHotel.size();i++){
-            Map<Huesped,Integer> calificaciones = new HashMap<Huesped,Integer>();
+            Map<Huesped,Float> calificaciones = new HashMap<Huesped,Float>();
             calificaciones = habitacionesHotel.get(i).getCalificaciones();
             for(Huesped huesped : calificaciones.keySet()){
                 if(huesped.getId()==this.getId()){

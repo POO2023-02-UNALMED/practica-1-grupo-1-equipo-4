@@ -77,19 +77,25 @@ public class Habitacion {
     public  ArrayList<Habitacion>  mejorCalificadas(ArrayList<Habitacion>  habitaciones){
         ArrayList<Habitacion> rango = new ArrayList<>();
         for (Habitacion habitacion : habitaciones) {
-            Collection<Float>values =  habitacion.getCalificaciones().values();
-            ArrayList<Float> calificaciones = new ArrayList<>(values);
-            float suma = 0;
-            for (Float habitacion2 : calificaciones) {
-                suma = suma + habitacion2;
-            }
-            float promedio = suma/habitacion.getCalificaciones().size();
-            if(promedio>=3){
+            //Collection<Float>values =  habitacion.getCalificaciones().values();
+            //ArrayList<Float> calificaciones = new ArrayList<>(values);
+            //float suma = 0;
+            //for (Float habitacion2 : calificaciones) {
+            //    suma = suma + habitacion2;
+            //}
+            //float promedio = suma/habitacion.getCalificaciones().size();
+            if(habitacion.calcularPromedio()>=3){
                 rango.add(habitacion);
             }
         }
         return rango;
     }
+
+  //  public  ArrayList<String> sugerenciasRecomendaciones(){
+
+//    }
+
+
 
     public long getId() {
         return id;
