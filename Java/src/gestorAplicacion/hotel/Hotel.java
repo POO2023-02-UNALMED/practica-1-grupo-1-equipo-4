@@ -157,6 +157,10 @@ public class Hotel implements Serializable{
     public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
         this.habitaciones = habitaciones;
     }
+
+    public void agregarHabitacion( Habitacion habitacion){
+        this.habitaciones.add(habitacion);
+    }
     
     
 }

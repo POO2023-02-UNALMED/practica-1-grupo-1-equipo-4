@@ -49,7 +49,36 @@ public class Signup {
 
         System.out.println("\nInformación del hotel que administra:");
         System.out.println("------------------------------------\n");
-        System.out.print("Escriba el nombre del hotel que va a administrar");
+        System.out.print("Escoja el número del hotel que va a administrar");
+
+        Hotel hotelAdmin;
+
+        while(true){
+
+            int contador =  1;
+
+            for (Hotel hotelLista : Base.getHoteles()) {
+                
+                System.out.println(contador + ". " + hotelLista.getNombre());
+                contador++;
+
+            }
+
+            int numeroHotel = sc.nextInt();
+
+            if(numeroHotel <= Base.getHoteles().size()){
+
+                hotelAdmin = Base.getHoteles().get(numeroHotel);
+                break;
+
+            }else{
+                System.out.println("El número no hace referencia a ningún hotel, por favor escoja de nuevo");
+            }
+
+        }
+
+        
+/* 
         boolean correctName = false;
         while (true){
              for (Hotel hotelx : Base.getHoteles()){
@@ -65,7 +94,10 @@ public class Signup {
                 break;
             }
         }  
-        Administrador admin = new Administrador(nombre, telefono, username, password, new CuentaBancaria(numCB, banco), hotel);
+
+        */
+
+        Administrador admin = new Administrador(nombre, telefono, username, password, new CuentaBancaria(numCB, banco), hotelAdmin);
         Base.addAdministradores(admin);
         Menu.sistema(admin);
     }

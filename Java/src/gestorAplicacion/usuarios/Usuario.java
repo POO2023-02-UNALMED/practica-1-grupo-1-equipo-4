@@ -13,6 +13,8 @@ public class Usuario{
     private String password;
     private CuentaBancaria cuentaBancaria;
 
+    public Usuario(){}
+
     public Usuario(String nombre,int telefono,int id,String username,String password,CuentaBancaria cuentaBancaria){
         this.nombre = nombre;
         this.telefono = telefono;

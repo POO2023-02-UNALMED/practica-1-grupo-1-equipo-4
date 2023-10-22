@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import gestorAplicacion.usuarios.Huesped;
+import gestorAplicacion.usuarios.*;
 
 public class Habitacion {
 
@@ -26,11 +26,24 @@ public class Habitacion {
     private float promedio;
     
     public Habitacion(long id, String tipo, int numeroCamas, long precio) {
-        this.calificaciones.put(new Huesped(), 5);
+        this.calificaciones.put(new Huesped(), (float)5.0);
         this.id = id;
         this.tipo = tipo;
         this.numeroCamas = numeroCamas;
         this.precio = precio;
+
+    }
+
+    public Habitacion(long id, String tipo, int numeroCamas, long precio, Hotel hotel) {
+        this.calificaciones.put(new Huesped(), (float)5.0);
+        this.id = id;
+        this.tipo = tipo;
+        this.numeroCamas = numeroCamas;
+        this.precio = precio;
+        this.hotel = hotel;
+
+        hotel.agregarHabitacion(this);
+
     }
 
     public Habitacion() {

@@ -53,7 +53,7 @@ public class Menu {
         System.out.println("MENÚ PRINCIPAL");
         System.out.println("---------------\n");
 
-        depuracionPagoEmpleados();
+        depuracionPagoEmpleados(administrador);
         
     }
 
@@ -62,11 +62,11 @@ public class Menu {
 
     public static int textoMenuAdmin(){
         String mensaje = "Por favor indica que funcionalidad quieres realizar \n" +
-                        "   1. Reservar habitacion\n"+
-                        "   2. Agregar un servicio a usuario\n"+
-                        "   3. Pagar empleados\n"+
-                        "   4. Listar personal (Administradores y Empleados)"+
-                        "   5. Salir\n";
+                 
+                        "   1. Agregar un servicio a usuario\n"+
+                        "   2. Pagar empleados\n"+
+                        "   3. Agregar nueva habitación al hotel"+
+                        "   4. Salir\n";
 
         System.out.println(mensaje);
         System.out.print("Opcion: ");
@@ -85,17 +85,15 @@ public class Menu {
                 opcion = textoMenuAdmin();
             case 2:
                 System.out.println("Opción 2 seleccionada");
+                System.out.println(administrador.pagarEmpleados());
                 opcion = textoMenuAdmin();
             case 3:
                 System.out.println("Opción 3 seleccionada");
-                System.out.println(administrador.pagarEmpleados());
-                opcion = textoMenuAdmin();
+                administradorAgregaHabitacion(administrador);
+                
             case 4:
                 System.out.println("Opción 4 seleccionada");
                 opcion = textoMenuAdmin();
-            case 5:
-                System.out.println("Saliste del programa");
-                break;
             default:
                 System.out.println("Opción no válida, vuelve a intentarlo");
                 opcion = textoMenuAdmin();
@@ -103,7 +101,48 @@ public class Menu {
         }
     }
 
-    public static void depuracionPagoEmpleados(){
+    public static void administradorAgregaHabitacion(Administrador administrador){
+        TipoHabitacion tipoEscogido;
+
+
+        while (true){
+
+            System.out.println("¿Qué tipo de habitación quieres agregar al hotel?");
+
+            int contador = 1;
+
+            for (TipoHabitacion tipoHabitacion : TipoHabitacion.values()) {
+            
+                System.out.println(contador + ". " + tipoHabitacion);
+
+                contador++;
+            }
+
+            int opcion = scanner.nextInt();
+
+            if (opcion <= TipoHabitacion.values().length){
+
+                tipoEscogido = TipoHabitacion.values()[opcion];
+                break;
+
+            }else{
+
+              System.out.println("Número incorrecto, por favor vuelve a intentar");  
+
+            }
+
+        }
+
+        
+        long id = ((administrador.getHotel()).getHabitaciones()).size() + 1;
+        Habitacion nuevHabitacion = new Habitacion(id , tipoEscogido.obtenerNombre(), tipoEscogido.asignCamas(), tipoEscogido.asignPrecio(), administrador.getHotel());
+        System.out.println("Habitación agregada al hotel correctamente"); 
+
+    }
+
+    public static void depuracionPagoEmpleados(Administrador administrador){
+
+        /* 
         CuentaBancaria cuenta1 = new CuentaBancaria(99999, "Bancolombia");
         CuentaBancaria cuenta2 = new CuentaBancaria(19999, "Bancolombia");
         CuentaBancaria cuenta3 = new CuentaBancaria(29999, "Bancolombia");
@@ -119,22 +158,24 @@ public class Menu {
             cuenta1,
             hotel);
 
-        Empleado empleado1 = new Empleado("Juan", 12340, "Juanito", "987654", cuenta2);
-        Empleado empleado2 = new Empleado("Valentina", 876543, "vale12", "yetr55", cuenta3);
+        */
 
-        hotel.agregarEmpleado(empleado1);
-        hotel.agregarEmpleado(empleado2);
+        //Empleado empleado1 = new Empleado("Juan", 12340, "Juanito", "987654", cuenta2);
+        //Empleado empleado2 = new Empleado("Valentina", 876543, "vale12", "yetr55", cuenta3);
 
-        System.out.println(empleado1.getCuentaBancaria().getSaldo());
-        System.out.println(empleado2.getCuentaBancaria().getSaldo());
+        //hotel.agregarEmpleado(empleado1);
+        //hotel.agregarEmpleado(empleado2);
 
-        hotel.getCuentaBancaria().setSaldo(20000);
+        //System.out.println(empleado1.getCuentaBancaria().getSaldo());
+        //System.out.println(empleado2.getCuentaBancaria().getSaldo());
 
-        System.out.println("Bienvenido administrador "+administrador1.getNombre());
+        //hotel.getCuentaBancaria().setSaldo(20000);
 
-        cicloMenuAdmin(administrador1);
+        //System.out.println("Bienvenido administrador "+administrador1.getNombre());
 
-        System.out.println(empleado1.getCuentaBancaria().getSaldo());
-        System.out.println(empleado2.getCuentaBancaria().getSaldo());
+        cicloMenuAdmin(administrador);
+
+        //System.out.println(empleado1.getCuentaBancaria().getSaldo());
+        //System.out.println(empleado2.getCuentaBancaria().getSaldo());
     }
 }

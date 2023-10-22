@@ -32,6 +32,10 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
         this.historialReservas = historialReservas;
     }
 
+    public Huesped(){
+        super();
+    }
+
     
     public boolean isVip(){
         return this.vip;
