@@ -25,19 +25,12 @@ public class Habitacion {
     //Atributos propios de funcionamiento
     private float promedio;
     
-    public Habitacion(long id, Hotel hotel, String tipo, int numeroCamas, long precio, Reserva reserva,
-            Map<Huesped, Float> calificaciones, Boolean reservada, Map<String, Integer> motivosCalificacion,
-            Map<String, Integer> sugerencias) {
+    public Habitacion(long id, String tipo, int numeroCamas, long precio) {
+        this.calificaciones.put(new Huesped(), 5);
         this.id = id;
-        this.hotel = hotel;
         this.tipo = tipo;
         this.numeroCamas = numeroCamas;
         this.precio = precio;
-        this.reserva = reserva;
-        this.calificaciones = calificaciones;
-        this.reservada = reservada;
-        this.motivosCalificacion = motivosCalificacion;
-        this.sugerencias = sugerencias;
     }
 
     public Habitacion() {
