@@ -35,7 +35,9 @@ public class Administrador extends Usuario implements Serializable{
 
     public void agregarServicio(){}
 
-    public void alterarServicio(){}
+    public void alterarServicio(){
+        
+    }
 
     public void calcularPromedio(){}
 

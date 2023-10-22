@@ -23,6 +23,14 @@ public class CuentaBancaria{
 
     }
 
+    public CuentaBancaria(long numero, String banco, long saldo){
+
+        this.numero = numero;
+        this.banco = banco;
+        this.saldo = saldo;
+
+    }
+
     public void transferencia(CuentaBancaria cuenta, long valor){
         this.retirar(valor);
         Date fecha = new Date();
