@@ -9,6 +9,7 @@ import gestorAplicacion.hotel.*;
 import gestorAplicacion.usuarios.*;
 import gestorAplicacion.Base;
 
+
 import java.util.Scanner;
 /**
  *
@@ -19,10 +20,11 @@ public class Menu {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args){
         
-        Administrador administradorinicial = new Administrador("Juan", 12234, "juank", "12345678", new CuentaBancaria(1234, "Bancolombia"), new Hotel());
-        Base.addAdministradores(administradorinicial);
+        Calificar.seleccionar();
+        //Administrador administradorinicial = new Administrador("Juan", 12234, "juank", "12345678", new CuentaBancaria(1234, "Bancolombia"), new Hotel());
+        //Base.addAdministradores(administradorinicial);
 
-        Login.login();
+        //Login.login();
     }
     
     static void sistema(Huesped huesped){
