@@ -60,6 +60,11 @@ public class Menu {
 
     //MENÚ ADMINISTRADOR
 
+    /*
+     * Método que lista el menú de opciones que tiene
+     * un usuario administrador
+     */
+
     public static int textoMenuAdmin(){
         String mensaje = "Por favor indica que funcionalidad quieres realizar \n" +
                  
@@ -76,6 +81,11 @@ public class Menu {
         return opcion;
     }
 
+    /*
+     * Método que llama un el ciclo del menú de opciones que tendrá
+     * un usuario
+     */
+
     public static void cicloMenuAdmin(Administrador administrador){
 
         int opcion = textoMenuAdmin();
@@ -86,6 +96,14 @@ public class Menu {
                 opcion = textoMenuAdmin();
             case 2:
                 System.out.println("Opción 2 seleccionada");
+                /*
+                 * FUNCIONALIDAD DE PAGAR EMPLEADOS
+                 * 
+                 * Funcionalidad que un administrador llama para 
+                 * pagarle a el y a sus empleados con el dinero que
+                 * hay en la cuenta bancaria del hotel
+                 * 
+                 */
                 System.out.println(administrador.pagarEmpleados());
                 opcion = textoMenuAdmin();
             case 3:
@@ -101,6 +119,12 @@ public class Menu {
 
         }
     }
+
+    /*
+     * Método que lista los tipos de habitaciones posibles (Las de el enum)
+     * para que el administrador escoja que tipo de habitación quiere generar
+     * para el hotel al cual trabaja
+     */
 
     public static String administradorAgregaHabitacion(Administrador administrador){
         TipoHabitacion tipoEscogido;

@@ -1,5 +1,17 @@
 package gestorAplicacion.finanzas;
 
+/*
+ * 
+ * 
+ * Clase CuentaBancaria
+ * 
+ *      Hace referencia a la cuenta bancaria de un usuario o un hotel.
+ *      Dentro de ella se realizan acciones relacionadas con la cuenta 
+ *      bancaria, transacciones, consultas etc.
+ * 
+ * 
+ */
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
@@ -31,12 +43,24 @@ public class CuentaBancaria{
 
     }
 
+    /*
+     * Método para transferir dinero desde la cuenta que lo llama 
+     * hasta otra cuenta que se le pasa como paramatro.
+     * El método actualiza la fecha del último pago
+     */
+
     public void transferencia(CuentaBancaria cuenta, long valor){
         this.retirar(valor);
         Date fecha = new Date();
         cuenta.depositar(valor);
         cuenta.setUltimoPago(fecha);
     }
+
+    /*
+     * Método estatico que transfiere dinero de dos cuentas bancarias que se le
+     * pasan como parametro.
+     * Después actualiza la fecha del último pago
+     */
 
     public static void transferencia(CuentaBancaria cuenta1, CuentaBancaria cuenta2, long valor){
         cuenta1.retirar(valor);
@@ -52,6 +76,11 @@ public class CuentaBancaria{
     public void retirar(long dinero){
         this.saldo -= dinero;
     }
+
+    /*
+     * Método estatico que consulta si un hotel tiene saldo suficiente para hacer un
+     * pago
+     */
 
     public static boolean puedePagarHotel(Hotel hotel, long pago){
         if(hotel.getCuentaBancaria().getSaldo() >= pago){

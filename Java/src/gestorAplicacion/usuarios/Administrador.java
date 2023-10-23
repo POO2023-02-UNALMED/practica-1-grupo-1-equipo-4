@@ -1,5 +1,17 @@
 package gestorAplicacion.usuarios;
 
+/*
+ * 
+ * 
+ *  Clase administrador:
+ *  
+ *      La clase administrador hereda de la clase usuario.
+ *      Un administrador será un usuario con más permisos
+ *      dentro del programa
+ * 
+ * 
+ */
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -45,6 +57,10 @@ public class Administrador extends Usuario implements Serializable{
 
     public void calcularPromedio(){}
 
+    /*
+     * Crea una habitación dependiendo el TipoHabitacion (Enum)
+     */
+
     public String administradorAgregaHabitacion(TipoHabitacion tipoEscogido){
 
         long id = ((this.getHotel()).getHabitaciones()).size() + 1;
@@ -52,6 +68,10 @@ public class Administrador extends Usuario implements Serializable{
         return "Habitación agregada al hotel correctamente"; 
         
     }
+
+    /*
+     * Llama al atributo administradores de un hotel y los lista
+     */
 
     public String listarAdministradores(){
         String administradores = "";
@@ -73,6 +93,12 @@ public class Administrador extends Usuario implements Serializable{
         return this.hotel.getCuentaBancaria().getSaldo();
     }
 
+    /*
+     * Devuelve true si el hotel tiene el suficiente dinero en cuenta
+     * para pagarle a sus empleados y administradores. Llama al método de
+     * la cuenta banacaria para hacer la consulta
+     */
+
     public boolean puedePagarHotel(ArrayList<Empleado> empleados){
 
         long saldoAPagar = 0;
@@ -85,6 +111,13 @@ public class Administrador extends Usuario implements Serializable{
 
         return CuentaBancaria.puedePagarHotel(hotel, saldoAPagar);
     }
+
+    /*
+     * Primero consulta si el último pago se realizó hace más de 30 días,
+     * después consulta si el hotel tiene el dinero suficiente en cuenta
+     * para pagarle a los empleados, si las dos condiciones se cumplen le realiza el pago
+     * a los empleados
+     */
 
     public String pagarEmpleados(){
         ArrayList<Empleado> empleados = this.hotel.getEmpleados();
