@@ -29,6 +29,7 @@ public class Reserva implements Serializable{
         this.costo = costo;
         this.hotel = habitacion.getHotel();
         this.ciudad = hotel.getCiudad();
+        huesped.setReserva(this);
     }
         
         
@@ -113,6 +114,7 @@ public class Reserva implements Serializable{
             }
             ArrayList<Reserva> listReservas = this.getHabitacion().getReservas();
             listReservas.remove(this);
+            this.setHuesped(null);
             this.getHuesped().setReserva(null);
 	    return "La reserva se ha eliminado correctamente";
             

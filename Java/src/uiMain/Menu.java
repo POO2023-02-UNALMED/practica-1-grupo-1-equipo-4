@@ -22,6 +22,8 @@ public class Menu {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args){
         Deserializador.deserializador();
+//        System.out.println(Base.getHuespedes().get(0).getNombre());
+//        System.out.println(Base.getHuespedes().get(0).equals(Base.getHoteles().get(0).getHabitaciones().get(0).getReservas().get(0).getHuesped().getNombre()));
         
 //        CuentaBancaria cb = new CuentaBancaria(1000000000, "d");
 //        ArrayList<Empleado> emps = new ArrayList<>();

@@ -436,8 +436,6 @@ public class Reservar {
     }
     
     public static void reservaConfirmada(Huesped huesped, Habitacion habitacion, Reserva reserva){
-        huesped.setReserva(reserva);
-        reserva.setHuesped(huesped);
         String fIni = reserva.getFechaEntrada();
         String[] splitfIni = fIni.split("/");
         Calendar fechaActual = Calendar.getInstance();
