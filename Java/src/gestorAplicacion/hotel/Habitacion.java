@@ -108,7 +108,12 @@ public class Habitacion implements Serializable{
     }
 
     public void addSugerenciasPendientes(ArrayList<String>  sugerencias){
-        this.sugerenciasPendientes.put(this.getId(), sugerencias);
+        sugerenciasPendientes.put(this.getId(), sugerencias);
+    }
+
+    public  void addSugerencias(String sugerencia){
+        if(sugerencias.get(sugerencia)!=null)sugerencias.put(sugerencia, sugerencias.get(sugerencia)+1);
+        else sugerencias.put(sugerencia, 1);
     }
     
     public long getId() {
