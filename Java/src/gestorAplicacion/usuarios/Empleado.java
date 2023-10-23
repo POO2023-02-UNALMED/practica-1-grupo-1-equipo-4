@@ -24,6 +24,7 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
 
     public Empleado(String nombre,int telefono,String username,String password,CuentaBancaria cuentaBancaria){
         super(nombre, telefono, Empleado.totalEmpleados + 1, username, password, cuentaBancaria);
+
     }
 
     public Empleado(String nombre,int telefono,String username,String password,CuentaBancaria cuentaBancaria, long salario){
@@ -82,6 +83,10 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
 
     public void setSalario(long salario){
         this.salario = salario;
+    }
+
+    public void aumentoSalario(long salario){
+        this.salario += salario;
     }
 
     public int buenasCalificaciones(){

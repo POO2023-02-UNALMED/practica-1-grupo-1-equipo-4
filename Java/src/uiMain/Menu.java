@@ -53,7 +53,7 @@ public class Menu {
         System.out.println("MENÚ PRINCIPAL");
         System.out.println("---------------\n");
 
-        depuracionPagoEmpleados(administrador);
+        cicloMenuAdmin(administrador);;
         
     }
 
@@ -63,7 +63,7 @@ public class Menu {
     public static int textoMenuAdmin(){
         String mensaje = "Por favor indica que funcionalidad quieres realizar \n" +
                  
-                        "   1. Agregar un servicio a usuario\n"+
+                        "   1. Listar administradores\n"+
                         "   2. Pagar empleados\n"+
                         "   3. Agregar nueva habitación al hotel"+
                         "   4. Salir\n";
@@ -82,6 +82,7 @@ public class Menu {
         switch(opcion) {
             case 1:
                 System.out.println("Opción 1 seleccionada");
+                System.out.println(administrador.listarAdministradores());
                 opcion = textoMenuAdmin();
             case 2:
                 System.out.println("Opción 2 seleccionada");
@@ -89,7 +90,7 @@ public class Menu {
                 opcion = textoMenuAdmin();
             case 3:
                 System.out.println("Opción 3 seleccionada");
-                administradorAgregaHabitacion(administrador);
+                System.out.println(administradorAgregaHabitacion(administrador));
                 
             case 4:
                 System.out.println("Opción 4 seleccionada");
@@ -101,7 +102,7 @@ public class Menu {
         }
     }
 
-    public static void administradorAgregaHabitacion(Administrador administrador){
+    public static String administradorAgregaHabitacion(Administrador administrador){
         TipoHabitacion tipoEscogido;
 
 
@@ -134,13 +135,13 @@ public class Menu {
         }
 
         
-        long id = ((administrador.getHotel()).getHabitaciones()).size() + 1;
-        Habitacion nuevHabitacion = new Habitacion(id , tipoEscogido.obtenerNombre(), tipoEscogido.asignCamas(), tipoEscogido.asignPrecio(), administrador.getHotel());
-        System.out.println("Habitación agregada al hotel correctamente"); 
+        return administrador.administradorAgregaHabitacion(tipoEscogido);
 
     }
 
-    public static void depuracionPagoEmpleados(Administrador administrador){
+    //Pruebas
+
+    static{
 
         /* 
         CuentaBancaria cuenta1 = new CuentaBancaria(99999, "Bancolombia");
@@ -173,7 +174,7 @@ public class Menu {
 
         //System.out.println("Bienvenido administrador "+administrador1.getNombre());
 
-        cicloMenuAdmin(administrador);
+        
 
         //System.out.println(empleado1.getCuentaBancaria().getSaldo());
         //System.out.println(empleado2.getCuentaBancaria().getSaldo());

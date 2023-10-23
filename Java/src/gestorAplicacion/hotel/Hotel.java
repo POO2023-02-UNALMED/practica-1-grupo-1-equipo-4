@@ -2,6 +2,7 @@ package gestorAplicacion.hotel;
 import java.util.ArrayList;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
+import gestorAplicacion.usuarios.Administrador;
 import gestorAplicacion.usuarios.Empleado;
 import gestorAplicacion.usuarios.Huesped;
 import gestorAplicacion.usuarios.Preferencias;
@@ -26,6 +27,7 @@ public class Hotel implements Serializable{
     private String ciudad;
     private ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
     private ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+    private ArrayList<Administrador>  administradores = new  ArrayList<Administrador>();
 
     public Hotel(CuentaBancaria cuentaBancaria){
         this.cuentaBancaria = cuentaBancaria;
@@ -161,6 +163,17 @@ public class Hotel implements Serializable{
     public void agregarHabitacion( Habitacion habitacion){
         this.habitaciones.add(habitacion);
     }
+
+    public ArrayList<Administrador> getAdministradores() {
+        return this.administradores;
+    }
     
+    public void setAdministradores(ArrayList<Administrador> administradores) {
+        this.administradores = administradores;
+    }
+
+    public void agregarAdministrador( Administrador administrador){
+        this.administradores.add(administrador);
+    }
     
 }
