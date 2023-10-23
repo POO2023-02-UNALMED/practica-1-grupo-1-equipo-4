@@ -41,6 +41,10 @@ public class Hotel implements Serializable{
 
     }
 
+    public void agregarHabitacion(Habitacion habitacion){
+        this.habitaciones.add(habitacion);
+    }
+
     public void agregarServicioHotel(ServiciosExtra servicio){
         this.servicios.add(servicio);
     }

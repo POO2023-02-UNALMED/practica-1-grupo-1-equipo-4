@@ -123,8 +123,8 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
     //satisfacen.
     public ArrayList<Habitacion> recomendacionHabitacionPorSimilar(Hotel hotel,Preferencias preferencia){
         ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
-        habitaciones = hotel.getHabitaciones();
-        for(Habitacion habitacion : habitaciones){
+        ArrayList<Habitacion> habitacionesHotel = hotel.getHabitaciones();
+        for(Habitacion habitacion : habitacionesHotel){
             if(habitacion.getTipo().equals(preferencia.getTipoHabitacion())){
                 habitaciones.add(habitacion);
             }

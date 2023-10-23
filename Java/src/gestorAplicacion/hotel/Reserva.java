@@ -18,6 +18,7 @@ public class Reserva {
 	private String ciudad;
 	private int calificacionHotel=0;
 	private int calificacionHabitacion=0;
+
 	public Huesped getHuesped() {
 		return huesped;
 	}
