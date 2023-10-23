@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
+import gestorAplicacion.hotel.Habitacion;
 import gestorAplicacion.hotel.Hotel;
 import uiMain.PresentacionBono;
 
@@ -23,6 +24,7 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
     private long salario = 5000;
 
     private static int totalEmpleados = 0;
+    private static Map<Integer,ArrayList<String>> sugerenciasPendientes = new HashMap<Integer,ArrayList<String>>();
 
     public Empleado(String nombre,int telefono,String username,String password,CuentaBancaria cuentaBancaria){
         super(nombre, telefono, username, password, cuentaBancaria);
@@ -31,6 +33,62 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
     public Empleado(String nombre,int telefono,String username,String password,CuentaBancaria cuentaBancaria, long salario){
         super(nombre, telefono, username, password, cuentaBancaria);
         this.salario = salario;
+    }
+
+    public  void addCalificacion(Usuario usuario, Integer calificacion){
+        this.calificaciones.put(usuario, calificacion);
+    }
+
+    public boolean mereceBono(){
+        if(buenasCalificaciones()>=2) return true;
+        else return false;
+    }
+
+    public void  addMotivos(String motivo){
+        if(motivosCalificacion.get(motivo)!=null)motivosCalificacion.put(motivo, motivosCalificacion.get(motivo)+1);
+        else motivosCalificacion.put(motivo, 1);
+    }
+
+    public static float promedioCalificaciones(Empleado empleado){
+        float   total=0;
+        for (Integer i : empleado.calificaciones.values()) {
+                total  = total + i;
+        }
+        return total/empleado.calificaciones.values().size();
+    }
+
+    //Se  seleccionan los empleadosque estan con un puntaje de  0.5 a la redonda
+    public ArrayList<Empleado> rangoCalificacion(ArrayList<Empleado> empleados){
+        ArrayList<Empleado> rangoCalificacion  = new ArrayList<>();
+        //int  total = 0;
+        //for(Integer i : calificaciones.values()){
+        //        total = total + i;
+        //    }
+        for (Empleado empleado : empleados) {
+            if(Math.abs(promedioCalificaciones(empleado)-promedioCalificaciones(this))<0.5){
+                rangoCalificacion.add(empleado);
+            }
+        }
+        return rangoCalificacion;
+    }
+
+    public ArrayList<String> totalSugerencias(ArrayList<Empleado> empleados){
+        ArrayList<String> resultado = new ArrayList<>();
+        for(Empleado i :  empleados){
+            for (Map.Entry<String,Integer> j: i.getSugerencias().entrySet()) {
+                resultado.add(j.getKey());
+            }
+        }
+        return resultado;
+    }
+
+    public void addSugerenciasPendientes(ArrayList<String> sugerencias){
+        sugerenciasPendientes.put(this.getId(), sugerencias);
+    }
+
+    public  void addSugerencias(String sugerencia){
+        if(sugerencias.get(sugerencia)!=null)sugerencias.put(sugerencia, sugerencias.get(sugerencia)+1);
+        else sugerencias.put(sugerencia, 1);
     }
     
     public Date ultimoMesPago(){
