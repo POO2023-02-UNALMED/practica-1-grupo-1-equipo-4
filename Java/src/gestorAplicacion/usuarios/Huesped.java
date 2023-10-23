@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import gestorAplicacion.usuarios.*;
 import gestorAplicacion.hotel.Reserva;
 import gestorAplicacion.hotel.Habitacion;
 import gestorAplicacion.hotel.Hotel;
 import java.io.Serializable;
 import uiMain.PresentacionBono;
 import gestorAplicacion.Base;
+import java.util.Scanner;
 
 public class Huesped extends Usuario implements Serializable, PresentacionBono{
     private static final long serialVersionUID = 5L;
@@ -23,13 +25,17 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
     //David: Eliminé reserva, historial de reservas y habitacion, pues el usuario de huesped se debe crear primero sin necesidad de reservar
     
 
-    public Huesped(boolean vip, ArrayList<Preferencias> preferencias, String nombre, int telefono, int id, String username, String password, CuentaBancaria cuentaBancaria) {
-        super(nombre, telefono, id, username, password, cuentaBancaria);
+    public Huesped(boolean vip, ArrayList<Preferencias> preferencias, String nombre, int telefono, String username, String password, CuentaBancaria cuentaBancaria) {
+        super(nombre, telefono, username, password, cuentaBancaria);
         this.vip = vip;
         this.reserva = reserva;
         this.habitacion = habitacion;
         this.preferencias = preferencias;
         this.historialReservas = historialReservas;
+    }
+    
+    public Huesped (){
+        super();
     }
 
     
@@ -57,11 +63,11 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
         this.habitacion = habitacion;
     }
 
-    public ArrayList<Preferencias>getPreferencias(){
+    public ArrayList<Preferencias> getPreferencias(){
         return preferencias;
     }
 
-    public void setPreferencias(ArrayList<Preferencias>preferencias){
+    public void setPreferencias(ArrayList<Preferencias> preferencias){
         this.preferencias = preferencias;
     }
 
@@ -71,8 +77,9 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
     
 
 //Falta llenar
-    public Reserva generarReserva(){
-        return new Reserva();
+    public Reserva generarReserva(Huesped huesped, Habitacion habitacion, String fechaEntrada, String fechaSalida, long costo){
+        Reserva res = new Reserva(huesped, habitacion, fechaEntrada, fechaSalida, costo);
+        return res;
     }
 
     public void calcularServicios(){
@@ -88,7 +95,7 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
     public void consultarDiasDeEstadia(){
     }
 
-    public void cambiarPreferencias(ArrayList<Preferencias>nuevasPreferencias){
+    public void cambiarPreferencias(ArrayList<Preferencias> nuevasPreferencias){
         this.preferencias = nuevasPreferencias;
     }
 
@@ -176,7 +183,8 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
 
     @Override
     public void ofrecerBono() {
-         this.getCuentaBancaria().depositar(BONOHUESPED);
+        System.out.println("Se le han añadido "+ BONOHUESPED + "$ a su cuenta bancaria");
+        this.getCuentaBancaria().depositar(BONOHUESPED);
     }
     
     @Override
@@ -184,4 +192,12 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
         String intro = PresentacionBono.recogerDatos(this);
         return "Soy un huesped. "+intro ;
     }
+
+    
+
+    
+
+    
+    
+    
 }

@@ -4,23 +4,28 @@ import java.io.Serializable;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
 
-public class Usuario{
-    
+public abstract class Usuario implements Serializable{
+    private static final long serialVersionUID = 11L;
     private String nombre;
     private int telefono;
+    private static int numUser; 
     private int id;
     private String username;
     private String password;
     private CuentaBancaria cuentaBancaria;
+    
+    public Usuario(){}
 
-    public Usuario(String nombre,int telefono,int id,String username,String password,CuentaBancaria cuentaBancaria){
+    public Usuario(String nombre,int telefono,String username,String password,CuentaBancaria cuentaBancaria){
         this.nombre = nombre;
         this.telefono = telefono;
-        this.id = id;
         this.username = username;
         this.password = password;
         this.cuentaBancaria = cuentaBancaria;
+        Usuario.numUser++;
+        this.id = Usuario.numUser;
     }
+    
 
     public String getNombre(){
         return this.nombre;
@@ -70,7 +75,5 @@ public class Usuario{
         this.cuentaBancaria = cuentaBancaria;
     }
     
-    public String presentacion(){
-        return "";
-    }
+    public abstract String presentacion();
 }

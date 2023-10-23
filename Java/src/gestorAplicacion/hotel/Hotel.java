@@ -2,6 +2,7 @@ package gestorAplicacion.hotel;
 import java.util.ArrayList;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
+import gestorAplicacion.usuarios.Administrador;
 import gestorAplicacion.usuarios.Empleado;
 import gestorAplicacion.usuarios.Huesped;
 import gestorAplicacion.usuarios.Preferencias;
@@ -26,6 +27,7 @@ public class Hotel implements Serializable{
     private String ciudad;
     private ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
     private ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+    private ArrayList<Administrador>  administradores = new  ArrayList<Administrador>();
 
     public Hotel(CuentaBancaria cuentaBancaria){
         this.cuentaBancaria = cuentaBancaria;
@@ -41,8 +43,21 @@ public class Hotel implements Serializable{
 
     }
 
-    public void agregarHabitacion(Habitacion habitacion){
-        this.habitaciones.add(habitacion);
+    public Hotel(CuentaBancaria cb, String nombre, String ciudad, ArrayList<ServiciosExtra> servicios, ArrayList<Habitacion> habitaciones, ArrayList<Empleado> empleados) {
+        this.cuentaBancaria = cb;
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.servicios = servicios;
+        this.habitaciones = habitaciones;
+        this.empleados = empleados;
+        
+        for (Habitacion habitacion : habitaciones){
+            habitacion.setHotel(this);
+        }
+        
+        for (Empleado empleado : empleados){
+            empleado.setHotel(this);
+        }
     }
 
     public void agregarServicioHotel(ServiciosExtra servicio){
@@ -75,7 +90,7 @@ public class Hotel implements Serializable{
         //se debe llenar con un '0'
         ArrayList<Habitacion> respuesta = new  ArrayList<Habitacion>();
         for (Habitacion i : this.habitaciones){
-           if(i.getReservada() == false){
+           if(i.isReservada() == false){
             if(filtro.getNombreHotel() != null &&  i.getHotel().getNombre() == info.get(0)){
               respuesta.add(i);  
             }else if(filtro.getTipoHabitacion() != null && i.getTipo() == info.get(1)){
@@ -161,6 +176,21 @@ public class Hotel implements Serializable{
     public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
         this.habitaciones = habitaciones;
     }
+
+    public void agregarHabitacion( Habitacion habitacion){
+        this.habitaciones.add(habitacion);
+    }
+
+    public ArrayList<Administrador> getAdministradores() {
+        return this.administradores;
+    }
     
+    public void setAdministradores(ArrayList<Administrador> administradores) {
+        this.administradores = administradores;
+    }
+
+    public void agregarAdministrador( Administrador administrador){
+        this.administradores.add(administrador);
+    }
     
 }

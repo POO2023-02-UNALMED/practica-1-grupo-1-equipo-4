@@ -1,10 +1,10 @@
 package gestorAplicacion.usuarios;
 
 public enum TipoHabitacion {
-    VIP(4,500000), DOBLE(2,300000), SIMPLE(1,100000);
+    FAMILIAR(4,500000), DOBLE(2,300000), SIMPLE(1,100000), VIPFAMILIAR(4,1000000), VIPDOBLE(2,700000), VIPSIMPLE(1,300000);
     
     private int camas;
-    private int precio;
+    private long precio;
     
     TipoHabitacion(int camas, int precio){
         this.camas = camas;
@@ -15,7 +15,11 @@ public enum TipoHabitacion {
         return camas;
     }
     
-    public int asignPrecio(){
+    public String obtenerNombre() {
+        return this.name();
+    }
+    
+    public long asignPrecio(){
         return precio;
     }
 }

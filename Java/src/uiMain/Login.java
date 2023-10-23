@@ -19,14 +19,15 @@ public class Login {
         String us = null;
         
         System.out.println("CosmoReserve-Gestión Hotelera");
-        System.out.println("-----------------------------\n");
+        System.out.println("-----------------------------");
         System.out.println("Ingrese su tipo de usuario (Ingrese el número que corresponde a la opción deseada):\n"
                 + "1: Administrador\n"
                 + "2: Empleado\n"
-                + "3: Huesped\n");
+                + "3: Huesped\n"
+                + "4: Salir\n");
         while(true){
             opcion = sc.nextInt();
-            if (opcion != 1 && opcion != 2 && opcion != 3){
+            if (opcion<1 || opcion>4){
                System.out.println("Error: tiene que ingresar uno de los siguientes números: 1, 2 o 3");
                continue;
             }
@@ -34,16 +35,18 @@ public class Login {
                 case 1 : us = "administrador"; opcion = 0;break;
                 case 2 : us = "empleado"; opcion = 0;break;
                 case 3 : us = "huesped"; opcion = 0;break;
+                case 4 : Menu.salir(); break;
             }
             break;
         }    
         
         System.out.println("\nIngreso de usuario (Ingrese el número que corresponde a la opción deseada):\n"
-                  + "1: Iniciar sesión"
-                  + "2: Resgistrarse\n");  
+                + "1: Iniciar sesión\n"
+                + "2: Resgistrarse\n"
+                + "3: Volver\n");  
         while (true){
             opcion = sc.nextInt();
-            if (opcion != 1 && opcion != 2){
+            if (opcion<1 || opcion>3){
                 System.out.println("Error: tiene que ingresar uno de los siguientes números: 1 o 2"); 
                 continue;
             }else if (opcion == 2){
@@ -55,6 +58,7 @@ public class Login {
             switch (opcion){
                 case 1 : Login.loginNext(us); break;
                 case 2 : Signup.register(); break;
+                case 3 : login();
             }
             break;
         }
@@ -69,9 +73,9 @@ public class Login {
         System.out.println("---------------------\n");
         while (true){
             boolean correctRegist = false;
-            System.out.println("Ingrese su nombre de usuario:");
+            System.out.print("Ingrese su nombre de usuario: ");
             nombre = sc.nextLine();
-            System.out.println("Ingrese su contraseña");
+            System.out.print("Ingrese su contraseña: ");
             contrasena = sc.nextLine();
             if (us.equals("administrador")){
                 for (Administrador administrador: Base.getAdministradores()){
@@ -92,10 +96,8 @@ public class Login {
                 for (Empleado empleado: Base.getEmpleados()){
                     if (empleado.getUsername().equals(nombre) && empleado.getPassword().equals(contrasena)){
                         Menu.sistema(empleado);
+                        correctRegist = true;
                         break;
-                    }
-                    else{
-                        System.out.println("\nContraseña o nombre de usuario incorrecto, intente de nuevo");
                     }
                 }
                 if (!correctRegist){
@@ -109,10 +111,8 @@ public class Login {
                 for (Huesped huesped: Base.getHuespedes()){
                     if (huesped.getUsername().equals(nombre) && huesped.getPassword().equals(contrasena)){
                         Menu.sistema(huesped);
+                        correctRegist = true;
                         break;
-                    }
-                    else{
-                        System.out.println("\nContraseña o nombre de usuario incorrecto, intente de nuevo");
                     }
                 }
                 if (!correctRegist){

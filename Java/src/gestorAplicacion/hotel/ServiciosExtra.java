@@ -5,8 +5,10 @@ import java.util.HashMap;
 
 import gestorAplicacion.usuarios.Huesped;
 import gestorAplicacion.usuarios.Usuario;
+import java.io.Serializable;
 
-public class ServiciosExtra {
+public class ServiciosExtra implements Serializable{
+        private static final long serialVersionUID = 9L;   
 	private int idServicio;
 	private ArrayList<String> listaTipoServicio;
 	private String tipoServicio;

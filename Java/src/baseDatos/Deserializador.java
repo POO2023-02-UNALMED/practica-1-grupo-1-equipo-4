@@ -12,7 +12,7 @@ import gestorAplicacion.Base;
 import java.util.ArrayList;
 
 public class Deserializador {
-    private static File temp = new File("baseDatos\\temp");
+    private static File temp = new File("src\\main\\java\\baseDatos\\temp");
     public static void deserializador(){
         File[] docs = temp.listFiles();
         FileInputStream fis;
