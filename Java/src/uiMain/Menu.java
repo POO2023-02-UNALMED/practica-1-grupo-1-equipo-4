@@ -22,9 +22,10 @@ public class Menu {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args){
         Deserializador.deserializador();
+//        System.out.println(Base.getHuespedes().get(0).getNombre());
+//        System.out.println(Base.getHuespedes().get(0).equals(Base.getHoteles().get(0).getHabitaciones().get(0).getReservas().get(0).getHuesped().getNombre()));
         
-        
-//        CuentaBancaria cb = new CuentaBancaria(2000000000, "m");
+//        CuentaBancaria cb = new CuentaBancaria(1000000000, "d");
 //        ArrayList<Empleado> emps = new ArrayList<>();
 //        ArrayList<ServiciosExtra> servs = new ArrayList<>();
 //        ArrayList<Habitacion> habs = new ArrayList<>();
@@ -76,8 +77,9 @@ public class Menu {
                         fechaIni.set(Calendar.DATE, Integer.parseInt(fIni[0]));
                         fechaIni.set(Calendar.MONTH, Integer.parseInt(fIni[1])-1);
                         fechaIni.set(Calendar.YEAR, Integer.parseInt(fIni[2]));
-                        if (fechaIni.compareTo(fechaActual) == 0){
+                        if (fechaIni.get(Calendar.DAY_OF_YEAR) == fechaActual.get(Calendar.DAY_OF_YEAR)){
                             habitacion.setReservada(true);
+                            reserv.getHuesped().setEnReserva(true);
                             return true;
                         }
                     }
