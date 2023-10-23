@@ -22,9 +22,15 @@ public class Menu {
         
         //Calificar.seleccionar();
         Administrador administradorinicial = new Administrador("Juan", 12234, "juank", "12345678", new CuentaBancaria(1234, "Bancolombia"), new Hotel());
+        Administrador administradorinicial2 = new Administrador("Juan", 12234, "juank", "12345678", new CuentaBancaria(1234, "Bancolombia"), new Hotel());
+        Administrador administradorinicial3 = new Administrador("Juan", 12234, "juank", "12345678", new CuentaBancaria(1234, "Bancolombia"), new Hotel());
         Base.addAdministradores(administradorinicial);
-
-        Login.login();
+        Base.addAdministradores(administradorinicial2);
+        //Base.addAdministradores(administradorinicial3);
+        for (Administrador ad : Base.getAdministradores()) {
+            System.out.println(ad.getNombre());
+        }
+        //Login.login();
     }
     
     static void sistema(Huesped huesped){
