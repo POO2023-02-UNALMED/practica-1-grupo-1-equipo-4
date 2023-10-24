@@ -83,6 +83,10 @@ public class Reserva implements Serializable{
 		this.servicios.add(servicio);
                 this.costo += servicio.getTarifa();
 	}
+	public void delServicios(ServiciosExtra servicio){
+		this.servicios.remove(servicio);
+			this.costo -= servicio.getTarifa();
+	}
 	public String getCiudad() {
 		return ciudad;
 	}

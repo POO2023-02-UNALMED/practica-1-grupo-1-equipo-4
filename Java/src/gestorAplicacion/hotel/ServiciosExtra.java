@@ -1,5 +1,16 @@
 package gestorAplicacion.hotel;
 
+/*
+ * 
+ * 
+ *  Clase ServiciosExtra:
+ *  
+ *      La clase servicios extra tiene la funcion de agregar
+ *      un servicio específico a una reserva según se seleccione
+ *      dentro del programa
+ * 
+ * 
+ */
 import java.util.*;
 
 import gestorAplicacion.usuarios.Empleado;
@@ -13,9 +24,16 @@ public class ServiciosExtra implements Serializable{
 	private ArrayList<String> listaTipoServicio;
 	private String tipoServicio;
 	private ArrayList<Huesped> consumidores;
-	private String nombre;
 	private int tarifa;
 	private Map<Usuario, Integer> calificaciones = new HashMap<Usuario,Integer>();
+
+	public ServiciosExtra(int idServicio, String tipoServicio, int tarifa) {
+        this.idServicio = idServicio;
+        this.tipoServicio = tipoServicio;
+        this.tarifa = tarifa;
+        this.consumidores = new ArrayList<>();
+        this.calificaciones = new HashMap<>();
+    }
 
 	 public static float promedioCalificaciones(ServiciosExtra servicio){
         float   total=0;
@@ -29,6 +47,31 @@ public class ServiciosExtra implements Serializable{
 		calificaciones.put(usuario, calificacion);
 	}
 	
+	public static String agregarServicioTransporte(Huesped huesped){
+		ServiciosExtra trasporte = new ServiciosExtra(0, "Transporte", 5000);
+		huesped.getReserva().addServicios(trasporte);
+		return "Servicio Transporte agregado";
+
+    }
+
+	public static String agregarServicioAlimentacion(Huesped huesped){
+		ServiciosExtra alimentacion = new ServiciosExtra(1, "Alimentación", 5000);
+		huesped.getReserva().addServicios(alimentacion);
+		return "Servicio Alimentación agregado";
+	}
+	
+	public static String agregarServicioLimpieza(Huesped huesped){
+		ServiciosExtra limpieza = new ServiciosExtra(2, "Limpieza", 5000);
+		huesped.getReserva().addServicios(limpieza);
+		return "Servicio Limpieza agregado";
+    }
+
+	public String eliminarServicio(ServiciosExtra servicio, Huesped huesped){
+		huesped.getReserva().delServicios(servicio);
+        return "Se ha añadido el servicio de transporte";
+    }
+
+
 	public int getIdServicio() {
 		return idServicio;
 	}
@@ -61,14 +104,6 @@ public class ServiciosExtra implements Serializable{
 		this.consumidores = consumidores;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public int getTarifa() {
 		return tarifa;
 	}
@@ -83,13 +118,5 @@ public class ServiciosExtra implements Serializable{
 
 	public void setCalificaciones(Map<Usuario, Integer> calificaciones) {
 		this.calificaciones = calificaciones;
-	}
-
-	public void transportar() {
-		
-	}
-	
-	public void escogerLimpiador() {
-		
 	}
 }

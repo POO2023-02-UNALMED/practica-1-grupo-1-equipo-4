@@ -9,6 +9,7 @@ package gestorAplicacion.usuarios;
  *      Un administrador será un usuario con más permisos
  *      dentro del programa
  * 
+ *  @autor: Camilo Sánchez
  * 
  */
 
@@ -19,6 +20,7 @@ import java.util.Date;
 import gestorAplicacion.finanzas.CuentaBancaria;
 import gestorAplicacion.hotel.Habitacion;
 import gestorAplicacion.hotel.Hotel;
+
 import java.io.Serializable; 
 
 public class Administrador extends Usuario implements Serializable{
