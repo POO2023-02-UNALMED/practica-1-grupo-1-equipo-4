@@ -34,7 +34,9 @@ public class ServiciosExtra implements Serializable{
         this.consumidores = new ArrayList<>();
         this.calificaciones = new HashMap<>();
     }
-
+	
+ 	        //Se tendran en cuenta los  siguientes criterios para el promedio de las calificaciones: servicio
+			//El método realiza un promedio de las calificaciones de los servicios extras que fueron agregados
 	 public static float promedioCalificaciones(ServiciosExtra servicio){
         float   total=0;
         for (Integer i : servicio.calificaciones.values()) {
@@ -43,29 +45,40 @@ public class ServiciosExtra implements Serializable{
         return total/servicio.calificaciones.values().size();
     }
 
+ 	        //Se tendran en cuenta los  siguientes criterios para  agregar el servicio de alimentación: usuario y calificación de tipo entero
+			//El método le agrega asocia la calificación al usuario
 	public void addCalificaciones(Usuario usuario, Integer calificacion){
 		calificaciones.put(usuario, calificacion);
 	}
-	
+
+	 	    //Se tendran en cuenta los  siguientes criterios para  agregar el servicio de transporte: huesped
+			//El método le crea un Servicio de transporte al Huesped que lo solicite
 	public static String agregarServicioTransporte(Huesped huesped){
-		ServiciosExtra trasporte = new ServiciosExtra(0, "Transporte", 5000);
+		ServiciosExtra trasporte = new ServiciosExtra(0, "Transporte", 10000);
 		huesped.getReserva().addServicios(trasporte);
 		return "Servicio Transporte agregado";
 
     }
 
+ 	        //Se tendran en cuenta los  siguientes criterios para  agregar el servicio de alimentación: huesped
+			//El método le crea un Servicio de aLimentación al Huesped que lo solicite
+
 	public static String agregarServicioAlimentacion(Huesped huesped){
-		ServiciosExtra alimentacion = new ServiciosExtra(1, "Alimentación", 5000);
+		ServiciosExtra alimentacion = new ServiciosExtra(1, "Alimentación", 12000);
 		huesped.getReserva().addServicios(alimentacion);
 		return "Servicio Alimentación agregado";
 	}
-	
+
+	 	    //Se tendran en cuenta los  siguientes criterios para  agregar el servicio de limpieza: huesped
+			//El método le crea un Servicio de limpieza al Huesped que lo solicite
 	public static String agregarServicioLimpieza(Huesped huesped){
-		ServiciosExtra limpieza = new ServiciosExtra(2, "Limpieza", 5000);
+		ServiciosExtra limpieza = new ServiciosExtra(2, "Limpieza", 7500);
 		huesped.getReserva().addServicios(limpieza);
 		return "Servicio Limpieza agregado";
     }
 
+ 	        //Se tendran en cuenta los  siguientes criterios para  eliminar el servicio del huesped: servicio, huesped
+			//El método le quita el Servicio que le fue agregado al huesped
 	public static String eliminarServicio(ServiciosExtra servicio, Huesped huesped){
 		huesped.getReserva().delServicios(servicio);
         return "Se ha añadido el servicio de transporte";
