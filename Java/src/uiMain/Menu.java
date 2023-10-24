@@ -23,7 +23,8 @@ public class Menu {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args){
         Deserializador.deserializador();
-
+        
+        
         /*
          * Pruebas para administrador
          */
@@ -51,9 +52,6 @@ public class Menu {
         Base.addEmpleados(empleado1);
         Base.addEmpleados(empleado2);
         */
-        
-
-
 
 //        System.out.println(Base.getHuespedes().get(0).getNombre());
 //        System.out.println(Base.getHuespedes().get(0).equals(Base.getHoteles().get(0).getHabitaciones().get(0).getReservas().get(0).getHuesped().getNombre()));
@@ -93,7 +91,8 @@ public class Menu {
 //        for (Administrador ad : Base.getAdministradores()) {
 //            System.out.println(ad.getNombre());
 //        }
-        
+//  Pruebas recomendaciones        
+
         Login.login();
     }
     
@@ -166,8 +165,9 @@ public class Menu {
             System.out.println("\nCosto total de la estadía: "+huesped.getReserva().getCosto());
             System.out.println("----------------------------------\n");
             System.out.println("Se le direccionará al menú de calificaciones: ");
-            salir();
+            
             // Ingresar aqui el metodo que lleva al menu de calificaciones
+            Calificar.seleccionar(huesped);
         }
         
         Scanner sc = new Scanner(System.in);
@@ -178,11 +178,12 @@ public class Menu {
                 + "2: Cambiar preferencias\n"
                 + "3: Ver cuenta bancaria\n"
                 + "4: Ver reserva\n"
-                + "5: Salir");
+                + "5: Ver recomendaciones\n"
+                + "6: Salir\n");
         int opcion;
         while (true){
             opcion = sc.nextInt();
-            if (opcion<1 || opcion>5){
+            if (opcion<1 || opcion>6){
                 System.out.println("Error. Debe ingresar uno de los números correspondientes a una opcion");
                 continue;
             }
@@ -191,13 +192,14 @@ public class Menu {
         
         switch (opcion){
             case 1: Reservar.reservar(huesped); break;
-            case 2: agregarPreferencia(huesped); break;    //Ingresar aquí el metodo que lleva al cambio de preferencias
+            case 2: agregarPreferencia(huesped); break;    //Ingresar aquí el metodo que lleva al cambio de preferencia
             case 3: adminCuenta(huesped); break;
             case 4: adminReserva(huesped); break;
-            case 5: salir(); break;
+            case 5: Recomendar.seleccionar(huesped); break;
+            case 6: salir(); break;
         }
     }
-
+    
     public static void agregarPreferencia(Huesped huesped){
         Scanner sc = new Scanner(System.in);
         ArrayList<String> ciudades = Preferencias.getCiudades();
@@ -241,9 +243,27 @@ public class Menu {
             habitacion = sc.nextLine();
         }
         
+        huesped.agregarPreferencias(ciudad, hotel, habitacion);
+        int opcion = sc.nextInt();
+        System.out.println("Seleccione alguna de las siguientes opciones:");
+        System.out.println("1: Agregar nueva preferencia"+
+        "\n2: Volver al menú principal");
+        while(opcion!=1 || opcion!=2){
+            System.out.println("Ingrese una opción válida");
+             System.out.println("Seleccione alguna de las siguientes opciones:");
+            System.out.println("1: Agregar nueva preferencia"+
+            "\n2: Volver al menú principal");
+        }
+        switch (opcion) {
+            case 1:
+                agregarPreferencia(huesped);
+                break;
+            case 2:
+                sistema(huesped);
+                break;
+        }
     }
-
-
+    
     public static void adminCuenta(Huesped huesped){        //administrar cuenta bancaria del huesped
         Scanner sc = new Scanner(System.in);
         CuentaBancaria cuenta = huesped.getCuentaBancaria();
@@ -323,11 +343,57 @@ public class Menu {
     
     
     static void sistema(Empleado empleado){
+        Scanner sc = new Scanner(System.in);
         System.out.println("MENÚ PRINCIPAL");
-        System.out.println("---------------\n");
+        System.out.println("---------------");
+        System.out.println("Seleccione alguna de las siguientes opciones (Ingrese el número que corresponde a la opción deseada):\n"
+                + "1: Ver cuenta bancaria\n"
+                + "2: Salir\n");
+        int opcion;
+        while (true){
+            opcion = sc.nextInt();
+            if (opcion<1 || opcion>2){
+                System.out.println("Error. Debe ingresar uno de los números correspondientes a una opcion");
+                continue;
+            }
+            break;
+        }
         
+        switch (opcion){
+            case 1: empleadoCB(empleado); break;
+            case 2: salir(); break;
+        }
         
     }
+    
+    static void empleadoCB(Empleado empleado){
+        Scanner sc = new Scanner(System.in);
+        CuentaBancaria cuenta = empleado.getCuentaBancaria();
+        System.out.println("MENÚ CUENTA BANCARIA");
+        System.out.println("--------------------\n");
+        System.out.println("Información de la cuenta: \n");
+        System.out.println("Número de cuenta"+ cuenta.getNumero()+ "\n"
+                + "Banco: "+ cuenta.getBanco()+"\n"
+                + "Saldo: "+ cuenta.getSaldo()+"\n"
+                + "Ultimo pago: "+empleado.getUltimoPago());
+        
+        System.out.println("Seleccione algunas de las siguientes opciones:\n"
+                + "1: Volver al menú principal\n");
+        int opcion;
+        while (true){
+            opcion = sc.nextInt();
+            if (opcion != 1){
+                System.out.println("Error. Debe ingresar un número correspondiente a las opciones dadas");
+                continue;
+            }
+            break;
+        }
+        switch (opcion){
+            case 1:
+                salir();
+        }
+    }
+    
     static void sistema(Administrador administrador){
         System.out.println("MENÚ PRINCIPAL");
         System.out.println("---------------\n");

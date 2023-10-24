@@ -55,6 +55,14 @@ public class Recomendar {
                 System.out.println("\nHabitacion:"+habitacion.getTipo());
             }
         }
-        
+        System.out.println("Presione 1 para volver al menú principal");
+        int salida = sc.nextInt();
+        while(salida!=1){
+           System.out.println("Presione 1 para volver al menú principal"); 
+           salida = sc.nextInt();
+        }
+        if(salida == 1){
+            Menu.sistema(huesped);
+        }
     }
 }

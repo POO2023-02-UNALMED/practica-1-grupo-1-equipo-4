@@ -29,10 +29,7 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
     public Huesped(boolean vip, ArrayList<Preferencias> preferencias, String nombre, int telefono, String username, String password, CuentaBancaria cuentaBancaria) {
         super(nombre, telefono, username, password, cuentaBancaria);
         this.vip = vip;
-        this.reserva = reserva;
-        this.habitacion = habitacion;
         this.preferencias = preferencias;
-        this.historialReservas = historialReservas;
     }
     
     public Huesped (){
@@ -206,10 +203,10 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
     }
 
     
-
+    @Override
+    public String entrando(){
+        return "Entrando a su cuenta de Huésped, señor(a): "+this.getNombre();
+    }
     
 
-    
-    
-    
 }

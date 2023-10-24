@@ -47,7 +47,8 @@ public class Habitacion implements Serializable{
 
     }
 
-    public Habitacion() {
+    public Habitacion(long id) {
+        this(id, "simple", 1, 100000);
     }
 
     public float calcularPromedio(){
@@ -108,7 +109,7 @@ public class Habitacion implements Serializable{
     }
 
     public void addSugerenciasPendientes(ArrayList<String>  sugerencias){
-        sugerenciasPendientes.put(this.getId(), sugerencias);
+          sugerenciasPendientes.put(this.getId(), sugerencias);
     }
 
     public  void addSugerencias(String sugerencia){

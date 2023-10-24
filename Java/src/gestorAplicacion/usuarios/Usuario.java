@@ -10,8 +10,8 @@ public abstract class Usuario implements Serializable{
     private int telefono;
     private static int numUser; 
     private int id;
-    private String username;
-    private String password;
+    protected String username;
+    protected String password;
     private CuentaBancaria cuentaBancaria;
     
     public Usuario(){}
@@ -74,6 +74,17 @@ public abstract class Usuario implements Serializable{
     public void setCuentaBancaria(CuentaBancaria cuentaBancaria){
         this.cuentaBancaria = cuentaBancaria;
     }
+
+    public static int getNumUser() {
+        return numUser;
+    }
+
+    public static void setNumUser(int numUser) {
+        Usuario.numUser = numUser;
+    }
+    
+    public abstract String entrando();
     
     public abstract String presentacion();
+    
 }

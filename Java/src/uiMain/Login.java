@@ -80,6 +80,7 @@ public class Login {
             if (us.equals("administrador")){
                 for (Administrador administrador: Base.getAdministradores()){
                     if (administrador.getUsername().equals(nombre) && administrador.getPassword().equals(contrasena)){
+                        avisoEntrada(administrador);
                         Menu.sistema(administrador);
                         correctRegist = true;
                         break;
@@ -95,6 +96,7 @@ public class Login {
             }else if (us.equals("empleado")){
                 for (Empleado empleado: Base.getEmpleados()){
                     if (empleado.getUsername().equals(nombre) && empleado.getPassword().equals(contrasena)){
+                        avisoEntrada(empleado);
                         Menu.sistema(empleado);
                         correctRegist = true;
                         break;
@@ -108,9 +110,10 @@ public class Login {
             }
             
             else if (us.equals("huesped")){
-                for (Huesped huesped: Base.getHuespedes()){
-                    if (huesped.getUsername().equals(nombre) && huesped.getPassword().equals(contrasena)){
-                        Menu.sistema(huesped);
+                for (Huesped x: Base.getHuespedes()){
+                    if (x.getUsername().equals(nombre) && x.getPassword().equals(contrasena)){
+                        avisoEntrada(x);
+                        Menu.sistema(x);
                         correctRegist = true;
                         break;
                     }
@@ -123,6 +126,10 @@ public class Login {
             }
             
         }
+    }
+    
+    static void avisoEntrada(Usuario us){
+        System.out.println(us.entrando());
     }
 }
 

@@ -9,8 +9,8 @@ import java.io.PrintWriter;
 import gestorAplicacion.Base;
 
 public class Serializador {
-        //Cada uno  debe revisar  su  ruta y estructura correspondiente y luego cambiar
-    private static File temp = new File("/home/juan/Documents/practica-1-grupo-1-equipo-4/Java/src/baseDatos/temp/");
+    //Cada uno  debe revisar  su  ruta y estructura correspondiente y luego cambiar
+    private static File temp = new File("src\\main\\java\\baseDatos\\temp");
     
     public static void serializador(){
         FileOutputStream fos;

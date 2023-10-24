@@ -77,7 +77,7 @@ public class ServiciosExtra implements Serializable{
 		this.tarifa = tarifa;
 	}
 
-	public Map<Usuario, Integer> getCalificaciones() {
+	public Map<Usuario, Integer> getCalificaciones(){
 		return calificaciones;
 	}
 

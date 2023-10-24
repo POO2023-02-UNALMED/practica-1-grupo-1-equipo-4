@@ -30,7 +30,7 @@ public class Hotel implements Serializable{
     private ArrayList<Empleado> empleados = new ArrayList<Empleado>();
     private ArrayList<Administrador>  administradores = new  ArrayList<Administrador>();
     private Boolean estado = true;
-
+    
     public Hotel(CuentaBancaria cuentaBancaria){
         this.cuentaBancaria = cuentaBancaria;
     }
@@ -41,8 +41,8 @@ public class Hotel implements Serializable{
         this.historialClientes = historialClientes;
     }
 
-    public Hotel() {
-
+    public Hotel(CuentaBancaria cb, String nombre, ArrayList<Habitacion> habitaciones) {
+        this(cb, nombre, "Medellin", new ArrayList<ServiciosExtra>(), habitaciones, new ArrayList<Empleado>());
     }
 
     public Hotel(CuentaBancaria cb, String nombre, String ciudad, ArrayList<ServiciosExtra> servicios, ArrayList<Habitacion> habitaciones, ArrayList<Empleado> empleados) {
@@ -62,7 +62,7 @@ public class Hotel implements Serializable{
         }
     }
 
-    public void  calcularPromedioHotel(){
+    public float  calcularPromedioHotel(){
         float  totalHabitaciones = 0;
         float totalEmpleados = 0;
         float totalServicios = 0;
@@ -78,12 +78,13 @@ public class Hotel implements Serializable{
         totalHabitaciones = totalHabitaciones / this.habitaciones.size();
         totalEmpleados = totalEmpleados / this.empleados.size();
         totalServicios = totalServicios / this.servicios.size();
-        if((totalEmpleados+totalHabitaciones+totalEmpleados/3) < 2.5){
-            System.out.println("Pesimas calificaciones del hotel, se debera eliminar");
-            this.estado = false;
-        }
+        //if((totalEmpleados+totalHabitaciones+totalEmpleados/3) < 2.5){
+         //   System.out.println("Pesimas calificaciones del hotel, se debera eliminar");
+         //   this.estado = false;
+        //}
+        return (totalEmpleados+totalHabitaciones+totalEmpleados/3);
     }
-
+    
     public void agregarServicioHotel(ServiciosExtra servicio){
         this.servicios.add(servicio);
     }
