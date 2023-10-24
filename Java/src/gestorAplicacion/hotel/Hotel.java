@@ -154,8 +154,8 @@ public class Hotel implements Serializable{
         return historialClientes;
     }
 
-    public void setHistorialClientes(ArrayList<Huesped> historialClientes) {
-        this.historialClientes = historialClientes;
+    public void addHistorialClientes(Huesped huesped) {
+        this.historialClientes.add(huesped);
     }
 
     public ArrayList<Empleado> getEmpleados(){

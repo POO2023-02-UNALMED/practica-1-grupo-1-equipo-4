@@ -20,6 +20,7 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
     private boolean vip;
     private Reserva reserva;
     private Habitacion habitacion;
+    private boolean enReserva;
     private ArrayList<Preferencias> preferencias;
     private ArrayList<Reserva> historialReservas;
     //David: Eliminé reserva, historial de reservas y habitacion, pues el usuario de huesped se debe crear primero sin necesidad de reservar
@@ -98,6 +99,16 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
     public void cambiarPreferencias(ArrayList<Preferencias> nuevasPreferencias){
         this.preferencias = nuevasPreferencias;
     }
+
+    public boolean isEnReserva() {
+        return enReserva;
+    }
+
+    public void setEnReserva(boolean enReserva) {
+        this.enReserva = enReserva;
+    }
+    
+    
 
     //Las recomendaciones funcionan a partir de dos criterios. 
     //1. Si el usuario tiene historial de reservas, se buscan los hoteles que cumplen con la ciudad y tienen mejores

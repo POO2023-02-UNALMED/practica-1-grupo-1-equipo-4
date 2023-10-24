@@ -107,14 +107,13 @@ public class Reserva implements Serializable{
 	}
 	
 	public String eliminarReserva() {
-            this.getHabitacion().setReservada(false);
-            ArrayList<Reserva> listReservas = this.getHabitacion().getReservas();
-            for (Reserva x: listReservas){
-                if (x.equals(this)){
-                    x.getHuesped().setReserva(null);
-                    listReservas.remove(x);
-                }
+            if (this.getHuesped().isEnReserva()){
+                this.getHuesped().setEnReserva(false);
+                this.getHabitacion().setReservada(false);
             }
+            ArrayList<Reserva> listReservas = this.getHabitacion().getReservas();
+            listReservas.remove(this);
+            this.getHuesped().setReserva(null);
 	    return "La reserva se ha eliminado correctamente";
             
 	}

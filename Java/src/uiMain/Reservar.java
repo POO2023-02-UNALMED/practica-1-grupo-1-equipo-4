@@ -60,8 +60,8 @@ public class Reservar {
             
             case 2:
                 listaHoteles = Base.filtrarPorCiudad();
-                System.out.print("Estos son los hoteles que coinciden con la ciudad que ingresó: \n+"
-                        + "Seleccione el hotel que desea (Ingrese el número que corresponde a la opción deseada): ");
+                System.out.print("Estos son los hoteles que coinciden con la ciudad que ingresó: \n"
+                        + "Seleccione el hotel que desea (Ingrese el número que corresponde a la opción deseada): \n");
                 
                 for (Hotel hotel: listaHoteles){
                     System.out.println(c+ ": "+ hotel.getNombre());
@@ -82,6 +82,7 @@ public class Reservar {
             
             case 3: 
                 ArrayList<Hotel> completeHotel = Base.getHoteles();
+                System.out.print("Estos son todos los hoteles:\n");
                 for (Hotel hotel: completeHotel){
                     System.out.println(c+ ": "+ hotel.getNombre());
                     c++;
@@ -415,6 +416,11 @@ public class Reservar {
             }
             switch (choose){
                 case "Y":
+                   if (habitacion.getHotel().getHistorialClientes().contains(huesped)){
+                       System.out.println("Como ya ha reservado habitaciones en este hotel, se le hará un descuento de 80000$");
+                       cobroHabitacion = cobroHabitacion-80000;
+                   }
+                   habitacion.getHotel().addHistorialClientes(huesped);
                    huesped.getCuentaBancaria().transferencia(habitacion.getHotel().getCuentaBancaria(), cobroHabitacion);
                    System.out.println("Se le han descontado "+ cobroHabitacion +"$ de su cuenta bancaria");
                    Reserva reserva = huesped.generarReserva(huesped, habitacion, fIni, fFin, cobroHabitacion);
@@ -431,6 +437,7 @@ public class Reservar {
     
     public static void reservaConfirmada(Huesped huesped, Habitacion habitacion, Reserva reserva){
         huesped.setReserva(reserva);
+        reserva.setHuesped(huesped);
         String fIni = reserva.getFechaEntrada();
         String[] splitfIni = fIni.split("/");
         Calendar fechaActual = Calendar.getInstance();
