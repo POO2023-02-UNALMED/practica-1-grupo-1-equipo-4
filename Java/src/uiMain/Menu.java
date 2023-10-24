@@ -29,15 +29,15 @@ public class Menu {
          * Pruebas para administrador
          */
 
-        /* 
-         
+        
+         /* 
         CuentaBancaria cbhotel = new CuentaBancaria(123456, "Bancolombia");
         CuentaBancaria cbadministrador = new CuentaBancaria(6789, "Bancolombia");
         CuentaBancaria cbempleado1 = new CuentaBancaria(6789, "Bancolombia");
         CuentaBancaria cbempleado2 = new CuentaBancaria(6789, "Bancolombia");
 
         Hotel hotel = new Hotel(cbhotel);
-        hotel.getCuentaBancaria().setSaldo(100000);
+        hotel.getCuentaBancaria().setSaldo(100);
 
         Administrador administrador = new Administrador("Camilo", 12345, "kmi", "12345", cbadministrador, hotel);
 
@@ -51,8 +51,8 @@ public class Menu {
         Base.addAdministradores(administrador);
         Base.addEmpleados(empleado1);
         Base.addEmpleados(empleado2);
-
         */
+
 //        System.out.println(Base.getHuespedes().get(0).getNombre());
 //        System.out.println(Base.getHuespedes().get(0).equals(Base.getHoteles().get(0).getHabitaciones().get(0).getReservas().get(0).getHuesped().getNombre()));
         
@@ -207,8 +207,9 @@ public class Menu {
             System.out.println("\nCosto total de la estadía: "+huesped.getReserva().getCosto());
             System.out.println("----------------------------------\n");
             System.out.println("Se le direccionará al menú de calificaciones: ");
-            salir();
+            
             // Ingresar aqui el metodo que lleva al menu de calificaciones
+            Calificar.seleccionar(huesped);
         }
         
         Scanner sc = new Scanner(System.in);
@@ -224,7 +225,7 @@ public class Menu {
         int opcion;
         while (true){
             opcion = sc.nextInt();
-            if (opcion<1 || opcion>5){
+            if (opcion<1 || opcion>6){
                 System.out.println("Error. Debe ingresar uno de los números correspondientes a una opcion");
                 continue;
             }
