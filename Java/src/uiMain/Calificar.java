@@ -32,7 +32,7 @@ public class Calificar {
         System.out.println("*****CALIFICAR  SERVICIOS*****");
         System.out.println("A continuacion debe calificar los servicios del hotel");
         for (ServiciosExtra servicio : huesped.getReserva().getHotel().getServicios()) {
-            System.out.println("Servicio: "+servicio.getNombre());
+            System.out.println("Servicio: "+servicio.getTipoServicio());
             System.out.println("Ingrese un entero del  1 al 5, donde 1 es muy  insatisfecho y 5 es muy satisfecho con el empleado");        
             opcion = sc.nextInt();
             while(opcion<1||opcion>5){
