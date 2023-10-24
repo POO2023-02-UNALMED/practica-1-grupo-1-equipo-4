@@ -25,7 +25,7 @@ public class Administrador extends Usuario implements Serializable{
     private static final long serialVersionUID = 3L;
     
     private static int totalAdministradores = 0;
-    private long salario;
+    private long salario = 500;
     private Date ultimoPago;
     private Hotel hotel;
 
@@ -122,12 +122,27 @@ public class Administrador extends Usuario implements Serializable{
     public String pagarEmpleados(){
         ArrayList<Empleado> empleados = this.hotel.getEmpleados();
 
-        Date ultimoPago = getUltimoPago();
+        Date ultimoPago = this.getUltimoPago();
         Date actual = new Date();
 
-        long diferenciaEnMillis = actual.getTime() - ultimoPago.getTime();
+        int diferenciaEnDias = 0;
 
-        int diferenciaEnDias = (int) (diferenciaEnMillis / (1000 * 60 * 60 * 24));
+        for(Empleado empleado: empleados){
+
+            if((empleado.getUltimoPago() == null) || (this.getUltimoPago() == null)){
+                
+                diferenciaEnDias = 40;             
+
+            }else{
+
+                long diferenciaEnMillis = actual.getTime() - ultimoPago.getTime();
+
+                diferenciaEnDias = (int) (diferenciaEnMillis / (1000 * 60 * 60 * 24)); 
+
+            }
+
+        }
+     
 
         if(diferenciaEnDias < 30){
             return ("Ya se realizó un pago dentro de los últimos 30 días, espera que se cumpla el tiempo para volver a realizarlo");
@@ -137,9 +152,11 @@ public class Administrador extends Usuario implements Serializable{
 
                 for (Empleado empleado: empleados){
                     CuentaBancaria.transferencia(hotel.getCuentaBancaria(), empleado.getCuentaBancaria(), empleado.getSalario());
+                    empleado.setUltimoPago(actual);
                 }
 
                 CuentaBancaria.transferencia(hotel.getCuentaBancaria(), this.getCuentaBancaria(), this.getSalario());
+                this.setUltimoPago(actual);
                 return "El pago a los empleados ha sido exitoso";
 
             }else{

@@ -1,8 +1,8 @@
 package gestorAplicacion.hotel;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
+import gestorAplicacion.usuarios.Empleado;
 import gestorAplicacion.usuarios.Huesped;
 import gestorAplicacion.usuarios.Usuario;
 import java.io.Serializable;
@@ -15,7 +15,19 @@ public class ServiciosExtra implements Serializable{
 	private ArrayList<Huesped> consumidores;
 	private String nombre;
 	private int tarifa;
-	private HashMap<Usuario, Integer> calificaciones;
+	private Map<Usuario, Integer> calificaciones = new HashMap<Usuario,Integer>();
+
+	 public static float promedioCalificaciones(ServiciosExtra servicio){
+        float   total=0;
+        for (Integer i : servicio.calificaciones.values()) {
+                total  = total + i;
+        }
+        return total/servicio.calificaciones.values().size();
+    }
+
+	public void addCalificaciones(Usuario usuario, Integer calificacion){
+		calificaciones.put(usuario, calificacion);
+	}
 	
 	public int getIdServicio() {
 		return idServicio;
@@ -65,11 +77,11 @@ public class ServiciosExtra implements Serializable{
 		this.tarifa = tarifa;
 	}
 
-	public HashMap<Usuario, Integer> getCalificaciones() {
+	public Map<Usuario, Integer> getCalificaciones() {
 		return calificaciones;
 	}
 
-	public void setCalificaciones(HashMap<Usuario, Integer> calificaciones) {
+	public void setCalificaciones(Map<Usuario, Integer> calificaciones) {
 		this.calificaciones = calificaciones;
 	}
 

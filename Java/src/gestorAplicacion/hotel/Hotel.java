@@ -7,6 +7,7 @@ import gestorAplicacion.usuarios.Empleado;
 import gestorAplicacion.usuarios.Huesped;
 import gestorAplicacion.usuarios.Preferencias;
 import java.io.Serializable;
+import gestorAplicacion.usuarios.*;
 
 
 public class Hotel implements Serializable{
@@ -28,6 +29,7 @@ public class Hotel implements Serializable{
     private ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
     private ArrayList<Empleado> empleados = new ArrayList<Empleado>();
     private ArrayList<Administrador>  administradores = new  ArrayList<Administrador>();
+    private Boolean estado = true;
 
     public Hotel(CuentaBancaria cuentaBancaria){
         this.cuentaBancaria = cuentaBancaria;
@@ -57,6 +59,28 @@ public class Hotel implements Serializable{
         
         for (Empleado empleado : empleados){
             empleado.setHotel(this);
+        }
+    }
+
+    public void  calcularPromedioHotel(){
+        float  totalHabitaciones = 0;
+        float totalEmpleados = 0;
+        float totalServicios = 0;
+        for (Habitacion habitacion : this.habitaciones) {
+            totalHabitaciones  = totalHabitaciones + habitacion.calcularPromedio();
+        }
+        for (Empleado empleado : this.empleados) {
+            totalEmpleados =  totalEmpleados+Empleado.promedioCalificaciones(empleado);
+        }
+        for(ServiciosExtra servicio: this.servicios){
+           totalServicios = totalServicios + ServiciosExtra.promedioCalificaciones(servicio);
+        }
+        totalHabitaciones = totalHabitaciones / this.habitaciones.size();
+        totalEmpleados = totalEmpleados / this.empleados.size();
+        totalServicios = totalServicios / this.servicios.size();
+        if((totalEmpleados+totalHabitaciones+totalEmpleados/3) < 2.5){
+            System.out.println("Pesimas calificaciones del hotel, se debera eliminar");
+            this.estado = false;
         }
     }
 
