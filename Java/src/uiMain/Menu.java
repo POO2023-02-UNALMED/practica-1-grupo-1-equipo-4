@@ -628,6 +628,10 @@ public class Menu {
     */
     }
 
+     /*
+     * Método que llama un el ciclo del menú de opciones que tendrá
+     * un Huesped para poderle crear un servicio.
+     */
     public static void cicloMenuHuespedServicio(Huesped huesped){
         int opcion;
 
@@ -647,28 +651,28 @@ public class Menu {
                     
             switch (opcion) {
                 case 1:
-                    // Lógica para la opción 1
+                    // Lógica para la opción 1 agrega un Servicio de tipo Transporte al huesped
                     System.out.println("Opción 1 seleccionada");
                     System.out.println("\n-------------------------------");
                     System.out.println(ServiciosExtra.agregarServicioTransporte(huesped));
                     System.out.println("-------------------------------\n");
                     break;
                 case 2:
-                    // Lógica para la opción 2
+                    // Lógica para la opción 2 agrega un Servicio de tipo Alimentación al huesped
                     System.out.println("Opción 2 seleccionada");
                     System.out.println("\n-------------------------------");
                     System.out.println(ServiciosExtra.agregarServicioAlimentacion(huesped));
                     System.out.println("-------------------------------\n");
                     break;
                 case 3:
-                    // Lógica para la opción 3
+                    // Lógica para la opción 3 agrega un Servicio de tipo Limpieza al huesped
                     System.out.println("Opción 3 seleccionada");
                     System.out.println("\n-------------------------------");
                     System.out.println(ServiciosExtra.agregarServicioLimpieza(huesped));
                     System.out.println("-------------------------------\n");
                     break;
                 case 4:
-                    // Lógica para la opción 4
+                    // Lógica para la opción 4 Elimina el servicioExtra del huesped
                     System.out.println("Opción 4 seleccionada");
                     System.out.println("\n-------------------------------");
                     System.out.println("Escoge el número del servicio que quieres eliminar");
