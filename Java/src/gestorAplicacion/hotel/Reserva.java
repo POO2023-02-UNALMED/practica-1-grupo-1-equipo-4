@@ -5,19 +5,34 @@ import java.util.Date;
 
 import gestorAplicacion.usuarios.Huesped;
 import gestorAplicacion.hotel.ServiciosExtra;
+import java.io.Serializable;
 
-public class Reserva {
-	private Huesped huesped;
-	private Hotel hotel;
-	private Habitacion habitacion;
-	private Date fechaEntrada;
-	private Date fechaSalida;
-	private String tipoPago;
-	private int costo;
-	private ArrayList<ServiciosExtra> servicios;
-	private String ciudad;
-	private int calificacionHotel=0;
-	private int calificacionHabitacion=0;
+public class Reserva implements Serializable{
+    private static final long serialVersionUID = 8L;   
+    private Huesped huesped;
+    private Hotel hotel;
+    private Habitacion habitacion;
+    private String fechaEntrada;
+    private String fechaSalida;
+    private String tipoPago;
+    private long costo;
+    private ArrayList<ServiciosExtra> servicios = new ArrayList<>();
+    private String ciudad;
+    private int calificacionHotel=0;
+    private int calificacionHabitacion=0;
+
+    public Reserva(Huesped huesped, Habitacion habitacion, String fechaEntrada, String fechaSalida, long costo) {
+        this.huesped = huesped;
+        this.habitacion = habitacion;
+        this.fechaEntrada = fechaEntrada;
+        this.fechaSalida = fechaSalida;
+        this.costo = costo;
+        this.hotel = habitacion.getHotel();
+        this.ciudad = hotel.getCiudad();
+    }
+        
+        
+        
 	public Huesped getHuesped() {
 		return huesped;
 	}
@@ -36,16 +51,16 @@ public class Reserva {
 	public void setHabitacion(Habitacion habitacion) {
 		this.habitacion = habitacion;
 	}
-	public Date getFechaEntrada() {
+	public String getFechaEntrada() {
 		return fechaEntrada;
 	}
-	public void setFechaEntrada(Date fechaEntrada) {
+	public void setFechaEntrada(String fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
-	public Date getFechaSalida() {
+	public String getFechaSalida() {
 		return fechaSalida;
 	}
-	public void setFechaSalida(Date fechaSalida) {
+	public void setFechaSalida(String fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
 	public String getTipoPago() {
@@ -54,7 +69,7 @@ public class Reserva {
 	public void setTipoPago(String tipoPago) {
 		this.tipoPago = tipoPago;
 	}
-	public int getCosto() {
+	public long getCosto() {
 		return costo;
 	}
 	public void setCosto(int costo) {
@@ -63,8 +78,9 @@ public class Reserva {
 	public ArrayList<ServiciosExtra> getServicios() {
 		return servicios;
 	}
-	public void setServicios(ArrayList<ServiciosExtra> servicios) {
-		this.servicios = servicios;
+	public void addServicios(ServiciosExtra servicio) {
+		this.servicios.add(servicio);
+                this.costo += servicio.getTarifa();
 	}
 	public String getCiudad() {
 		return ciudad;
@@ -90,9 +106,17 @@ public class Reserva {
 		
 	}
 	
-	public boolean eliminarReserva() {
-		return true;
-		
+	public String eliminarReserva() {
+            this.getHabitacion().setReservada(false);
+            ArrayList<Reserva> listReservas = this.getHabitacion().getReservas();
+            for (Reserva x: listReservas){
+                if (x.equals(this)){
+                    x.getHuesped().setReserva(null);
+                    listReservas.remove(x);
+                }
+            }
+	    return "La reserva se ha eliminado correctamente";
+            
 	}
 	
 	public boolean modificarReserva() {

@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import gestorAplicacion.usuarios.Empleado;
 import gestorAplicacion.usuarios.Usuario;
 import gestorAplicacion.hotel.Hotel;
-public class CuentaBancaria{
-
+public class CuentaBancaria implements Serializable{
+    private static final long serialVersionUID = 6L;
     private long numero;
     private String banco;
     private long saldo = 0;
@@ -30,7 +30,7 @@ public class CuentaBancaria{
 
     public CuentaBancaria(long numero, String banco){
 
-        this.numero = numero;
+        this.saldo = numero;
         this.banco = banco;
 
     }

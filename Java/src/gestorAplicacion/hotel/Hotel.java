@@ -43,6 +43,23 @@ public class Hotel implements Serializable{
 
     }
 
+    public Hotel(CuentaBancaria cb, String nombre, String ciudad, ArrayList<ServiciosExtra> servicios, ArrayList<Habitacion> habitaciones, ArrayList<Empleado> empleados) {
+        this.cuentaBancaria = cb;
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.servicios = servicios;
+        this.habitaciones = habitaciones;
+        this.empleados = empleados;
+        
+        for (Habitacion habitacion : habitaciones){
+            habitacion.setHotel(this);
+        }
+        
+        for (Empleado empleado : empleados){
+            empleado.setHotel(this);
+        }
+    }
+
     public void agregarServicioHotel(ServiciosExtra servicio){
         this.servicios.add(servicio);
     }
@@ -73,7 +90,7 @@ public class Hotel implements Serializable{
         //se debe llenar con un '0'
         ArrayList<Habitacion> respuesta = new  ArrayList<Habitacion>();
         for (Habitacion i : this.habitaciones){
-           if(i.getReservada() == false){
+           if(i.isReservada() == false){
             if(filtro.getNombreHotel() != null &&  i.getHotel().getNombre() == info.get(0)){
               respuesta.add(i);  
             }else if(filtro.getTipoHabitacion() != null && i.getTipo() == info.get(1)){

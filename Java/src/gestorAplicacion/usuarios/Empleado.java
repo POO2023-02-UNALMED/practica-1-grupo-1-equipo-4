@@ -1,4 +1,5 @@
 package gestorAplicacion.usuarios;
+import gestorAplicacion.Base;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -7,6 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
+import gestorAplicacion.hotel.Hotel;
 import uiMain.PresentacionBono;
 
 public class Empleado extends Usuario implements Serializable, PresentacionBono{
@@ -17,22 +19,20 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
     private Map<String,Integer>sugerencias = new HashMap<>();
     private Map<Usuario,Integer>calificaciones = new HashMap<>();
     private Date ultimoPago;
-
+    private Hotel hotel;
     private long salario = 5000;
 
     private static int totalEmpleados = 0;
 
     public Empleado(String nombre,int telefono,String username,String password,CuentaBancaria cuentaBancaria){
-        super(nombre, telefono, Empleado.totalEmpleados + 1, username, password, cuentaBancaria);
-
+        super(nombre, telefono, username, password, cuentaBancaria);
     }
 
     public Empleado(String nombre,int telefono,String username,String password,CuentaBancaria cuentaBancaria, long salario){
-        super(nombre, telefono, Empleado.totalEmpleados + 1, username, password, cuentaBancaria);
-
+        super(nombre, telefono, username, password, cuentaBancaria);
         this.salario = salario;
     }
-
+    
     public Date ultimoMesPago(){
         return this.getCuentaBancaria().getUltimoPago();
     }
@@ -84,7 +84,7 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
     public void setSalario(long salario){
         this.salario = salario;
     }
-
+    
     public void aumentoSalario(long salario){
         this.salario += salario;
     }
@@ -98,10 +98,19 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
             }
         }
         return buenasCalificaciones;
-    }    
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
 
     @Override
     public void ofrecerBono() {
+        System.out.println("Se le han añadido "+ BONOEMPLEADO + "$ a su cuenta bancaria");
         this.setSalario(this.getSalario()+BONOEMPLEADO);
     } 
     

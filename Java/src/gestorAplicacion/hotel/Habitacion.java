@@ -1,30 +1,26 @@
 package gestorAplicacion.hotel;
 
-import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import gestorAplicacion.usuarios.*;
+import gestorAplicacion.usuarios.Huesped;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Habitacion implements Serializable{
-    private static final long serialVersionUID = 5L;
-
+    private static final long serialVersionUID = 7L;
     private long id;
     private Hotel hotel;
     private String tipo;
     private int  numeroCamas;
     private long precio;
     private Reserva reserva;
+    private ArrayList<Reserva> reservas = new ArrayList<>();
     private Map<Huesped,Float> calificaciones = new HashMap<Huesped,Float>();
     private Boolean reservada = false;
     private Map<String,Integer> motivosCalificacion = new HashMap<String,Integer>();
     private Map<String,Integer> sugerencias = new HashMap<String,Integer>();
-
-    
 
     //Atributos propios de funcionamiento
     private float promedio;
@@ -57,14 +53,12 @@ public class Habitacion implements Serializable{
     public float calcularPromedio(){
         float prom = 0;
         int cont = 0;
-        for(Map.Entry<Huesped,  Float> i : this.calificaciones.entrySet()){
+        for(Map.Entry<Huesped,Float> i : this.calificaciones.entrySet()){
             prom = prom + i.getValue();
             cont++;
         }
         return prom/cont;
     }
-
-    
 
     public void addCalificacion(Huesped huesped, Float calificacion){
         calificaciones.put(huesped, calificacion);
@@ -116,9 +110,7 @@ public class Habitacion implements Serializable{
     public void addSugerenciasPendientes(ArrayList<String>  sugerencias){
         this.sugerenciasPendientes.put(this.getId(), sugerencias);
     }
-
-
-
+    
     public long getId() {
         return id;
     }
@@ -175,7 +167,7 @@ public class Habitacion implements Serializable{
         this.calificaciones = calificaciones;
     }
 
-    public Boolean getReservada() {
+    public Boolean isReservada() {
         return reservada;
     }
 
@@ -198,5 +190,48 @@ public class Habitacion implements Serializable{
     public void setSugerencias(Map<String, Integer> sugerencias) {
         this.sugerencias = sugerencias;
     } 
+
+    public ArrayList<Reserva> getReservas() {
+        return this.reservas;
+    }
+    
+    public void addReservas(Reserva reserva) {
+        this.reservas.add(reserva);
+    }
+    
+   public static Reserva compararReservas(Habitacion habitacion){
+       int c = 0;
+       Calendar fecha1 = Calendar.getInstance();
+       Calendar fecha2 = Calendar.getInstance();
+       String[] feC;
+       String[] feN;
+       String fechaC = "";
+       Reserva r = null;
+       for (Reserva x: habitacion.reservas){
+           if (c == 0){
+               fechaC = x.getFechaEntrada();
+               r = x;
+               continue;
+           }
+           
+           String fechaN = x.getFechaEntrada();
+           feN = fechaN.split("/");
+           feC = fechaC.split("/");
+           
+           fecha1.set(Calendar.DATE, Integer.parseInt(feC[0]));
+           fecha1.set(Calendar.MONTH, Integer.parseInt(feC[1])-1);
+           fecha1.set(Calendar.YEAR, Integer.parseInt(feC[2]));
+           fecha2.set(Calendar.DATE, Integer.parseInt(feN[0]));
+           fecha2.set(Calendar.MONTH, Integer.parseInt(feN[0]));
+           fecha2.set(Calendar.YEAR, Integer.parseInt(feN[0]));
+           
+           if (fecha1.compareTo(fecha2) != -1){
+               fechaC = fechaN;
+               r = x;
+           }
+           c++;
+        }
+        return r;
+   } 
 
 }

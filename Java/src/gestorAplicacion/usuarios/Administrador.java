@@ -30,7 +30,7 @@ public class Administrador extends Usuario implements Serializable{
     private Hotel hotel;
 
     public Administrador(String nombre,int telefono,String username,String password, CuentaBancaria cuentaBancaria, Hotel hotel){
-        super(nombre, telefono, Administrador.totalAdministradores + 1, username, password, cuentaBancaria);
+        super(nombre, telefono, username, password, cuentaBancaria);
 
         this.hotel = hotel;
         hotel.agregarAdministrador(this);
@@ -181,5 +181,9 @@ public class Administrador extends Usuario implements Serializable{
 
     public void setUltimoPago(Date ultimoPago){
         this.ultimoPago = ultimoPago;
+    }
+    
+    public String presentacion(){
+        return "";
     }
 }

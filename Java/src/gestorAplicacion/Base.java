@@ -135,27 +135,10 @@ public class Base implements Serializable{
                 if (habitacion.getId() == id){
                     foundRoom = habitacion;
                     found = true;
-                    if (habitacion.getReservada()){
-                        System.out.println("La habitación que ingresó está reservada. Intente con otro id");
-                        reservada = true;
-                    }
                     break;
                 }
             }
-            if (reservada){
-                System.out.println("Selecciones alguna de las siguientes opciones (Ingrese el número que corresponde a la opción deseada):\n"
-                        + "1: volver a ingresar un id\n"
-                        + "2: volver al menú de busqueda de habitación\n");
-                int opcion2 = sc.nextInt();
-                switch (opcion2){
-                    case 1: 
-                        break;
-                    case 2:
-                        filtrarRoomPorID(hotel, huesped);
-                        break;
-                }
-            }
-            else if (found){
+            if (found){
                 return foundRoom;
             }
         }
@@ -166,32 +149,42 @@ public class Base implements Serializable{
         ArrayList<ArrayList<Habitacion>> sortedRooms = sortRooms(hotel);
         
         System.out.print("Seleccione el tipo de habitación en la que se desea hospedar (Ingrese el número que corresponde a la opción deseada):\n"
-                + "1: VIP\n"
-                + "2: Doble\n"
-                + "3: Simple\n");
+                + "1: Familiar vip\n"
+                + "2: Doble vip\n"
+                + "3: Simple vip\n"
+                + "4: Familiar\n"
+                + "5: Doble\n"
+                + "6: Simple\n");
         
-        String [] tipo = {"vip","doble","simple"};
+        String [] tipo = {"familiarvip","doblevip","simplevip", "familiar", "doble", "simple"};
         List<String> tipos = Arrays.asList(tipo);
         
         ArrayList<Habitacion> sortedVIPRooms = new ArrayList<>();
+        int opcion;
         while (true){
-            int opcion = sc.nextInt();
-            if (!huesped.isVip() && opcion==1){
-                System.out.println("No puede acceder a habitaciones VIP. Intente de nuevo");
+            opcion = sc.nextInt();
+            if (opcion<0 || opcion>6){
+                System.out.println("Error. Debe seleccionar alguno de los números correspondientes a las opciones: \n");
+                continue;
+            }
+            if (!huesped.isVip() && tipos.get(opcion-1).contains("vip")){
+                System.out.println("No puede acceder a habitaciones VIP, dado a que usted no es VIP. Intente de nuevo: \n");
+                continue;
             }
             else{
                 for (ArrayList<Habitacion> listhabitacion: sortedRooms){
                     for (Habitacion habitacion : listhabitacion){
-                        if (habitacion.getTipo().equals(tipos.get(opcion+1))){
-                            if (!habitacion.getReservada()){
-                                sortedVIPRooms.add(habitacion);
-                            }
+                        if (habitacion.getTipo().equals(tipos.get(opcion-1))){
+                            sortedVIPRooms.add(habitacion);
                         }
                     }
                 }
+                break;
             }
-            return sortedVIPRooms;
+            
         }
+        return sortedVIPRooms;
+        
         
     }
                 
@@ -207,9 +200,9 @@ public class Base implements Serializable{
                 for (Habitacion x: habitaciones){
                     Map<Huesped, Float> calificaciones = x.getCalificaciones();
                     float prom = 0;
-                    int s = 0;
+                    float s = 0;
                     for (Map.Entry y: calificaciones.entrySet()){                 //Obteniendo promedio de calificacion de una habitacion
-                        int i = (int) y.getValue();
+                        float i = (float) y.getValue();
                         s = i+s;
                     }
                     prom = s/calificaciones.size();

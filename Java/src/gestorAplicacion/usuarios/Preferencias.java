@@ -1,6 +1,9 @@
 package gestorAplicacion.usuarios;
 
-public class Preferencias {
+import java.io.Serializable;
+
+public class Preferencias implements Serializable{
+    private static final long serialVersionUID = 10L;
     private String ciudad;
     private String nombreHotel;
     private String tipoHabitacion;
