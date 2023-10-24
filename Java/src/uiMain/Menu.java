@@ -635,7 +635,9 @@ public class Menu {
     public static void cicloMenuHuespedServicio(Huesped huesped){
         int opcion;
 
-        do {
+        if (huesped.getReserva() != null){
+
+            do {
             String mensaje = "Por favor indica que funcionalidad quieres realizar \n" +
                         
                         "   1. Agregar servicio de tipo Transporte\n"+
@@ -706,7 +708,13 @@ public class Menu {
                     break;
             }
         } while (opcion != 5);
+
+        }else{
+            System.out.println("Nos ha hecho una reserva. Primero has una reserva para agregar algún servicio extra");
         }
+
+        
+    }
     
     /*
      * Método que lista los tipos de habitaciones posibles (Las de el enum)
