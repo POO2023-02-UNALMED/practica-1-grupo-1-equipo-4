@@ -203,7 +203,7 @@ public class Menu {
             System.out.println("Su estancia ha terminado. Gracias por hospedarte en nuestro hotel.\n\n"
                     + "A continuación se presentarán los servicios los que recurrió durante su instancia en orden:\n");
             for (ServiciosExtra servicio: huesped.getReserva().getServicios()){
-                System.out.println(servicio.getNombre());
+                System.out.println(servicio.getTipoServicio());
             }
             System.out.println("\nCosto total de la estadía: "+huesped.getReserva().getCosto());
             System.out.println("----------------------------------\n");
@@ -222,7 +222,8 @@ public class Menu {
                 + "3: Ver cuenta bancaria\n"
                 + "4: Ver reserva\n"
                 + "5: Ver recomendaciones\n"
-                + "6: Salir\n");
+                + "6: Agregar servicio\n"
+                + "7: Salir\n");
         int opcion;
         while (true){
             opcion = sc.nextInt();
@@ -239,7 +240,8 @@ public class Menu {
             case 3: adminCuenta(huesped); break;
             case 4: adminReserva(huesped); break;
             case 5: Recomendar.seleccionar(huesped); break;
-            case 6: salir(); break;
+            case 6: cicloMenuHuespedServicio(huesped); break;
+            case 7: salir(); break;
         }
     }
     
@@ -503,8 +505,8 @@ public class Menu {
                         "   4. Ver tu saldo en cuenta\n"+
                         "   5. Listar habitaciones\n"+
                         "   6. Saldo cuenta del hotel\n"+
-                        "   7. Agregar servicio\n"+
-                        "   8. Salir\n";
+        
+                        "   7. Salir\n";
 
             System.out.println(mensaje);
             System.out.print("Opcion: ");
@@ -564,13 +566,8 @@ public class Menu {
                     System.out.println("Saldo hotel: "+administrador.getHotel().getCuentaBancaria().getSaldo());
                     System.out.println("-------------------------------\n");
                     break;
-                
-                case 7:
-                    System.out.println("Opción 7 seleccionada");
-                    cicloMenuHuespedServicio(ServiciosExtra servicio);
-                    break;
 
-                case 8:
+                case 7:
                     System.out.println("Opción 7 seleccionada");
                     System.out.println("\n-------------------------------");
                     salir();
@@ -580,7 +577,7 @@ public class Menu {
                     System.out.println("Opción no válida, vuelve a intentarlo");
                     break;
             }
-        } while (opcion != 3);
+        } while (opcion != 7);
 
 
         /*
@@ -674,7 +671,22 @@ public class Menu {
                     // Lógica para la opción 4
                     System.out.println("Opción 4 seleccionada");
                     System.out.println("\n-------------------------------");
-                    System.out.println(ServiciosExtra.eliminarServicio(huesped));
+                    System.out.println("Escoge el número del servicio que quieres eliminar");
+                    int count = 1;
+                    for (ServiciosExtra serviciosExtra: huesped.getReserva().getServicios()){
+
+                        System.out.println(count+". "+ serviciosExtra.getTipoServicio());
+                        count++;
+                    }
+                    
+                    int servicio = scanner.nextInt();
+
+                    if ((servicio < 0) || (servicio > huesped.getReserva().getServicios().size())){
+                        System.out.println("Número incorrecto");
+                    }else{
+                        ServiciosExtra.eliminarServicio(huesped.getReserva().getServicios().get(servicio), huesped);
+                    }
+
                     System.out.println("-------------------------------\n");
                     break;
                 case 5:

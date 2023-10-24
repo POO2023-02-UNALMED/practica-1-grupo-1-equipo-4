@@ -66,7 +66,7 @@ public class ServiciosExtra implements Serializable{
 		return "Servicio Limpieza agregado";
     }
 
-	public String eliminarServicio(ServiciosExtra servicio, Huesped huesped){
+	public static String eliminarServicio(ServiciosExtra servicio, Huesped huesped){
 		huesped.getReserva().delServicios(servicio);
         return "Se ha añadido el servicio de transporte";
     }
