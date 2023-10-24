@@ -182,7 +182,7 @@ public class Menu {
         int opcion;
         while (true){
             opcion = sc.nextInt();
-            if (opcion<1 || opcion>5){
+            if (opcion<1 || opcion>6){
                 System.out.println("Error. Debe ingresar uno de los números correspondientes a una opcion");
                 continue;
             }
