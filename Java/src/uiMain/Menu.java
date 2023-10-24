@@ -685,6 +685,7 @@ public class Menu {
                         System.out.println("Número incorrecto");
                     }else{
                         ServiciosExtra.eliminarServicio(huesped.getReserva().getServicios().get(servicio), huesped);
+                        System.out.println("Servicio eliminado de la reserva correctamente");
                     }
 
                     System.out.println("-------------------------------\n");
