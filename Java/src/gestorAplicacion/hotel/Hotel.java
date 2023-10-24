@@ -62,7 +62,7 @@ public class Hotel implements Serializable{
         }
     }
 
-    public void  calcularPromedioHotel(){
+    public float  calcularPromedioHotel(){
         float  totalHabitaciones = 0;
         float totalEmpleados = 0;
         float totalServicios = 0;
@@ -78,10 +78,11 @@ public class Hotel implements Serializable{
         totalHabitaciones = totalHabitaciones / this.habitaciones.size();
         totalEmpleados = totalEmpleados / this.empleados.size();
         totalServicios = totalServicios / this.servicios.size();
-        if((totalEmpleados+totalHabitaciones+totalEmpleados/3) < 2.5){
-            System.out.println("Pesimas calificaciones del hotel, se debera eliminar");
-            this.estado = false;
-        }
+        //if((totalEmpleados+totalHabitaciones+totalEmpleados/3) < 2.5){
+         //   System.out.println("Pesimas calificaciones del hotel, se debera eliminar");
+         //   this.estado = false;
+        //}
+        return (totalEmpleados+totalHabitaciones+totalEmpleados/3);
     }
 
     public void agregarServicioHotel(ServiciosExtra servicio){
