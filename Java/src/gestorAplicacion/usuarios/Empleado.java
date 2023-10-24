@@ -34,6 +34,16 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
         this.salario = salario;
     }
 
+    public ArrayList<Empleado> mejorCalificaciones(ArrayList<Empleado>  empleados){
+        ArrayList<Empleado> rango = new ArrayList<Empleado>();
+        for(Empleado i : empleados){
+            if(promedioCalificaciones(i)>3){
+                rango.add(i);
+            }
+        }
+        return rango;
+    }
+
     public  void addCalificacion(Usuario usuario, Integer calificacion){
         this.calificaciones.put(usuario, calificacion);
     }
