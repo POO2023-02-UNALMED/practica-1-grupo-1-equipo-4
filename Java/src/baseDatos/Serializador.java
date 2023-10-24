@@ -10,7 +10,7 @@ import gestorAplicacion.Base;
 
 public class Serializador {
     //Cada uno  debe revisar  su  ruta y estructura correspondiente y luego cambiar
-    private static File temp = new File("src\\main\\java\\baseDatos\\temp");
+    private static File temp = new File("C:\\Users\\CAMILO\\Documents\\GitHub\\practica-1-grupo-1-equipo-4\\Java\\src\\baseDatos\\temp");
     
     public static void serializador(){
         FileOutputStream fos;
