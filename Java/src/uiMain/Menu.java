@@ -91,7 +91,49 @@ public class Menu {
 //        for (Administrador ad : Base.getAdministradores()) {
 //            System.out.println(ad.getNombre());
 //        }
-//  Pruebas recomendaciones        
+//  Pruebas recomendaciones    
+//ArrayList<Habitacion> habs = new ArrayList<>();
+//Habitacion hab1 = new Habitacion(1, "simple", 1, 100000);
+//Habitacion hab2 = new Habitacion(2, "doble", 2, 300000);
+//Habitacion hab3 = new Habitacion(3, "familiar", 4, 500000);
+//Habitacion hab4 = new Habitacion(4, "simplevip", 1, 300000);
+//Habitacion hab5 = new Habitacion(5, "doblevip", 2, 700000);
+//Habitacion hab6 = new Habitacion(6, "familiarvip", 4, 1000000);
+//hab1.addCalificacion(new Huesped(), 0f);
+//hab2.addCalificacion(new Huesped(), 1f);
+//hab3.addCalificacion(new Huesped(), 2f);
+//hab4.addCalificacion(new Huesped(), 3f);
+//hab5.addCalificacion(new Huesped(), 4f);
+//hab6.addCalificacion(new Huesped(), 5f);
+//habs.add(hab1);
+//habs.add(hab2);
+//habs.add(hab3);
+//habs.add(hab4);
+//habs.add(hab5);
+//habs.add(hab6);
+//ArrayList<Empleado> empleados = new ArrayList<>();
+//Empleado empleado = new Empleado(null, 0, null, null, null, 0);
+//empleados.add(empleado);
+//Hotel hotel = new Hotel(new CuentaBancaria(0, null), "Montreal", "Medellin", null, habs,empleados);
+//Base.addHoteles(hotel);
+//ArrayList<Preferencias> preferencias = new ArrayList<>();
+//Preferencias preferencia = new Preferencias("Medellin", "Montreal", (String) TipoHabitacion.VIPFAMILIAR.name());
+//preferencias.add(preferencia);
+//ArrayList<Preferencias> preferencias2 = new ArrayList<>();
+//Preferencias preferencia2 = new Preferencias("Medellin", "Montreal", (String) TipoHabitacion.VIPFAMILIAR.name());
+//preferencias2.add(preferencia2);
+//Huesped huesped = new Huesped(false,preferencias, null, 0, null, null, null);
+//Huesped huesped2 = new Huesped(false, preferencias, null, 0, null, null, null);
+//Reserva reserva = new Reserva(huesped, hab6, null, null, 0);
+//reserva.setCalificacionHotel(5);
+//reserva.setCiudad("Medellin");
+//reserva.setHotel(hotel);
+//huesped.addReserva(reserva);
+//huesped.setId(1);
+//hab6.addCalificacion(huesped, 5f);
+//seleccionar(huesped);  
+//      
+
 
         Login.login();
     }
@@ -199,6 +241,8 @@ public class Menu {
         }
     }
     
+    //Método con el cual se pretende darle al usuario una serie de listas de ciudades, hoteles y habitaciones
+    //en las cuales deberá escoger sus preferencias para posteriormente agregarlas a su lista de preferencias. 
     public static void agregarPreferencia(Huesped huesped){
         Scanner sc = new Scanner(System.in);
         ArrayList<String> ciudades = Preferencias.getCiudades();
@@ -219,16 +263,19 @@ public class Menu {
         }
         System.out.println("Ingrese el hotel que desea agregar a sus preferencias:");
         String hotel = sc.nextLine();
-        boolean verificador = false;
+        boolean verificador = true;
         while(verificador){
             for(Hotel hotelBase: hotelesBase){
                 if(hotelBase.getNombre().equals(hotel)){
-                    verificador = true;
+                    verificador = false;
                     break;
                 }
             }
-            System.out.println("El hotel no se encuentra en la lista de ciudades");
-            hotel = sc.nextLine();
+            if(verificador){
+                System.out.println("El hotel no se encuentra en la lista de ciudades");
+                hotel = sc.nextLine();
+            }
+            
         }
         TipoHabitacion[] habitaciones = TipoHabitacion.values();
         System.out.println("LISTA DE TIPOS DE HABITACIONES:");
@@ -237,9 +284,18 @@ public class Menu {
         }
         System.out.println("Ingrese el tipo de habitacion que desea agregar a sus preferencias:");
         String habitacion = sc.nextLine();
-        while(!Arrays.asList(habitaciones).contains(habitacion)){
-            System.out.println("El tipo de habitación no se encuentra en la lista de habitaciones");
-            habitacion = sc.nextLine();
+        boolean verificacion = false;
+        while(verificacion){
+            for(int i=0;i<habitaciones.length;i++){
+                if(habitaciones[i].name().equals(habitacion)){
+                   verificacion = false;
+                   break; 
+                }
+            }
+            if(verificacion){
+                System.out.println("El tipo de habitación no se encuentra en la lista de habitaciones");
+                habitacion = sc.nextLine();
+            }
         }
         
         huesped.agregarPreferencias(ciudad, hotel, habitacion);

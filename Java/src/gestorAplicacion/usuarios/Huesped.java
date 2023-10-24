@@ -16,13 +16,12 @@ import java.util.Scanner;
 public class Huesped extends Usuario implements Serializable, PresentacionBono{
     private static final long serialVersionUID = 5L;
     
-
     private boolean vip;
     private Reserva reserva;
     private Habitacion habitacion;
     private boolean enReserva;
-    private ArrayList<Preferencias> preferencias;
-    private ArrayList<Reserva> historialReservas;
+    private ArrayList<Preferencias> preferencias = new ArrayList<Preferencias>();
+    private ArrayList<Reserva> historialReservas = new ArrayList<>();
     //David: Eliminé reserva, historial de reservas y habitacion, pues el usuario de huesped se debe crear primero sin necesidad de reservar
     
 
@@ -72,6 +71,10 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
     public ArrayList<Reserva>getHistorialReservas(){
         return historialReservas;
     }
+
+    public void addReserva(Reserva reserva){
+        this.historialReservas.add(reserva);
+    }
     
 
 //Falta llenar
@@ -95,7 +98,7 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
 
     public void agregarPreferencias(String ciudad, String nombreHotel, String tipoHabitacion){
         Preferencias preferencia = new Preferencias(ciudad, nombreHotel, tipoHabitacion);
-        preferencias.add(preferencia);
+        this.preferencias.add(preferencia);
     }
 
     public boolean isEnReserva() {
@@ -180,7 +183,7 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
             calificaciones = habitacionesHotel.get(i).getCalificaciones();
             for(Huesped huesped : calificaciones.keySet()){
                 if(huesped.getId()==this.getId()){
-                    if(calificaciones.get(huesped)>=4){
+                    if(calificaciones.get(huesped)>=4f){
                         habitacionesRecomendadas.add(habitacionesHotel.get(i));
                         break;
                     }
