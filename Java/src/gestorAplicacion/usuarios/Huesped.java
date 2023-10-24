@@ -96,8 +96,9 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
     public void consultarDiasDeEstadia(){
     }
 
-    public void cambiarPreferencias(ArrayList<Preferencias> nuevasPreferencias){
-        this.preferencias = nuevasPreferencias;
+    public void agregarPreferencias(String ciudad, String nombreHotel, String tipoHabitacion){
+        Preferencias preferencia = new Preferencias(ciudad, nombreHotel, tipoHabitacion);
+        preferencias.add(preferencia);
     }
 
     public boolean isEnReserva() {
@@ -123,7 +124,7 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
         ArrayList<Hotel> hotelesBase = Base.getHoteles();
         for(Hotel hotel:hotelesBase){
             if(hotel.getCiudad().equals(ciudad)){
-                for(Preferencias preferencia : preferencias){
+                for(Preferencias preferencia : this.preferencias){
                     if(hotel.getNombre().equals(preferencia.getNombreHotel())){
                         ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
                         habitaciones = recomendacionHabitacionPorSimilar(hotel, preferencia);
@@ -139,7 +140,7 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
     }
     //Método que se usa en recomendacionHotelesPorSimilar(). Para que basada en la preferencia y en el hotel buscar las habitaciones que 
     //satisfacen.
-    public ArrayList<Habitacion> recomendacionHabitacionPorSimilar(Hotel hotel,Preferencias preferencia){
+    private ArrayList<Habitacion> recomendacionHabitacionPorSimilar(Hotel hotel,Preferencias preferencia){
         ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
         ArrayList<Habitacion> habitacionesHotel = hotel.getHabitaciones();
         for(Habitacion habitacion : habitacionesHotel){
@@ -174,7 +175,7 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
 
     //Método que se usa en recomendacionHotelesPorHistorial() para buscar las habitaciones en el hotel que cumplen con una calificación por encima
     //o igual a 4
-    public ArrayList<Habitacion> recomendacionHabitacionPorHistorial(Hotel hotel){
+    private ArrayList<Habitacion> recomendacionHabitacionPorHistorial(Hotel hotel){
         ArrayList<Habitacion> habitacionesHotel = hotel.getHabitaciones();
         ArrayList<Habitacion> habitacionesRecomendadas = new ArrayList<Habitacion>();
         for(int i=0;i<habitacionesHotel.size();i++){
