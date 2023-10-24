@@ -503,7 +503,8 @@ public class Menu {
                         "   4. Ver tu saldo en cuenta\n"+
                         "   5. Listar habitaciones\n"+
                         "   6. Saldo cuenta del hotel\n"+
-                        "   7. Salir\n";
+                        "   7. Agregar servicio\n"+
+                        "   8. Salir\n";
 
             System.out.println(mensaje);
             System.out.print("Opcion: ");
@@ -563,8 +564,13 @@ public class Menu {
                     System.out.println("Saldo hotel: "+administrador.getHotel().getCuentaBancaria().getSaldo());
                     System.out.println("-------------------------------\n");
                     break;
-
+                
                 case 7:
+                    System.out.println("Opción 7 seleccionada");
+                    cicloMenuHuespedServicio(ServiciosExtra servicio);
+                    break;
+
+                case 8:
                     System.out.println("Opción 7 seleccionada");
                     System.out.println("\n-------------------------------");
                     salir();
@@ -625,6 +631,66 @@ public class Menu {
     */
     }
 
+    public static void cicloMenuHuespedServicio(Huesped huesped){
+        int opcion;
+
+        do {
+            String mensaje = "Por favor indica que funcionalidad quieres realizar \n" +
+                        
+                        "   1. Agregar servicio de tipo Transporte\n"+
+                        "   2. Agregar servicio de tipo Alimentacion\n"+
+                        "   3. Agregar servicio de tipo Limpieza\n"+
+                        "   4. Eliminar Servicio\n"+
+                        "   5. Salir\n";
+
+            System.out.println(mensaje);
+            System.out.print("Opcion: ");
+                
+            opcion = scanner.nextInt();
+                    
+            switch (opcion) {
+                case 1:
+                    // Lógica para la opción 1
+                    System.out.println("Opción 1 seleccionada");
+                    System.out.println("\n-------------------------------");
+                    System.out.println(ServiciosExtra.agregarServicioTransporte(huesped));
+                    System.out.println("-------------------------------\n");
+                    break;
+                case 2:
+                    // Lógica para la opción 2
+                    System.out.println("Opción 2 seleccionada");
+                    System.out.println("\n-------------------------------");
+                    System.out.println(ServiciosExtra.agregarServicioAlimentacion(huesped));
+                    System.out.println("-------------------------------\n");
+                    break;
+                case 3:
+                    // Lógica para la opción 3
+                    System.out.println("Opción 3 seleccionada");
+                    System.out.println("\n-------------------------------");
+                    System.out.println(ServiciosExtra.agregarServicioLimpieza(huesped));
+                    System.out.println("-------------------------------\n");
+                    break;
+                case 4:
+                    // Lógica para la opción 4
+                    System.out.println("Opción 4 seleccionada");
+                    System.out.println("\n-------------------------------");
+                    System.out.println(ServiciosExtra.eliminarServicio(huesped));
+                    System.out.println("-------------------------------\n");
+                    break;
+                case 5:
+                    System.out.println("Opción 5 seleccionada");
+                    System.out.println("\n-------------------------------");
+                    salir();
+                    System.out.println("-------------------------------\n");
+                    break;
+
+                default:
+                    System.out.println("Opción no válida, vuelve a intentarlo");
+                    break;
+            }
+        } while (opcion != 5);
+        }
+    
     /*
      * Método que lista los tipos de habitaciones posibles (Las de el enum)
      * para que el administrador escoja que tipo de habitación quiere generar
