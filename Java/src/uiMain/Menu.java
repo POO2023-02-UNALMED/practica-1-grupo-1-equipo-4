@@ -9,6 +9,7 @@ import gestorAplicacion.hotel.*;
 import gestorAplicacion.usuarios.*;
 import gestorAplicacion.Base;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import baseDatos.*;
 
@@ -190,13 +191,59 @@ public class Menu {
         
         switch (opcion){
             case 1: Reservar.reservar(huesped); break;
-            case 2: System.out.println(""); break;    //Ingresar aquí el metodo que lleva al cambio de preferencias
+            case 2: agregarPreferencia(huesped); break;    //Ingresar aquí el metodo que lleva al cambio de preferencias
             case 3: adminCuenta(huesped); break;
             case 4: adminReserva(huesped); break;
             case 5: salir(); break;
         }
     }
-    
+
+    public static void agregarPreferencia(Huesped huesped){
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> ciudades = Preferencias.getCiudades();
+        System.out.println("LISTA DE CIUDADES:");
+        for(String ciudad: ciudades){
+            System.out.println(ciudad);
+        }
+        System.out.println("Ingrese la ciudad que desea agregar a sus preferencias:");
+        String ciudad = sc.nextLine();
+        while(ciudades.indexOf(ciudad)==-1){
+            System.out.println("La ciudad no se encuentra en la lista de ciudades");
+            ciudad = sc.nextLine();
+        }
+        ArrayList<Hotel> hotelesBase = Base.getHoteles();
+        System.out.println("LISTA DE HOTELES:");
+        for(Hotel hotel:hotelesBase){
+            System.out.println(hotel.getNombre());
+        }
+        System.out.println("Ingrese el hotel que desea agregar a sus preferencias:");
+        String hotel = sc.nextLine();
+        boolean verificador = false;
+        while(verificador){
+            for(Hotel hotelBase: hotelesBase){
+                if(hotelBase.getNombre().equals(hotel)){
+                    verificador = true;
+                    break;
+                }
+            }
+            System.out.println("El hotel no se encuentra en la lista de ciudades");
+            hotel = sc.nextLine();
+        }
+        TipoHabitacion[] habitaciones = TipoHabitacion.values();
+        System.out.println("LISTA DE TIPOS DE HABITACIONES:");
+        for(int i=0;i<habitaciones.length;i++){
+            System.out.println(habitaciones[i]);
+        }
+        System.out.println("Ingrese el tipo de habitacion que desea agregar a sus preferencias:");
+        String habitacion = sc.nextLine();
+        while(!Arrays.asList(habitaciones).contains(habitacion)){
+            System.out.println("El tipo de habitación no se encuentra en la lista de habitaciones");
+            habitacion = sc.nextLine();
+        }
+        
+    }
+
+
     public static void adminCuenta(Huesped huesped){        //administrar cuenta bancaria del huesped
         Scanner sc = new Scanner(System.in);
         CuentaBancaria cuenta = huesped.getCuentaBancaria();
