@@ -10,12 +10,18 @@ import gestorAplicacion.hotel.Hotel;
 import gestorAplicacion.usuarios.Huesped;
 import gestorAplicacion.usuarios.Preferencias;
 
+/**
+ *
+ * @author Alejandra Toro Grisales
+ */
+
 //Menú en el cual se hace uso de los métodos para recomendar hoteles y habitaciones por medio de la ciudad donde el usuario
 //se desea hospedar.
 //Aquí se le preguntará al usuario la ciudad donde desea hospedarse y este valor se le enviará como parametro a los métodos que se encuentran huesped
 //ya sea recomendacionHotelesPorHistorial() donde se recomienda un hotel y habitacion basada en estancias anteriores. O 
 //recomendacionHotelesPorSimilar() donde se recomienda un hotel y habitación basada en las preferencias que el usuario anteriormente debió llenar.
-//En caso de no haber recomendaciones se imprime que no hay recomendaciones disponibles.
+//En caso de no haber recomendaciones se imprime que no hay recomendaciones disponibles del tipo que desea. Se le dará al usuario la opción
+//de solicitar de nuevo el servicio de recomendaciones para que pueda solicitar las recomendaciones del otro tipo.
 public class Recomendar {
     private static Scanner sc = new Scanner(System.in);
 
@@ -55,7 +61,18 @@ public class Recomendar {
                 break;
         }
         if(hoteles.isEmpty()){
-            System.out.println("No hay recomendaciones disponibles");
+            System.out.println("No hay recomendaciones disponibles del tipo que desea");
+            System.out.println("Presione 1 si desea solicitar de nuevo el servicio de recomendaciones");
+            System.out.println("Presione 2 si desea volver al menú principal");
+            int opcionNueva = sc.nextInt();
+            switch (opcionNueva) {
+                case 1:
+                    Recomendar.seleccionar(huesped);
+                    break;
+                case 2:
+                    Menu.sistema(huesped);
+                    break;
+            }
         }
         for(Hotel hotel : hoteles.keySet()){
             System.out.println("Hotel:"+hotel.getNombre());

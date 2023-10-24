@@ -235,7 +235,7 @@ public class Menu {
         
         switch (opcion){
             case 1: Reservar.reservar(huesped); break;
-            case 2: agregarPreferencia(huesped); break;    //Ingresar aquí el metodo que lleva al cambio de preferencia
+            case 2: agregarPreferencia(huesped); break;    
             case 3: adminCuenta(huesped); break;
             case 4: adminReserva(huesped); break;
             case 5: Recomendar.seleccionar(huesped); break;

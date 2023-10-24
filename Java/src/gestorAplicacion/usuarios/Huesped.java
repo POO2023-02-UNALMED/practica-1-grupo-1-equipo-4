@@ -13,6 +13,11 @@ import uiMain.PresentacionBono;
 import gestorAplicacion.Base;
 import java.util.Scanner;
 
+/**
+ *
+ * @author Alejandra Toro Grisales
+ */
+
 public class Huesped extends Usuario implements Serializable, PresentacionBono{
     private static final long serialVersionUID = 5L;
     
