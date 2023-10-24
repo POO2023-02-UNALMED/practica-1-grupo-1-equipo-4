@@ -39,9 +39,7 @@ public class Base implements Serializable{
         Base._administradores.add(administrador);
     }
     
-    public static void addHotel(Hotel hotel){
-        Base._hoteles.add(hotel);
-    }
+    
     
     public static void setHoteles(ArrayList<Hotel> hoteles){
         Base._hoteles = hoteles;

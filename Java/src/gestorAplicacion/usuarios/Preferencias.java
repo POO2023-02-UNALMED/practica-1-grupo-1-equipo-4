@@ -23,6 +23,7 @@ public class Preferencias implements Serializable{
             }
         }
     }
+    
     public Preferencias(String ciudad, String nombreHotel, String tipoHabitacion) {
         this.ciudad = ciudad;
         this.nombreHotel = nombreHotel;
@@ -55,9 +56,9 @@ public class Preferencias implements Serializable{
     public void setTipoHabitacion(String tipoHabitacion) {
         this.tipoHabitacion = tipoHabitacion;
     }
-
+    
     public static ArrayList<String> getCiudades() {
         return ciudades;
     }
-
+    
 }

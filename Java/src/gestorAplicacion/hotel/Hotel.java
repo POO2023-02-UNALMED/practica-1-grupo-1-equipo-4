@@ -30,7 +30,7 @@ public class Hotel implements Serializable{
     private ArrayList<Empleado> empleados = new ArrayList<Empleado>();
     private ArrayList<Administrador>  administradores = new  ArrayList<Administrador>();
     private Boolean estado = true;
-
+    
     public Hotel(CuentaBancaria cuentaBancaria){
         this.cuentaBancaria = cuentaBancaria;
     }
@@ -41,8 +41,8 @@ public class Hotel implements Serializable{
         this.historialClientes = historialClientes;
     }
 
-    public Hotel() {
-
+    public Hotel(CuentaBancaria cb, String nombre, ArrayList<Habitacion> habitaciones) {
+        this(cb, nombre, "Medellin", new ArrayList<ServiciosExtra>(), habitaciones, new ArrayList<Empleado>());
     }
 
     public Hotel(CuentaBancaria cb, String nombre, String ciudad, ArrayList<ServiciosExtra> servicios, ArrayList<Habitacion> habitaciones, ArrayList<Empleado> empleados) {
@@ -83,7 +83,7 @@ public class Hotel implements Serializable{
             this.estado = false;
         }
     }
-
+    
     public void agregarServicioHotel(ServiciosExtra servicio){
         this.servicios.add(servicio);
     }

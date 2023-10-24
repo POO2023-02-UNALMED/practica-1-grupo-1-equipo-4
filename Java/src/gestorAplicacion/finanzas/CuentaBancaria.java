@@ -21,6 +21,7 @@ import gestorAplicacion.usuarios.Usuario;
 import gestorAplicacion.hotel.Hotel;
 public class CuentaBancaria implements Serializable{
     private static final long serialVersionUID = 6L;
+    private static long nCuenta = 1;
     private long numero;
     private String banco;
     private long saldo = 0;
@@ -28,11 +29,11 @@ public class CuentaBancaria implements Serializable{
 
     public CuentaBancaria(){}
 
-    public CuentaBancaria(long numero, String banco){
-
-        this.saldo = numero;
+    public CuentaBancaria(long saldo, String banco){
+        this.numero = nCuenta;
+        this.saldo = saldo;
         this.banco = banco;
-
+        nCuenta++;
     }
 
     public CuentaBancaria(long numero, String banco, long saldo){
@@ -116,5 +117,15 @@ public class CuentaBancaria implements Serializable{
     public void setUltimoPago(Date fecha){
         this.ultimoPago = fecha;
     }
+
+    public static long getnCuenta() {
+        return nCuenta;
+    }
+
+    public static void setnCuenta(long nCuenta) {
+        CuentaBancaria.nCuenta = nCuenta;
+    }
+    
+    
     
 }

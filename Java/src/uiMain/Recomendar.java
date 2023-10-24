@@ -64,6 +64,5 @@ public class Recomendar {
         if(salida == 1){
             Menu.sistema(huesped);
         }
-        
     }
 }

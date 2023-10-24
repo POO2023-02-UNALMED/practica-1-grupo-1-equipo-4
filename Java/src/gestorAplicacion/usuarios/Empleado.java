@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
-import gestorAplicacion.hotel.Habitacion;
 import gestorAplicacion.hotel.Hotel;
 import uiMain.PresentacionBono;
 
@@ -34,8 +33,8 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
         super(nombre, telefono, username, password, cuentaBancaria);
         this.salario = salario;
     }
-
-    public  void addCalificacion(Usuario usuario, Integer calificacion){
+    
+     public  void addCalificacion(Usuario usuario, Integer calificacion){
         this.calificaciones.put(usuario, calificacion);
     }
 
@@ -176,6 +175,11 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
     public String presentacion(){
         String intro = PresentacionBono.recogerDatos(this);
         return "Soy un empleado. "+intro ;
+    }
+    
+    @Override
+    public String entrando(){
+        return "Entrando a su cuenta de Empleado, señor(a): "+this.getNombre();
     }
     
 }
