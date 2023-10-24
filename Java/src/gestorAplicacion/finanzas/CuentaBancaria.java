@@ -65,8 +65,8 @@ public class CuentaBancaria implements Serializable{
     public static void transferencia(CuentaBancaria cuenta1, CuentaBancaria cuenta2, long valor){
         cuenta1.retirar(valor);
         Date fecha = new Date();
-        cuenta2.depositar(valor);
         cuenta2.setUltimoPago(fecha);
+        cuenta2.depositar(valor);
     }
 
     public void depositar(long dinero){

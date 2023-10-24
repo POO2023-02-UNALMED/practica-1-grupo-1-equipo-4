@@ -22,6 +22,38 @@ public class Menu {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args){
         Deserializador.deserializador();
+
+        /*
+         * Pruebas para administrador
+         */
+
+        /* 
+         
+        CuentaBancaria cbhotel = new CuentaBancaria(123456, "Bancolombia");
+        CuentaBancaria cbadministrador = new CuentaBancaria(6789, "Bancolombia");
+        CuentaBancaria cbempleado1 = new CuentaBancaria(6789, "Bancolombia");
+        CuentaBancaria cbempleado2 = new CuentaBancaria(6789, "Bancolombia");
+
+        Hotel hotel = new Hotel(cbhotel);
+        hotel.getCuentaBancaria().setSaldo(100000);
+
+        Administrador administrador = new Administrador("Camilo", 12345, "kmi", "12345", cbadministrador, hotel);
+
+        Empleado empleado1 = new Empleado("Juan", 1234, "Juan", "12345", cbempleado1, 200);
+        Empleado empleado2 = new Empleado("Carlos", 1234, "Carlos", "12345", cbempleado2, 100);
+
+        hotel.agregarEmpleado(empleado1);
+        hotel.agregarEmpleado(empleado2);
+
+        Base.addHoteles(hotel);
+        Base.addAdministradores(administrador);
+        Base.addEmpleados(empleado1);
+        Base.addEmpleados(empleado2);
+
+        */
+
+
+
 //        System.out.println(Base.getHuespedes().get(0).getNombre());
 //        System.out.println(Base.getHuespedes().get(0).equals(Base.getHoteles().get(0).getHabitaciones().get(0).getReservas().get(0).getHuesped().getNombre()));
         
@@ -270,8 +302,10 @@ public class Menu {
                  
                         "   1. Listar administradores\n"+
                         "   2. Pagar empleados\n"+
-                        "   3. Agregar nueva habitación al hotel"+
-                        "   4. Salir\n";
+                        "   3. Agregar nueva habitación al hotel\n"+
+                        "   4. Ver tu saldo en cuenta\n"+
+                        "   5. Listar habitaciones\n"+
+                        "   6. Salir\n";
 
         System.out.println(mensaje);
         System.out.print("Opcion: ");
@@ -288,6 +322,92 @@ public class Menu {
 
     public static void cicloMenuAdmin(Administrador administrador){
 
+        int opcion;
+
+        do {
+            String mensaje = "Por favor indica que funcionalidad quieres realizar \n" +
+                 
+                        "   1. Listar administradores\n"+
+                        "   2. Pagar empleados\n"+
+                        "   3. Agregar nueva habitación al hotel\n"+
+                        "   4. Ver tu saldo en cuenta\n"+
+                        "   5. Listar habitaciones\n"+
+                        "   6. Saldo cuenta del hotel\n"+
+                        "   7. Salir\n";
+
+            System.out.println(mensaje);
+            System.out.print("Opcion: ");
+            
+            opcion = scanner.nextInt();
+            
+            switch (opcion) {
+                case 1:
+                    // Lógica para la opción 1
+                    System.out.println("Opción 1 seleccionada");
+                    System.out.println("\n-------------------------------");
+                    System.out.println("Administradores:");
+                    System.out.println(administrador.listarAdministradores());
+                    System.out.println("-------------------------------\n");
+                    break;
+                case 2:
+                    // Lógica para la opción 2
+                    System.out.println("Opción 2 seleccionada");
+                    /*
+                    * FUNCIONALIDAD DE PAGAR EMPLEADOS
+                    * 
+                    * Funcionalidad que un administrador llama para 
+                    * pagarle a el y a sus empleados con el dinero que
+                    * hay en la cuenta bancaria del hotel
+                    * 
+                    */
+                    System.out.println("\n-------------------------------");
+                    System.out.println(administrador.pagarEmpleados());
+                    System.out.println("-------------------------------\n");
+                    break;
+                case 3:
+                    System.out.println("Opción 3 seleccionada");
+                    System.out.println("\n-------------------------------");
+                    System.out.println(administradorAgregaHabitacion(administrador));
+                    System.out.println("-------------------------------\n");
+                    break;
+                case 4:
+                    System.out.println("Opción 4 seleccionada");
+                    System.out.println("\n-------------------------------");
+                    System.out.println("Tienes saldo de: "+administrador.getCuentaBancaria().getSaldo());
+                    System.out.println("Ultimo día de pago: "+administrador.getUltimoPago());
+                    System.out.println("-------------------------------\n");
+                    break;
+                case 5:
+                    System.out.println("Opción 5 seleccionada");
+                    
+                    System.out.println("\n-------------------------------");
+                    for(Habitacion habitacion: administrador.getHotel().getHabitaciones()){
+                        System.out.println("Habitación de tipo: " + habitacion.getTipo());
+                    }
+                    System.out.println("-------------------------------\n");
+
+                    break;
+                case 6:
+                    System.out.println("Opción 6 seleccionada");
+                    System.out.println("\n-------------------------------");
+                    System.out.println("Saldo hotel: "+administrador.getHotel().getCuentaBancaria().getSaldo());
+                    System.out.println("-------------------------------\n");
+                    break;
+
+                case 7:
+                    System.out.println("Opción 7 seleccionada");
+                    System.out.println("\n-------------------------------");
+                    salir();
+                    System.out.println("-------------------------------\n");
+                    break;
+                default:
+                    System.out.println("Opción no válida, vuelve a intentarlo");
+                    break;
+            }
+        } while (opcion != 3);
+
+
+        /*
         int opcion = textoMenuAdmin();
         switch(opcion) {
             case 1:
@@ -304,20 +424,35 @@ public class Menu {
                  * hay en la cuenta bancaria del hotel
                  * 
                  */
+                /* 
                 System.out.println(administrador.pagarEmpleados());
                 opcion = textoMenuAdmin();
             case 3:
                 System.out.println("Opción 3 seleccionada");
                 System.out.println(administradorAgregaHabitacion(administrador));
-                
+                opcion = textoMenuAdmin();
+            
             case 4:
                 System.out.println("Opción 4 seleccionada");
+                System.out.println(administrador.getCuentaBancaria().getSaldo());
                 opcion = textoMenuAdmin();
+                
+            case 5:
+                System.out.println("Opción 5 seleccionada");
+                System.out.println(administrador.getHotel().getHabitaciones());
+                opcion = textoMenuAdmin();
+
+            case 6:
+                System.out.println("Opción 6 seleccionada");
+                salir();
+          
             default:
                 System.out.println("Opción no válida, vuelve a intentarlo");
                 opcion = textoMenuAdmin();
 
         }
+
+    */
     }
 
     /*
