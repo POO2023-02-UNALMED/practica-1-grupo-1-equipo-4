@@ -151,9 +151,11 @@ public class Administrador extends Usuario implements Serializable{
 
                 for (Empleado empleado: empleados){
                     CuentaBancaria.transferencia(hotel.getCuentaBancaria(), empleado.getCuentaBancaria(), empleado.getSalario());
+                    empleado.setUltimoPago(actual);
                 }
 
                 CuentaBancaria.transferencia(hotel.getCuentaBancaria(), this.getCuentaBancaria(), this.getSalario());
+                this.setUltimoPago(actual);
                 return "El pago a los empleados ha sido exitoso";
 
             }else{
