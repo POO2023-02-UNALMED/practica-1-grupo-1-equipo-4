@@ -62,6 +62,7 @@ public class Hotel implements Serializable{
         }
     }
 
+    //Calucla promedio total hotel
     public float  calcularPromedioHotel(){
         float  totalHabitaciones = 0;
         float totalEmpleados = 0;
@@ -130,6 +131,7 @@ public class Hotel implements Serializable{
         return respuesta;
     }
 
+    //calcula el promedio de las  habitaciones del hotel
     public float calcularPromedio(){
         float prom = 0;
         for (Habitacion i: this.habitaciones){
