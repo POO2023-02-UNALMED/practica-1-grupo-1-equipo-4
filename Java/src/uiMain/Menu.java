@@ -93,6 +93,8 @@ public class Menu {
 //        for (Administrador ad : Base.getAdministradores()) {
 //            System.out.println(ad.getNombre());
 //        }
+//  Pruebas recomendaciones
+
         
         Login.login();
     }
@@ -240,7 +242,26 @@ public class Menu {
             System.out.println("El tipo de habitación no se encuentra en la lista de habitaciones");
             habitacion = sc.nextLine();
         }
-        
+        huesped.agregarPreferencias(ciudad, hotel, habitacion);
+        int opcion = sc.nextInt();
+        System.out.println("Seleccione alguna de las siguientes opciones:");
+        System.out.println("1: Agregar nueva preferencia"+
+        "\n2: Volver al menú principal");
+        while(opcion!=1 || opcion!=2){
+            System.out.println("Ingrese una opción válida");
+             System.out.println("Seleccione alguna de las siguientes opciones:");
+            System.out.println("1: Agregar nueva preferencia"+
+            "\n2: Volver al menú principal");
+        }
+        switch (opcion) {
+            case 1:
+                agregarPreferencia(huesped);
+                break;
+            case 2:
+                sistema(huesped);
+                break;
+        }
+
     }
 
 
