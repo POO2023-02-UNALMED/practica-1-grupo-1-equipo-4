@@ -165,8 +165,9 @@ public class Menu {
             System.out.println("\nCosto total de la estadía: "+huesped.getReserva().getCosto());
             System.out.println("----------------------------------\n");
             System.out.println("Se le direccionará al menú de calificaciones: ");
-            salir();
+            
             // Ingresar aqui el metodo que lleva al menu de calificaciones
+            Calificar.seleccionar(huesped);
         }
         
         Scanner sc = new Scanner(System.in);

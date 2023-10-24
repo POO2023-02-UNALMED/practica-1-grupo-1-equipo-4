@@ -33,8 +33,8 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
         super(nombre, telefono, username, password, cuentaBancaria);
         this.salario = salario;
     }
-    
-     public  void addCalificacion(Usuario usuario, Integer calificacion){
+
+    public  void addCalificacion(Usuario usuario, Integer calificacion){
         this.calificaciones.put(usuario, calificacion);
     }
 
