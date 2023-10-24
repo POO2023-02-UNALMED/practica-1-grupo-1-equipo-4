@@ -7,7 +7,10 @@ package gestorAplicacion.finanzas;
  * 
  *      Hace referencia a la cuenta bancaria de un usuario o un hotel.
  *      Dentro de ella se realizan acciones relacionadas con la cuenta 
- *      bancaria, transacciones, consultas etc.
+ *      bancaria, transacciones, consultas etc.+
+ *
+ * 
+ *  @autor: Camilo Sánchez
  * 
  * 
  */

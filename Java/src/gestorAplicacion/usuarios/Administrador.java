@@ -9,6 +9,7 @@ package gestorAplicacion.usuarios;
  *      Un administrador será un usuario con más permisos
  *      dentro del programa
  * 
+ *  @autor: Camilo Sánchez
  * 
  */
 
