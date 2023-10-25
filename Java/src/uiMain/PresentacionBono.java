@@ -12,9 +12,9 @@ import java.util.Scanner;
  *
  * @author david
  */
-public interface PresentacionBono {
-    final int BONOHUESPED = 50000;
-    final int BONOEMPLEADO = 10000;
+public interface PresentacionBono {             //Interfaz
+    final int BONOHUESPED = 50000;              //Uso de constante
+    final int BONOEMPLEADO = 10000;             //Uso de constante
     
     public static String recogerDatos(Usuario usuario){
         String nombre = usuario.getNombre();

@@ -22,6 +22,7 @@ import gestorAplicacion.usuarios.Preferencias;
 //recomendacionHotelesPorSimilar() donde se recomienda un hotel y habitación basada en las preferencias que el usuario anteriormente debió llenar.
 //En caso de no haber recomendaciones se imprime que no hay recomendaciones disponibles del tipo que desea. Se le dará al usuario la opción
 //de solicitar de nuevo el servicio de recomendaciones para que pueda solicitar las recomendaciones del otro tipo.
+
 public class Recomendar {
     private static Scanner sc = new Scanner(System.in);
 
@@ -60,8 +61,8 @@ public class Recomendar {
             default:
                 break;
         }
-        if(hoteles.isEmpty()){
-            System.out.println("No hay recomendaciones disponibles del tipo que desea");
+        
+        System.out.println("No hay recomendaciones disponibles del tipo que desea");
             System.out.println("Presione 1 si desea solicitar de nuevo el servicio de recomendaciones");
             System.out.println("Presione 2 si desea volver al menú principal");
             int opcionNueva = sc.nextInt();
@@ -73,7 +74,11 @@ public class Recomendar {
                     Menu.sistema(huesped);
                     break;
             }
+        
+        if(hoteles.isEmpty()){
+            System.out.println("No hay recomendaciones disponibles");
         }
+        
         for(Hotel hotel : hoteles.keySet()){
             System.out.println("Hotel:"+hotel.getNombre());
             for(Habitacion habitacion:hoteles.get(hotel)){

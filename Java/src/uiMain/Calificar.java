@@ -1,5 +1,6 @@
 package uiMain;
 
+import gestorAplicacion.Base;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -20,10 +21,16 @@ public class Calificar {
         calificarHabitacion(huesped);    
         calificarEmpleado(huesped);
         calificarServicios(huesped);
-        if(huesped.getReserva().getHotel().calcularPromedio()<2.5){
+        System.out.println(huesped.getReserva().getHotel().calcularPromedio());
+        if(huesped.getReserva().getHotel().calcularPromedioHotel()<2.5){
             System.out.println("Gracias  a los datos aportado  el  hotel sera  eliminado");
+            Base.getHoteles().remove(huesped.getReserva().getHotel());
+            huesped.getReserva().eliminarReserva();
+            Menu.salir();
         }else{
             System.out.println("Gracias por diligenciar la encuesta");
+            huesped.getReserva().eliminarReserva();
+            Menu.salir();
         }
     }
 

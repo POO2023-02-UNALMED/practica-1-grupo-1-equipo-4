@@ -24,6 +24,7 @@ public class Menu {
     public static void main(String[] args){
         Deserializador.deserializador();
         
+//        System.out.println(Base.getHoteles().get(0).getHabitaciones().get(0).getReservas().get(0).getHuesped().getNombre());
         
         /*
          * Pruebas para administrador
@@ -51,9 +52,8 @@ public class Menu {
         Base.addAdministradores(administrador);
         Base.addEmpleados(empleado1);
         Base.addEmpleados(empleado2);
-        
-        */
 
+        */
 //        System.out.println(Base.getHuespedes().get(0).getNombre());
 //        System.out.println(Base.getHuespedes().get(0).equals(Base.getHoteles().get(0).getHabitaciones().get(0).getReservas().get(0).getHuesped().getNombre()));
         
@@ -61,6 +61,18 @@ public class Menu {
 //        ArrayList<Empleado> emps = new ArrayList<>();
 //        ArrayList<ServiciosExtra> servs = new ArrayList<>();
 //        ArrayList<Habitacion> habs = new ArrayList<>();
+//        ServiciosExtra serv1 = new ServiciosExtra("barrer");
+//        ServiciosExtra serv2 = new ServiciosExtra("trapear");
+//        ServiciosExtra serv3 = new ServiciosExtra("transportarse");
+//        servs.add(serv3);
+//        servs.add(serv2);
+//        servs.add(serv1);
+//        Empleado emp1 = new Empleado("emp1");
+//        Empleado emp2 = new Empleado("emp2");
+//        Empleado emp3 = new Empleado("emp3");
+//        emps.add(emp3);
+//        emps.add(emp2);
+//        emps.add(emp1);
 //        Habitacion hab1 = new Habitacion(1, "simple", 1, 100000);
 //        Habitacion hab2 = new Habitacion(2, "doble", 2, 300000);
 //        Habitacion hab3 = new Habitacion(3, "familiar", 4, 500000);
@@ -92,49 +104,49 @@ public class Menu {
 //        for (Administrador ad : Base.getAdministradores()) {
 //            System.out.println(ad.getNombre());
 //        }
-//  Pruebas recomendaciones    
-//ArrayList<Habitacion> habs = new ArrayList<>();
-//Habitacion hab1 = new Habitacion(1, "simple", 1, 100000);
-//Habitacion hab2 = new Habitacion(2, "doble", 2, 300000);
-//Habitacion hab3 = new Habitacion(3, "familiar", 4, 500000);
-//Habitacion hab4 = new Habitacion(4, "simplevip", 1, 300000);
-//Habitacion hab5 = new Habitacion(5, "doblevip", 2, 700000);
-//Habitacion hab6 = new Habitacion(6, "familiarvip", 4, 1000000);
-//hab1.addCalificacion(new Huesped(), 0f);
-//hab2.addCalificacion(new Huesped(), 1f);
-//hab3.addCalificacion(new Huesped(), 2f);
-//hab4.addCalificacion(new Huesped(), 3f);
-//hab5.addCalificacion(new Huesped(), 4f);
-//hab6.addCalificacion(new Huesped(), 5f);
-//habs.add(hab1);
-//habs.add(hab2);
-//habs.add(hab3);
-//habs.add(hab4);
-//habs.add(hab5);
-//habs.add(hab6);
-//ArrayList<Empleado> empleados = new ArrayList<>();
-//Empleado empleado = new Empleado(null, 0, null, null, null, 0);
-//empleados.add(empleado);
-//Hotel hotel = new Hotel(new CuentaBancaria(0, null), "Montreal", "Medellin", null, habs,empleados);
-//Base.addHoteles(hotel);
-//ArrayList<Preferencias> preferencias = new ArrayList<>();
-//Preferencias preferencia = new Preferencias("Medellin", "Montreal", (String) TipoHabitacion.VIPFAMILIAR.name());
-//preferencias.add(preferencia);
-//ArrayList<Preferencias> preferencias2 = new ArrayList<>();
-//Preferencias preferencia2 = new Preferencias("Medellin", "Montreal", (String) TipoHabitacion.VIPFAMILIAR.name());
-//preferencias2.add(preferencia2);
-//Huesped huesped = new Huesped(false,preferencias, null, 0, null, null, null);
-//Huesped huesped2 = new Huesped(false, preferencias, null, 0, null, null, null);
-//Reserva reserva = new Reserva(huesped, hab6, null, null, 0);
-//reserva.setCalificacionHotel(5);
-//reserva.setCiudad("Medellin");
-//reserva.setHotel(hotel);
-//huesped.addReserva(reserva);
-//huesped.setId(1);
-//hab6.addCalificacion(huesped, 5f);
-//seleccionar(huesped);  
-//      
-
+        //  Pruebas recomendaciones    
+        //ArrayList<Habitacion> habs = new ArrayList<>();
+        //Habitacion hab1 = new Habitacion(1, "simple", 1, 100000);
+        //Habitacion hab2 = new Habitacion(2, "doble", 2, 300000);
+        //Habitacion hab3 = new Habitacion(3, "familiar", 4, 500000);
+        //Habitacion hab4 = new Habitacion(4, "simplevip", 1, 300000);
+        //Habitacion hab5 = new Habitacion(5, "doblevip", 2, 700000);
+        //Habitacion hab6 = new Habitacion(6, "familiarvip", 4, 1000000);
+        //hab1.addCalificacion(new Huesped(), 0f);
+        //hab2.addCalificacion(new Huesped(), 1f);
+        //hab3.addCalificacion(new Huesped(), 2f);
+        //hab4.addCalificacion(new Huesped(), 3f);
+        //hab5.addCalificacion(new Huesped(), 4f);
+        //hab6.addCalificacion(new Huesped(), 5f);
+        //habs.add(hab1);
+        //habs.add(hab2);
+        //habs.add(hab3);
+        //habs.add(hab4);
+        //habs.add(hab5);
+        //habs.add(hab6);
+        //ArrayList<Empleado> empleados = new ArrayList<>();
+        //Empleado empleado = new Empleado(null, 0, null, null, null, 0);
+        //empleados.add(empleado);
+        //Hotel hotel = new Hotel(new CuentaBancaria(0, null), "Montreal", "Medellin", null, habs,empleados);
+        //Base.addHoteles(hotel);
+        //ArrayList<Preferencias> preferencias = new ArrayList<>();
+        //Preferencias preferencia = new Preferencias("Medellin", "Montreal", (String) TipoHabitacion.VIPFAMILIAR.name());
+        //preferencias.add(preferencia);
+        //ArrayList<Preferencias> preferencias2 = new ArrayList<>();
+        //Preferencias preferencia2 = new Preferencias("Medellin", "Montreal", (String) TipoHabitacion.VIPFAMILIAR.name());
+        //preferencias2.add(preferencia2);
+        //Huesped huesped = new Huesped(false,preferencias, null, 0, null, null, null);
+        //Huesped huesped2 = new Huesped(false, preferencias, null, 0, null, null, null);
+        //Reserva reserva = new Reserva(huesped, hab6, null, null, 0);
+        //reserva.setCalificacionHotel(5);
+        //reserva.setCiudad("Medellin");
+        //reserva.setHotel(hotel);
+        //huesped.addReserva(reserva);
+        //huesped.setId(1);
+        //hab6.addCalificacion(huesped, 5f);
+        //seleccionar(huesped);  
+        //      
+        
 
         Login.login();
     }
@@ -171,6 +183,7 @@ public class Menu {
         for (Hotel hotel : Base.getHoteles()){
             for (Habitacion habitacion : hotel.getHabitaciones()){
                 if (habitacion.isReservada()){
+                    System.out.println("hola");
                     for (Reserva reserv : habitacion.getReservas()){
                         fFin = reserv.getFechaSalida().split("/");
                         fechaFin = Calendar.getInstance();
@@ -180,7 +193,7 @@ public class Menu {
                         fechaFin.set(Calendar.YEAR, Integer.parseInt(fFin[2]));
 
                         if (fechaActual.get(Calendar.DAY_OF_YEAR) == fechaFin.get(Calendar.DAY_OF_YEAR)){
-                            reserv.getHuesped().getReserva().eliminarReserva();
+                            
                             return true;
                         }
                     }
@@ -191,7 +204,10 @@ public class Menu {
         return false;
     }
     
-    static void sistema(Huesped huesped){
+    static void sistema(Huesped huesped){               //Sobrecarga de método sistema
+        System.out.println(Base.getHoteles().get(0).getHabitaciones().get(0).isReservada());
+//        System.out.println(huesped.isEnReserva());
+//        System.out.println(Base.getHoteles().get(0).getHabitaciones().get(0).getReservas().get(0).getHuesped().getNombre());
         if (isIni()){                      //Revisa si la reserva de un cliente comenzó
             System.out.println("\nAVISO");
             System.out.println("---------\n");
@@ -208,7 +224,6 @@ public class Menu {
             System.out.println("\nCosto total de la estadía: "+huesped.getReserva().getCosto());
             System.out.println("----------------------------------\n");
             System.out.println("Se le direccionará al menú de calificaciones: ");
-            
             // Ingresar aqui el metodo que lleva al menu de calificaciones
             Calificar.seleccionar(huesped);
         }
@@ -236,7 +251,7 @@ public class Menu {
         
         switch (opcion){
             case 1: Reservar.reservar(huesped); break;
-            case 2: agregarPreferencia(huesped); break;    
+            case 2: agregarPreferencia(huesped); break; 
             case 3: adminCuenta(huesped); break;
             case 4: adminReserva(huesped); break;
             case 5: Recomendar.seleccionar(huesped); break;
@@ -244,6 +259,7 @@ public class Menu {
             case 7: salir(); break;
         }
     }
+    
     
     //Método con el cual se pretende darle al usuario una serie de listas de ciudades, hoteles y habitaciones
     //en las cuales deberá escoger sus preferencias para posteriormente agregarlas a su lista de preferencias. 
@@ -267,7 +283,7 @@ public class Menu {
         }
         System.out.println("Ingrese el hotel que desea agregar a sus preferencias:");
         String hotel = sc.nextLine();
-        boolean verificador = true;
+        boolean verificador = false;
         while(verificador){
             for(Hotel hotelBase: hotelesBase){
                 if(hotelBase.getNombre().equals(hotel)){
@@ -279,7 +295,6 @@ public class Menu {
                 System.out.println("El hotel no se encuentra en la lista de ciudades");
                 hotel = sc.nextLine();
             }
-            
         }
         TipoHabitacion[] habitaciones = TipoHabitacion.values();
         System.out.println("LISTA DE TIPOS DE HABITACIONES:");
@@ -288,7 +303,7 @@ public class Menu {
         }
         System.out.println("Ingrese el tipo de habitacion que desea agregar a sus preferencias:");
         String habitacion = sc.nextLine();
-        boolean verificacion = false;
+         boolean verificacion = false;
         while(verificacion){
             for(int i=0;i<habitaciones.length;i++){
                 if(habitaciones[i].name().equals(habitacion)){
@@ -401,7 +416,7 @@ public class Menu {
     }
     
     
-    static void sistema(Empleado empleado){
+    static void sistema(Empleado empleado){        //Sobrecarga de método sistema
         Scanner sc = new Scanner(System.in);
         System.out.println("MENÚ PRINCIPAL");
         System.out.println("---------------");
@@ -453,7 +468,7 @@ public class Menu {
         }
     }
     
-    static void sistema(Administrador administrador){
+    static void sistema(Administrador administrador){       //Sobrecarga de método sistema
         System.out.println("MENÚ PRINCIPAL");
         System.out.println("---------------\n");
         
@@ -505,7 +520,6 @@ public class Menu {
                         "   4. Ver tu saldo en cuenta\n"+
                         "   5. Listar habitaciones\n"+
                         "   6. Saldo cuenta del hotel\n"+
-        
                         "   7. Salir\n";
 
             System.out.println(mensaje);
@@ -566,7 +580,6 @@ public class Menu {
                     System.out.println("Saldo hotel: "+administrador.getHotel().getCuentaBancaria().getSaldo());
                     System.out.println("-------------------------------\n");
                     break;
-
                 case 7:
                     System.out.println("Opción 7 seleccionada");
                     System.out.println("\n-------------------------------");
@@ -627,8 +640,8 @@ public class Menu {
 
     */
     }
-
-     /*
+    
+    /*
      * Método que llama un el ciclo del menú de opciones que tendrá
      * un Huesped para poderle crear un servicio.
      */
@@ -715,7 +728,6 @@ public class Menu {
 
         
     }
-    
     /*
      * Método que lista los tipos de habitaciones posibles (Las de el enum)
      * para que el administrador escoja que tipo de habitación quiere generar

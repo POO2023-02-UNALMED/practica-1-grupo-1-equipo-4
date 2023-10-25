@@ -26,7 +26,7 @@ public class Habitacion implements Serializable{
     private float promedio;
     private static Map<Long,ArrayList<String>> sugerenciasPendientes = new HashMap<Long,ArrayList<String>>();
     
-    public Habitacion(long id, String tipo, int numeroCamas, long precio) {
+    public Habitacion(long id, String tipo, int numeroCamas, long precio) {         //Sobrecarga constructor
         this.calificaciones.put(new Huesped(), (float)5.0);
         this.id = id;
         this.tipo = tipo;
@@ -35,7 +35,7 @@ public class Habitacion implements Serializable{
 
     }
 
-    public Habitacion(long id, String tipo, int numeroCamas, long precio, Hotel hotel) {
+    public Habitacion(long id, String tipo, int numeroCamas, long precio, Hotel hotel) {    //Sobrecarga constructor
         this.calificaciones.put(new Huesped(), (float)5.0);
         this.id = id;
         this.tipo = tipo;
@@ -47,8 +47,8 @@ public class Habitacion implements Serializable{
 
     }
 
-    public Habitacion(long id) {
-        this(id, "simple", 1, 100000);
+    public Habitacion(long id) {                                    //Sobrecarga constructor
+        this(id, "simple", 1, 100000);          //Uso de this() para desambiguar
     }
 
     public float calcularPromedio(){

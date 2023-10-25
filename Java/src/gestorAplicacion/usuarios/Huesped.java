@@ -18,9 +18,10 @@ import java.util.Scanner;
  * @author Alejandra Toro Grisales
  */
 
-public class Huesped extends Usuario implements Serializable, PresentacionBono{
+public class Huesped extends Usuario implements Serializable, PresentacionBono{         //Clase que hereda de Usuario 
     private static final long serialVersionUID = 5L;
     
+
     private boolean vip;
     private Reserva reserva;
     private Habitacion habitacion;
@@ -32,7 +33,7 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
 
     public Huesped(boolean vip, ArrayList<Preferencias> preferencias, String nombre, int telefono, String username, String password, CuentaBancaria cuentaBancaria) {
         super(nombre, telefono, username, password, cuentaBancaria);
-        this.vip = vip;
+        this.vip = vip;                                     //Uso de this para desambiguar
         this.preferencias = preferencias;
     }
     
@@ -76,13 +77,13 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{
     public ArrayList<Reserva>getHistorialReservas(){
         return historialReservas;
     }
-
+    
     public void addReserva(Reserva reserva){
         this.historialReservas.add(reserva);
     }
     
+    
 
-//Falta llenar
     public Reserva generarReserva(Huesped huesped, Habitacion habitacion, String fechaEntrada, String fechaSalida, long costo){
         Reserva res = new Reserva(huesped, habitacion, fechaEntrada, fechaSalida, costo);
         return res;

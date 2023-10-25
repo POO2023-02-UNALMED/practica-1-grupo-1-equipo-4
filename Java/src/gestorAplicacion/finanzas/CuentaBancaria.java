@@ -120,13 +120,13 @@ public class CuentaBancaria implements Serializable{
     public void setUltimoPago(Date fecha){
         this.ultimoPago = fecha;
     }
-
+    
     public static long getnCuenta() {
         return nCuenta;
     }
 
     public static void setnCuenta(long nCuenta) {
-        CuentaBancaria.nCuenta = nCuenta;
+        CuentaBancaria.nCuenta = nCuenta;           //Desambiguación por nombre de clase
     }
     
     

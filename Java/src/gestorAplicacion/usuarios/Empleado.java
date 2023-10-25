@@ -11,7 +11,7 @@ import gestorAplicacion.finanzas.CuentaBancaria;
 import gestorAplicacion.hotel.Hotel;
 import uiMain.PresentacionBono;
 
-public class Empleado extends Usuario implements Serializable, PresentacionBono{
+public class Empleado extends Usuario implements Serializable, PresentacionBono{    //Clase que hereda de Usuario
     private static final long serialVersionUID = 4L;
     
     private Boolean estadoEmpleado = false;
@@ -28,13 +28,17 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
     public Empleado(String nombre,int telefono,String username,String password,CuentaBancaria cuentaBancaria){
         super(nombre, telefono, username, password, cuentaBancaria);
     }
+    
+    public Empleado(String nombre){
+        super(nombre);
+    }
 
     public Empleado(String nombre,int telefono,String username,String password,CuentaBancaria cuentaBancaria, long salario){
         super(nombre, telefono, username, password, cuentaBancaria);
         this.salario = salario;
     }
-
-    public ArrayList<Empleado> mejorCalificaciones(ArrayList<Empleado>  empleados){
+    
+     public ArrayList<Empleado> mejorCalificaciones(ArrayList<Empleado>  empleados){
         ArrayList<Empleado> rango = new ArrayList<Empleado>();
         for(Empleado i : empleados){
             if(promedioCalificaciones(i)>3){
@@ -43,7 +47,7 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
         }
         return rango;
     }
-
+    
     public  void addCalificacion(Usuario usuario, Integer calificacion){
         this.calificaciones.put(usuario, calificacion);
     }

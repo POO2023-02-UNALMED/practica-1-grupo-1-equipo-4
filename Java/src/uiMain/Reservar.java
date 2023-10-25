@@ -416,14 +416,21 @@ public class Reservar {
             }
             switch (choose){
                 case "Y":
-                   if (habitacion.getHotel().getHistorialClientes().contains(huesped)){
-                       System.out.println("Como ya ha reservado habitaciones en este hotel, se le hará un descuento de 80000$");
-                       cobroHabitacion = cobroHabitacion-80000;
+                   for (Hotel x : Base.getHoteles()){
+                       for (Habitacion y: x.getHabitaciones()){
+                           if (habitacion.getId() == y.getId()){
+                               if (y.getHotel().getHistorialClientes().contains(huesped)){
+                                    System.out.println("Como ya ha reservado habitaciones en este hotel, se le hará un descuento de 80000$");
+                                    cobroHabitacion = cobroHabitacion-80000;
+                                }
+                                habitacion.getHotel().addHistorialClientes(huesped);
+                           }
+                       }
                    }
-                   habitacion.getHotel().addHistorialClientes(huesped);
                    huesped.getCuentaBancaria().transferencia(habitacion.getHotel().getCuentaBancaria(), cobroHabitacion);
                    System.out.println("Se le han descontado "+ cobroHabitacion +"$ de su cuenta bancaria");
                    Reserva reserva = huesped.generarReserva(huesped, habitacion, fIni, fFin, cobroHabitacion);
+                   huesped.setReserva(reserva);
                    reservaConfirmada(huesped, habitacion, reserva);
                    break;
                 case "N":
@@ -436,6 +443,7 @@ public class Reservar {
     }
     
     public static void reservaConfirmada(Huesped huesped, Habitacion habitacion, Reserva reserva){
+        huesped.setEnReserva(true);
         String fIni = reserva.getFechaEntrada();
         String[] splitfIni = fIni.split("/");
         Calendar fechaActual = Calendar.getInstance();
@@ -460,6 +468,7 @@ public class Reservar {
                 + "Fecha de inicio: "+ reserva.getFechaEntrada()+ "\n"
                 + "Fecha de fin: "+ reserva.getFechaSalida()+ "\n"
                 + "Costo total: "+ reserva.getCosto()+ "\n");
+        System.out.println("Intentar "+reserva.getHuesped());
         Menu.sistema(huesped);
     }
 }

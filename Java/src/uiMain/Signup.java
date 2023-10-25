@@ -349,7 +349,7 @@ public class Signup {
     }
       
     
-    public static void intro(Usuario us){
-        System.out.println("\n"+us.presentacion()+"\n");
+    public static void intro(Usuario us){                   
+        System.out.println("\n"+us.presentacion()+"\n");        //Ligadura dinámica
     }
 }

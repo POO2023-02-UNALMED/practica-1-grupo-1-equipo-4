@@ -8,8 +8,7 @@ package gestorAplicacion.usuarios;
  *      La clase administrador hereda de la clase usuario.
  *      Un administrador será un usuario con más permisos
  *      dentro del programa
- * 
- *  @autor: Camilo Sánchez
+ * @autor: Camilo Sánchez
  * 
  */
 
@@ -20,10 +19,9 @@ import java.util.Date;
 import gestorAplicacion.finanzas.CuentaBancaria;
 import gestorAplicacion.hotel.Habitacion;
 import gestorAplicacion.hotel.Hotel;
-
 import java.io.Serializable; 
 
-public class Administrador extends Usuario implements Serializable{
+public class Administrador extends Usuario implements Serializable{     //Clase que hereda de Usuario
     private static final long serialVersionUID = 3L;
     
     private static int totalAdministradores = 0;

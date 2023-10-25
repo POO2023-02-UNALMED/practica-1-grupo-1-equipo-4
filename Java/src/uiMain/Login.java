@@ -129,7 +129,7 @@ public class Login {
     }
     
     static void avisoEntrada(Usuario us){
-        System.out.println(us.entrando());
+        System.out.println(us.entrando());      //Ligadura dinámica
     }
 }
 

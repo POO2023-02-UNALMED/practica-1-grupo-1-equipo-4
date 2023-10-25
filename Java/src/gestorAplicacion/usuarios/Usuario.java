@@ -4,26 +4,30 @@ import java.io.Serializable;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
 
-public abstract class Usuario implements Serializable{
+public abstract class Usuario implements Serializable{      //Clase abstracta. Clase padre de Administrador, Huesped, Empleado (Herencia)
     private static final long serialVersionUID = 11L;
     private String nombre;
     private int telefono;
-    private static int numUser; 
-    private int id;
-    protected String username;
-    protected String password;
+    private static int numUser;             //Atributo de clase
+    private int id;                         //Encapsulamiento private
+    protected String username;              //Encapsulamiento protected
+    protected String password;              //Encapsulamiento protected
     private CuentaBancaria cuentaBancaria;
     
     public Usuario(){}
 
     public Usuario(String nombre,int telefono,String username,String password,CuentaBancaria cuentaBancaria){
         this.nombre = nombre;
-        this.telefono = telefono;
+        this.telefono = telefono;                   //Uso de this para desambiguar
         this.username = username;
         this.password = password;
         this.cuentaBancaria = cuentaBancaria;
         Usuario.numUser++;
         this.id = Usuario.numUser;
+    }
+    
+    public Usuario(String nombre){
+        this.nombre = nombre;
     }
     
 
@@ -75,16 +79,16 @@ public abstract class Usuario implements Serializable{
         this.cuentaBancaria = cuentaBancaria;
     }
 
-    public static int getNumUser() {
+    public static int getNumUser() {                //Método de clase
         return numUser;
     }
 
-    public static void setNumUser(int numUser) {
+    public static void setNumUser(int numUser) {        //Método de clase       //Desambiguación por nombre de clase
         Usuario.numUser = numUser;
     }
     
-    public abstract String entrando();
+    public abstract String entrando();          //Método abstracto
     
-    public abstract String presentacion();
+    public abstract String presentacion();      //Método abstracto    //Encapsulamiento public
     
 }

@@ -35,14 +35,14 @@ public class Hotel implements Serializable{
         this.cuentaBancaria = cuentaBancaria;
     }
 
-    public Hotel(CuentaBancaria cuentaBancaria, ArrayList<ServiciosExtra> servicios, ArrayList<Huesped> historialClientes) {
+    public Hotel(CuentaBancaria cuentaBancaria, ArrayList<ServiciosExtra> servicios, ArrayList<Huesped> historialClientes) {  //Sobrecarga constructor
         this.cuentaBancaria = cuentaBancaria;
         this.servicios = servicios;
         this.historialClientes = historialClientes;
     }
 
-    public Hotel(CuentaBancaria cb, String nombre, ArrayList<Habitacion> habitaciones) {
-        this(cb, nombre, "Medellin", new ArrayList<ServiciosExtra>(), habitaciones, new ArrayList<Empleado>());
+    public Hotel(CuentaBancaria cb, String nombre, ArrayList<Habitacion> habitaciones) {        //Sobrecarga constructor
+        this(cb, nombre, "Medellin", new ArrayList<ServiciosExtra>(), habitaciones, new ArrayList<Empleado>());         //Uso de this() para desambiguar
     }
 
     public Hotel(CuentaBancaria cb, String nombre, String ciudad, ArrayList<ServiciosExtra> servicios, ArrayList<Habitacion> habitaciones, ArrayList<Empleado> empleados) {
@@ -69,12 +69,15 @@ public class Hotel implements Serializable{
         for (Habitacion habitacion : this.habitaciones) {
             totalHabitaciones  = totalHabitaciones + habitacion.calcularPromedio();
         }
+        System.out.println(totalHabitaciones/this.habitaciones.size());
         for (Empleado empleado : this.empleados) {
             totalEmpleados =  totalEmpleados+Empleado.promedioCalificaciones(empleado);
         }
+        System.out.println(totalEmpleados / this.empleados.size());
         for(ServiciosExtra servicio: this.servicios){
            totalServicios = totalServicios + ServiciosExtra.promedioCalificaciones(servicio);
         }
+        System.out.println(totalServicios / this.servicios.size());
         totalHabitaciones = totalHabitaciones / this.habitaciones.size();
         totalEmpleados = totalEmpleados / this.empleados.size();
         totalServicios = totalServicios / this.servicios.size();

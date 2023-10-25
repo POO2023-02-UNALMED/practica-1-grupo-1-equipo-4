@@ -1,5 +1,6 @@
 package gestorAplicacion.hotel;
 
+import gestorAplicacion.Base;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,13 +30,12 @@ public class Reserva implements Serializable{
         this.costo = costo;
         this.hotel = habitacion.getHotel();
         this.ciudad = hotel.getCiudad();
-        huesped.setReserva(this);
     }
         
         
         
 	public Huesped getHuesped() {
-		return huesped;
+            return this.huesped;
 	}
 	public void setHuesped(Huesped huesped) {
 		this.huesped = huesped;
@@ -87,7 +87,7 @@ public class Reserva implements Serializable{
 		this.servicios.remove(servicio);
 			this.costo -= servicio.getTarifa();
 	}
-	public String getCiudad() {
+        public String getCiudad() {
 		return ciudad;
 	}
 	public void setCiudad(String ciudad) {
@@ -113,15 +113,34 @@ public class Reserva implements Serializable{
 	
 	public String eliminarReserva() {
             if (this.getHuesped().isEnReserva()){
+                System.out.println("Elmininando reserva full");
                 this.getHuesped().setEnReserva(false);
-                this.getHabitacion().setReservada(false);
+                for(Hotel hotel: Base.getHoteles()){
+                    if (hotel.getNombre().equals(this.getHotel().getNombre())){
+                        for (Habitacion habitacion: hotel.getHabitaciones()){
+                            if (habitacion.getId() == this.getHabitacion().getId()){
+                                habitacion.setReservada(false);
+                            }
+                        }
+                    }
+                }
+                
             }
-            ArrayList<Reserva> listReservas = this.getHabitacion().getReservas();
-            listReservas.remove(this);
-            this.setHuesped(null);
-            this.getHuesped().setReserva(null);
-	    return "La reserva se ha eliminado correctamente";
+            for(Hotel hotel: Base.getHoteles()){
+                if (hotel.getNombre().equals(this.getHotel().getNombre())){
+                    for (Habitacion habitacion: hotel.getHabitaciones()){
+                        if (habitacion.getId() == this.getHabitacion().getId()){
+                            ArrayList<Reserva> listReservas = habitacion.getReservas();
+                            listReservas.remove(this);
             
+                            this.getHuesped().setReserva(null);
+                            return "La reserva se ha eliminado correctamente";
+                        }
+                    }
+                }
+            }
+            
+            return "La reserva no se ha eliminado correctamente";
 	}
 	
 	public boolean modificarReserva() {
