@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 import gestorAplicacion.finanzas.CuentaBancaria;
 
+/*
+    Author David Restrepo Aguilar
+*/
+
+//Esta clase se encarga de almacenar los atriburos básicos de un huesped, empleado o administrador
 public abstract class Usuario implements Serializable{      //Clase abstracta. Clase padre de Administrador, Huesped, Empleado (Herencia)
     private static final long serialVersionUID = 11L;
     private String nombre;

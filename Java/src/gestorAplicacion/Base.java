@@ -19,7 +19,12 @@ import java.util.Map;
 import java.util.TreeMap;
 import uiMain.Reservar;
 
+/*
+   Author David
+*/
 
+// Esta clase se encarga de administrar la base de datos del programa y realizar los filtros que implementa
+//la aplicación
 public class Base implements Serializable{
     private static final long serialVersionUID = 1L;
     private static ArrayList<Administrador> _administradores = new ArrayList<>();
@@ -77,6 +82,8 @@ public class Base implements Serializable{
         Base.empleados.add(empleado);
     }
     
+    
+    //Se encarga de filtrar lo hoteles por ciudades ingresadas
     public static ArrayList<Hotel> filtrarPorCiudad(){
         ArrayList<Hotel> hotelesFiltrados = new ArrayList<>();
         String ciudad;
@@ -99,6 +106,8 @@ public class Base implements Serializable{
         return hotelesFiltrados;   
     }
     
+    
+    //Se encarga de filtrar por nombre del hotel
     public static Hotel filtrarPorNombre(){
         Hotel hotelNombre = null;
         boolean foundHotel = false;
@@ -123,6 +132,7 @@ public class Base implements Serializable{
         return hotelNombre;
     }
     
+    //Se encarga de filtrar las habitaciones por su id
     public static Habitacion filtrarRoomPorID(Hotel hotel, Huesped huesped){
         Scanner sc = new Scanner(System.in);
         boolean found = false;
@@ -144,6 +154,7 @@ public class Base implements Serializable{
         }
     }
     
+    //Se encarga de filtrar las habitaciones por su tipo
     public static ArrayList<Habitacion> filtrarRoomPorTipo(Hotel hotel, Huesped huesped){
         Scanner sc = new Scanner(System.in);
         ArrayList<ArrayList<Habitacion>> sortedRooms = sortRooms(hotel);
@@ -188,7 +199,7 @@ public class Base implements Serializable{
         
     }
                 
-    
+    //Se encarga de organizar las habitaciones de acuerdo a su promedio
     public static ArrayList<ArrayList<Habitacion>> sortRooms(Hotel selectedHotel){
         TreeMap<Float, ArrayList<Habitacion>> sortedMap = new TreeMap<>();
         ArrayList<Float> promedios = new ArrayList<>();

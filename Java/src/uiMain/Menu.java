@@ -16,7 +16,7 @@ import baseDatos.*;
 import java.util.Scanner;
 /**
  *
- * @author david
+ * @author David Restrepo Aguilar
  */
 public class Menu {
     
@@ -151,6 +151,8 @@ public class Menu {
         Login.login();
     }
     
+    //Se encarga de comprobar si la fecha actual concuerda con el inicio de reserva de alguna persona,
+    //para que en caso positivo le avise que su reserva comenzó
     static boolean isIni(){
         Calendar fechaActual = Calendar.getInstance();
         String[] fIni;
@@ -176,6 +178,9 @@ public class Menu {
         return false;
     }
     
+    //Se encarga de comprobar si la fecha actual concuerda con el fin de reserva de alguna persona,
+    //para que en caso positivo elimine la reserva y le avise a la persona, llevandolo luego al
+    //menú de calificación
     static boolean isFinal(){
         Calendar fechaActual = Calendar.getInstance();
         String[] fFin;

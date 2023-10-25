@@ -11,6 +11,8 @@ import gestorAplicacion.finanzas.CuentaBancaria;
 import gestorAplicacion.hotel.Hotel;
 import uiMain.PresentacionBono;
 
+
+
 public class Empleado extends Usuario implements Serializable, PresentacionBono{    //Clase que hereda de Usuario
     private static final long serialVersionUID = 4L;
     
@@ -179,18 +181,21 @@ public class Empleado extends Usuario implements Serializable, PresentacionBono{
         this.hotel = hotel;
     }
 
+    //Le ofrece un bono a la persona desde el SignUp (se llama desde allí)
     @Override
     public void ofrecerBono() {
         System.out.println("Se le han añadido "+ BONOEMPLEADO + "$ a su cuenta bancaria");
         this.setSalario(this.getSalario()+BONOEMPLEADO);
     } 
     
+    //Se encarga de presentar a la pesona cuando se registra.
     @Override
     public String presentacion(){
         String intro = PresentacionBono.recogerDatos(this);
         return "Soy un empleado. "+intro ;
     }
     
+    //Se encarga de darle la bienvenida al usuario cuando entra a la aplicación
     @Override
     public String entrando(){
         return "Entrando a su cuenta de Empleado, señor(a): "+this.getNombre();

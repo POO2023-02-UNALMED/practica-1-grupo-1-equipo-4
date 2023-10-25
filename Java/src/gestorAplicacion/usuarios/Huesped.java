@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Alejandra Toro Grisales
+ * @author Alejandra Toro Grisales y David Restrepo Aguilar (métodos heredados)
  */
 
 public class Huesped extends Usuario implements Serializable, PresentacionBono{         //Clase que hereda de Usuario 
@@ -83,7 +83,7 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{ 
     }
     
     
-
+    //Se encarga de generar una reserva para el usuario en cuestion
     public Reserva generarReserva(Huesped huesped, Habitacion habitacion, String fechaEntrada, String fechaSalida, long costo){
         Reserva res = new Reserva(huesped, habitacion, fechaEntrada, fechaSalida, costo);
         return res;
@@ -199,19 +199,21 @@ public class Huesped extends Usuario implements Serializable, PresentacionBono{ 
         return habitacionesRecomendadas;
     }
 
+    //Le ofrece un bono a la persona desde el SignUp (se llama desde allí)
     @Override
     public void ofrecerBono() {
         System.out.println("Se le han añadido "+ BONOHUESPED + "$ a su cuenta bancaria");
         this.getCuentaBancaria().depositar(BONOHUESPED);
     }
     
+    //Se encarga de presentar a la pesona cuando se registra.
     @Override
     public String presentacion(){
         String intro = PresentacionBono.recogerDatos(this);
         return "Soy un huesped. "+intro ;
     }
 
-    
+    //Se encarga de darle la bienvenida al usuario cuando entra a la aplicación
     @Override
     public String entrando(){
         return "Entrando a su cuenta de Huésped, señor(a): "+this.getNombre();

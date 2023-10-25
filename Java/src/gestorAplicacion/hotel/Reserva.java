@@ -8,6 +8,11 @@ import gestorAplicacion.usuarios.Huesped;
 import gestorAplicacion.hotel.ServiciosExtra;
 import java.io.Serializable;
 
+/*
+    Author David Restrepo Aguilar
+*/
+
+//Esta clase se encarga de mantener datos visibles sobre la reserva de un huesped en el hotel
 public class Reserva implements Serializable{
     private static final long serialVersionUID = 8L;   
     private Huesped huesped;
@@ -111,6 +116,7 @@ public class Reserva implements Serializable{
 		
 	}
 	
+        //Se encarga de eliminar la reserva
 	public String eliminarReserva() {
             if (this.getHuesped().isEnReserva()){
                 System.out.println("Elmininando reserva full");
@@ -143,13 +149,4 @@ public class Reserva implements Serializable{
             return "La reserva no se ha eliminado correctamente";
 	}
 	
-	public boolean modificarReserva() {
-		return true;
-		
-	}
-	
-	public int confirmarDescuento() {
-		return 0;
-		
-	}
 }

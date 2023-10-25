@@ -20,6 +20,7 @@ import java.util.Map;
  * @author david
  */
 public class Reservar {
+    //Se encarga de ingresar al huesped al menú de reserva
     public static void reservar(Huesped huesped){
         Scanner sc = new Scanner(System.in);
         System.out.println("MENU DE RESERVACIÓN");
@@ -106,7 +107,7 @@ public class Reservar {
         }   
         
     }
-    
+    //Se encarga de ingresar al huesped al menú de reserva de habitación luego de escoger hotel
     public static void chooseRoom(Hotel hotel, Huesped huesped){
         int cocuped = 0;
         
@@ -217,7 +218,7 @@ public class Reservar {
                 Menu.sistema(huesped);
         }
     }
-    
+    //Se encarga de ingresar al huesped al menú de reserva luego de escoger la habitación
     public static void menuReserva(Habitacion habitacion, Huesped huesped){
         Scanner sc = new Scanner(System.in);
         Map<Huesped, Float> calificaciones = habitacion.getCalificaciones();
@@ -269,7 +270,7 @@ public class Reservar {
             }
         } 
     }
-    
+    //Se encarga de administrar las fechas que ingresa el usuario para su reserva, y la confirmación de la misma
     public static void bookRoom(Habitacion habitacion, Huesped huesped){
         Scanner sc = new Scanner(System.in);
         
@@ -441,7 +442,7 @@ public class Reservar {
         }
             
     }
-    
+    //Se encarga de confirmar la reserva e imprimir un resumen
     public static void reservaConfirmada(Huesped huesped, Habitacion habitacion, Reserva reserva){
         huesped.setEnReserva(true);
         String fIni = reserva.getFechaEntrada();

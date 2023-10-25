@@ -199,11 +199,13 @@ public class Administrador extends Usuario implements Serializable{     //Clase 
         this.ultimoPago = ultimoPago;
     }
     
+    //Se encarga de presentar a la pesona cuando se registra.
     @Override
     public String presentacion(){
         return "";
     }
     
+    //Se encarga de darle la bienvenida al usuario cuando entra a la aplicación
     @Override
     public String entrando(){
         return "Entrando a su cuenta de Administrador, señor(a): "+this.getNombre();
