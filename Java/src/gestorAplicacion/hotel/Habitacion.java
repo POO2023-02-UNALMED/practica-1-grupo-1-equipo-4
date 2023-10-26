@@ -50,7 +50,7 @@ public class Habitacion implements Serializable{
     public Habitacion(long id) {                                    //Sobrecarga constructor
         this(id, "simple", 1, 100000);          //Uso de this() para desambiguar
     }
-
+    
     //Calcula  promedio  de la habitacion
     public float calcularPromedio(){
         float prom = 0;
@@ -99,8 +99,8 @@ public class Habitacion implements Serializable{
         }
         return rango;
     }
-
-    //Retorna el total de las sugerencias
+    
+     //Retorna el total de las sugerencias
     public ArrayList<String> totalSugerencias(ArrayList<Habitacion> habitaciones){
         ArrayList<String> resultado = new ArrayList<>();
         for(Habitacion i :  habitaciones){

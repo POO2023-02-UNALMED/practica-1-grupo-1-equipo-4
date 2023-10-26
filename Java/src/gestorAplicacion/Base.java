@@ -20,7 +20,7 @@ import java.util.TreeMap;
 import uiMain.Reservar;
 
 /*
-   Author David
+    Author David Restrepo Aguilar
 */
 
 // Esta clase se encarga de administrar la base de datos del programa y realizar los filtros que implementa

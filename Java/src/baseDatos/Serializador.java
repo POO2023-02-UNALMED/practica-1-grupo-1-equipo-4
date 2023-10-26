@@ -8,6 +8,9 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import gestorAplicacion.Base;
 
+/*
+    Author David Restrepo Aguilar
+*/
 public class Serializador {
     //Cada uno  debe revisar  su  ruta y estructura correspondiente y luego cambiar
     private static File temp = new File("src\\main\\java\\baseDatos\\temp");

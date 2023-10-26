@@ -23,6 +23,7 @@ public class Menu {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args){
         Deserializador.deserializador();
+        System.out.println(Base.getHuespedes());
         
 //        System.out.println(Base.getHoteles().get(0).getHabitaciones().get(0).getReservas().get(0).getHuesped().getNombre());
         
@@ -30,30 +31,30 @@ public class Menu {
          * Pruebas para administrador
          */
 
-        /* 
          
-        CuentaBancaria cbhotel = new CuentaBancaria(123456, "Bancolombia");
-        CuentaBancaria cbadministrador = new CuentaBancaria(6789, "Bancolombia");
-        CuentaBancaria cbempleado1 = new CuentaBancaria(6789, "Bancolombia");
-        CuentaBancaria cbempleado2 = new CuentaBancaria(6789, "Bancolombia");
+         
+//        CuentaBancaria cbhotel = new CuentaBancaria(123456, "Bancolombia");
+//        CuentaBancaria cbadministrador = new CuentaBancaria(6789, "Bancolombia");
+//        CuentaBancaria cbempleado1 = new CuentaBancaria(6789, "Bancolombia");
+//        CuentaBancaria cbempleado2 = new CuentaBancaria(6789, "Bancolombia");
+//
+//        Hotel hotel = new Hotel(cbhotel);
+//        hotel.getCuentaBancaria().setSaldo(10000);
+//
+//        Administrador administrador = new Administrador("Camilo", 12345, "kmi", "12345", cbadministrador, hotel);
+//
+//        Empleado empleado1 = new Empleado("Juan", 1234, "Juan", "12345", cbempleado1, 200);
+//        Empleado empleado2 = new Empleado("Carlos", 1234, "Carlos", "12345", cbempleado2, 100);
+//
+//        hotel.agregarEmpleado(empleado1);
+//        hotel.agregarEmpleado(empleado2);
+//
+//        Base.addHoteles(hotel);
+//        Base.addAdministradores(administrador);
+//        Base.addEmpleados(empleado1);
+//        Base.addEmpleados(empleado2);
 
-        Hotel hotel = new Hotel(cbhotel);
-        hotel.getCuentaBancaria().setSaldo(10000);
-
-        Administrador administrador = new Administrador("Camilo", 12345, "kmi", "12345", cbadministrador, hotel);
-
-        Empleado empleado1 = new Empleado("Juan", 1234, "Juan", "12345", cbempleado1, 200);
-        Empleado empleado2 = new Empleado("Carlos", 1234, "Carlos", "12345", cbempleado2, 100);
-
-        hotel.agregarEmpleado(empleado1);
-        hotel.agregarEmpleado(empleado2);
-
-        Base.addHoteles(hotel);
-        Base.addAdministradores(administrador);
-        Base.addEmpleados(empleado1);
-        Base.addEmpleados(empleado2);
-
-        */
+        
 //        System.out.println(Base.getHuespedes().get(0).getNombre());
 //        System.out.println(Base.getHuespedes().get(0).equals(Base.getHoteles().get(0).getHabitaciones().get(0).getReservas().get(0).getHuesped().getNombre()));
         
@@ -61,12 +62,6 @@ public class Menu {
 //        ArrayList<Empleado> emps = new ArrayList<>();
 //        ArrayList<ServiciosExtra> servs = new ArrayList<>();
 //        ArrayList<Habitacion> habs = new ArrayList<>();
-//        ServiciosExtra serv1 = new ServiciosExtra("barrer");
-//        ServiciosExtra serv2 = new ServiciosExtra("trapear");
-//        ServiciosExtra serv3 = new ServiciosExtra("transportarse");
-//        servs.add(serv3);
-//        servs.add(serv2);
-//        servs.add(serv1);
 //        Empleado emp1 = new Empleado("emp1");
 //        Empleado emp2 = new Empleado("emp2");
 //        Empleado emp3 = new Empleado("emp3");
@@ -93,59 +88,40 @@ public class Menu {
 //        habs.add(hab6);
 //        Hotel hot = new Hotel(cb, "Hotel1", "Medellin",servs, habs, emps);
 //        Base.addHoteles(hot);
+        
+//        Preferencias pref = new Preferencias("Cali","Hotel2","SIMPLE");
+//        ArrayList<Preferencias> prefs = new ArrayList<>();
+//        Huesped hue = new Huesped(true, prefs, null, 0, "david", "1", null);
+//        Base.addHuespedes(hue);
 
         //Calificar.seleccionar();
-//        Administrador administradorinicial = new Administrador("Juan", 12234, "juank", "12345678", new CuentaBancaria(1234, "Bancolombia"), new Hotel());
-//        Administrador administradorinicial2 = new Administrador("Juan", 12234, "juank", "12345678", new CuentaBancaria(1234, "Bancolombia"), new Hotel());
-//        Administrador administradorinicial3 = new Administrador("Juan", 12234, "juank", "12345678", new CuentaBancaria(1234, "Bancolombia"), new Hotel());
-//        Base.addAdministradores(administradorinicial);
-//        Base.addAdministradores(administradorinicial2);
-//        //Base.addAdministradores(administradorinicial3);
-//        for (Administrador ad : Base.getAdministradores()) {
-//            System.out.println(ad.getNombre());
-//        }
+        // CuentaBancaria cb = new CuentaBancaria(1000000000, "d");
+//       
+        
+        
         //  Pruebas recomendaciones    
-        //ArrayList<Habitacion> habs = new ArrayList<>();
-        //Habitacion hab1 = new Habitacion(1, "simple", 1, 100000);
-        //Habitacion hab2 = new Habitacion(2, "doble", 2, 300000);
-        //Habitacion hab3 = new Habitacion(3, "familiar", 4, 500000);
-        //Habitacion hab4 = new Habitacion(4, "simplevip", 1, 300000);
-        //Habitacion hab5 = new Habitacion(5, "doblevip", 2, 700000);
-        //Habitacion hab6 = new Habitacion(6, "familiarvip", 4, 1000000);
-        //hab1.addCalificacion(new Huesped(), 0f);
-        //hab2.addCalificacion(new Huesped(), 1f);
-        //hab3.addCalificacion(new Huesped(), 2f);
-        //hab4.addCalificacion(new Huesped(), 3f);
-        //hab5.addCalificacion(new Huesped(), 4f);
-        //hab6.addCalificacion(new Huesped(), 5f);
-        //habs.add(hab1);
-        //habs.add(hab2);
-        //habs.add(hab3);
-        //habs.add(hab4);
-        //habs.add(hab5);
-        //habs.add(hab6);
-        //ArrayList<Empleado> empleados = new ArrayList<>();
-        //Empleado empleado = new Empleado(null, 0, null, null, null, 0);
-        //empleados.add(empleado);
-        //Hotel hotel = new Hotel(new CuentaBancaria(0, null), "Montreal", "Medellin", null, habs,empleados);
-        //Base.addHoteles(hotel);
-        //ArrayList<Preferencias> preferencias = new ArrayList<>();
-        //Preferencias preferencia = new Preferencias("Medellin", "Montreal", (String) TipoHabitacion.VIPFAMILIAR.name());
-        //preferencias.add(preferencia);
-        //ArrayList<Preferencias> preferencias2 = new ArrayList<>();
-        //Preferencias preferencia2 = new Preferencias("Medellin", "Montreal", (String) TipoHabitacion.VIPFAMILIAR.name());
-        //preferencias2.add(preferencia2);
-        //Huesped huesped = new Huesped(false,preferencias, null, 0, null, null, null);
-        //Huesped huesped2 = new Huesped(false, preferencias, null, 0, null, null, null);
-        //Reserva reserva = new Reserva(huesped, hab6, null, null, 0);
-        //reserva.setCalificacionHotel(5);
-        //reserva.setCiudad("Medellin");
-        //reserva.setHotel(hotel);
-        //huesped.addReserva(reserva);
-        //huesped.setId(1);
-        //hab6.addCalificacion(huesped, 5f);
-        //seleccionar(huesped);  
-        //      
+
+//        ArrayList<Empleado> empleados = new ArrayList<>();
+//        Empleado empleado = new Empleado(null, 0, null, null, null, 0);
+//        empleados.add(empleado);
+//        Base.addHoteles(hotel);
+//        ArrayList<Preferencias> preferencias = new ArrayList<>();
+//        Preferencias preferencia = new Preferencias("Medellin", "Montreal", (String) TipoHabitacion.VIPFAMILIAR.name());
+//        preferencias.add(preferencia);
+//        ArrayList<Preferencias> preferencias2 = new ArrayList<>();
+//        Preferencias preferencia2 = new Preferencias("Medellin", "Montreal", (String) TipoHabitacion.VIPFAMILIAR.name());
+//        preferencias2.add(preferencia2);
+//        Huesped huesped = new Huesped(false,preferencias, null, 0, "alejandra", "1", null);
+//        Base.addHuespedes(huesped);
+//        Huesped huesped2 = new Huesped(false, preferencias, null, 0, null, null, null);
+//        Reserva reserva = new Reserva(huesped, hab6, null, null, 0);
+//        reserva.setCalificacionHotel(5);
+//        reserva.setCiudad("Medellin");
+//        reserva.setHotel(hotel);
+//        huesped.addReserva(reserva);
+//        huesped.setId(1);
+//        hab6.addCalificacion(huesped, 5f);  
+              
         
 
         Login.login();
@@ -210,7 +186,7 @@ public class Menu {
     }
     
     static void sistema(Huesped huesped){               //Sobrecarga de método sistema
-        System.out.println(Base.getHoteles().get(0).getHabitaciones().get(0).isReservada());
+        System.out.println(huesped.getPreferencias());
 //        System.out.println(huesped.isEnReserva());
 //        System.out.println(Base.getHoteles().get(0).getHabitaciones().get(0).getReservas().get(0).getHuesped().getNombre());
         if (isIni()){                      //Revisa si la reserva de un cliente comenzó
@@ -238,7 +214,7 @@ public class Menu {
         System.out.println("---------------");
         System.out.println("Seleccione alguna de las siguientes opciones (Ingrese el número que corresponde a la opción deseada):\n"
                 + "1: Reservar una habitación\n"
-                + "2: Cambiar preferencias\n"
+                + "2: Agregar preferencias\n"
                 + "3: Ver cuenta bancaria\n"
                 + "4: Ver reserva\n"
                 + "5: Ver recomendaciones\n"
@@ -247,7 +223,7 @@ public class Menu {
         int opcion;
         while (true){
             opcion = sc.nextInt();
-            if (opcion<1 || opcion>6){
+            if (opcion<1 || opcion>7){
                 System.out.println("Error. Debe ingresar uno de los números correspondientes a una opcion");
                 continue;
             }
@@ -323,15 +299,20 @@ public class Menu {
         }
         
         huesped.agregarPreferencias(ciudad, hotel, habitacion);
-        int opcion = sc.nextInt();
+        System.out.println("\n------------------\n");
+        System.out.println("La preferencia se agregó satisfactoriamente");
+        System.out.println("\n----------------------\n");
         System.out.println("Seleccione alguna de las siguientes opciones:");
         System.out.println("1: Agregar nueva preferencia"+
         "\n2: Volver al menú principal");
+        int opcion;
+        opcion = sc.nextInt();
         while(opcion!=1 || opcion!=2){
             System.out.println("Ingrese una opción válida");
              System.out.println("Seleccione alguna de las siguientes opciones:");
             System.out.println("1: Agregar nueva preferencia"+
             "\n2: Volver al menú principal");
+            opcion = sc.nextInt();
         }
         switch (opcion) {
             case 1:

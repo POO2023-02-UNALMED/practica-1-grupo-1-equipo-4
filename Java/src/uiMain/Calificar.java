@@ -21,7 +21,7 @@ public class Calificar {
         calificarHabitacion(huesped);    
         calificarEmpleado(huesped);
         calificarServicios(huesped);
-        System.out.println(huesped.getReserva().getHotel().calcularPromedio());
+        //System.out.println(huesped.getReserva().getHotel().calcularPromedio());
         if(huesped.getReserva().getHotel().calcularPromedioHotel()<2.5){
             System.out.println("Gracias  a los datos aportado  el  hotel sera  eliminado");
             Base.getHoteles().remove(huesped.getReserva().getHotel());

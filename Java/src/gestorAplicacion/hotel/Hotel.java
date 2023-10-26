@@ -70,15 +70,15 @@ public class Hotel implements Serializable{
         for (Habitacion habitacion : this.habitaciones) {
             totalHabitaciones  = totalHabitaciones + habitacion.calcularPromedio();
         }
-        System.out.println(totalHabitaciones/this.habitaciones.size());
+//        System.out.println(totalHabitaciones/this.habitaciones.size());
         for (Empleado empleado : this.empleados) {
             totalEmpleados =  totalEmpleados+Empleado.promedioCalificaciones(empleado);
         }
-        System.out.println(totalEmpleados / this.empleados.size());
+//        System.out.println(totalEmpleados / this.empleados.size());
         for(ServiciosExtra servicio: this.servicios){
            totalServicios = totalServicios + ServiciosExtra.promedioCalificaciones(servicio);
         }
-        System.out.println(totalServicios / this.servicios.size());
+//        System.out.println(totalServicios / this.servicios.size());
         totalHabitaciones = totalHabitaciones / this.habitaciones.size();
         totalEmpleados = totalEmpleados / this.empleados.size();
         totalServicios = totalServicios / this.servicios.size();
